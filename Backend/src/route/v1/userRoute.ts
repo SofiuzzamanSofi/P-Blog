@@ -14,8 +14,8 @@ export default (router: express.Router) => {
 
     router.get("/user/signout", signOut); // sign out user 
 
-    router.post("/user/signup", signUp); // sign out user 
-    router.post("/user/signin", signIn); // sign out user 
+    // router.post("/user/signup", signUp); // sign out user 
+    // router.post("/user/signin", signIn); // sign out user 
     router.post("/user/signin-social-media", signInWithSocial); // sign GOOGLE FACEBOOK 
 
     // router.put("/user/registration", verifyToken, updateUserWithRole); // // edit user with  role and other info

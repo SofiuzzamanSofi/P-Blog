@@ -134,19 +134,20 @@ export const signInWithSocial = async (
         if (!handleUserData) {
             return res.status(400).json({
                 success: false,
-                message: "Body is empty line 12",
+                message: "Missing Information.",
             });
         };
         const user = await getUserByEmail(next, handleUserData.email);
-        if (!user) {
-            return res.status(400).json({
-                success: false,
-                message: `Function called but User not set on Db `,
-            });
-        } else {
+        if (user) {
             return res.status(201).json({
                 success: true,
                 data: user,
+            });
+        } else {
+            const userCreate = await createUserService(next, handleUserData);
+            return res.status(400).json({
+                success: true,
+                data: userCreate,
             });
         }
     } catch (error) {

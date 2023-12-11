@@ -101,19 +101,19 @@ export const getMessageByIdController = async (
                 message: `Job data not found But User Found for Starting the chat By Id: ${id}`,
                 data: {
                     chatId: id,
-                    participants: [
-                        {
-                            userId: user1._id,
-                            userName: user1.firstName + ' ' + user1.lastName,
-                            userEmail: user1.email,
-                        },
-                        {
-                            userId: user2._id,
-                            userName: user2.firstName + '' + user2.lastName,
-                            userEmail: user2.email,
-                        },
+                    // participants: [
+                    //     {
+                    //         userId: user1._id,
+                    //         userName: user1.firstName + ' ' + user1.lastName,
+                    //         userEmail: user1.email,
+                    //     },
+                    //     {
+                    //         userId: user2._id,
+                    //         userName: user2.firstName + '' + user2.lastName,
+                    //         userEmail: user2.email,
+                    //     },
 
-                    ],
+                    // ],
                     // messages: [
 
                     // ],

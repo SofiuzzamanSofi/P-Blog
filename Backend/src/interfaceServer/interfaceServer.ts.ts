@@ -1,7 +1,9 @@
 export interface UserDataTypes {
-    firstName?: string;
-    lastName?: string;
     email?: string;
+    displayName: string;
+    emailVerified: boolean;
+    photoURL: string;
+
     role?: string;
     gender?: string;
     country?: string;

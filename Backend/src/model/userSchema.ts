@@ -3,19 +3,25 @@ import mongoose from "mongoose";
 
 //create a schema
 const userSchema = new mongoose.Schema<UserDataTypes>({
-  firstName: {
-    type: "string",
-    required: false,
-  },
-  lastName: {
-    type: "string",
-    required: false,
-  },
   email: {
     type: "string",
     required: true,
     unique: true,
   },
+  displayName: {
+    type: "string",
+    required: false,
+  },
+  emailVerified: {
+    type: "boolean",
+    required: true,
+  },
+  photoURL: {
+    type: "string",
+    required: false,
+  },
+
+
   role: {
     type: "string",
     required: false,
