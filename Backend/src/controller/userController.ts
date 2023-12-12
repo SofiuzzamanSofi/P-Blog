@@ -9,8 +9,6 @@ export const getMe = async (
     next: express.NextFunction,
 ) => {
     try {
-        console.log('get-me-user:')
-        // const email = req.user?.email; // Access the user object from req
         const email = req.body?.email; // Access the user object from req
         const user = await getUserByEmail(next, email);
         if (!user.email) {
@@ -20,7 +18,6 @@ export const getMe = async (
                 data: { email, }
             });
         } else {
-            //  console.log('get-me-user:', user);
             const { createdAt, updatedAt, __v, ...others } = user.toObject();
             return res.status(200).json({
                 success: true,
