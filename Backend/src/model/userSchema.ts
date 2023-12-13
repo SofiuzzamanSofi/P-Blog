@@ -37,6 +37,7 @@ const userSchema = new mongoose.Schema<UserDataTypes>({
     required: false,
   },
 
+  // links
   whatsapp: { type: String },
   website: { type: String },
   github: { type: String },
@@ -60,6 +61,40 @@ const userSchema = new mongoose.Schema<UserDataTypes>({
   smoking: { type: String },
   net_worth: { type: String },
   education: { type: String },
+
+  // donate payment
+  donateDetails: {
+    totalSendAmount: { type: Number, default: 0 },
+    totalReceiveAmount: { type: Number, default: 0 },
+    senders: [
+      {
+        userId: { type: String },
+        useremail: { type: String },
+        firstName: { type: String },
+        lastName: { type: String },
+        email: { type: String },
+        country: { type: String },
+        postalCode: { type: String },
+        amount: { type: Number },
+        transactionId: { type: String },
+        time: { type: Date, default: Date.now }
+      }
+    ],
+    receivers: [
+      {
+        userId: { type: String },
+        useremail: { type: String },
+        firstName: { type: String },
+        lastName: { type: String },
+        email: { type: String },
+        country: { type: String },
+        postalCode: { type: String },
+        amount: { type: Number },
+        transactionId: { type: String },
+        time: { type: Date, default: Date.now }
+      }
+    ],
+  },
 
 
   role: {

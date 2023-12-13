@@ -33,6 +33,14 @@ export interface UserDataTypes {
     net_worth: String,
     education: String,
 
+    // donate payment
+    donateDetails: {
+        totalSendAmount: number;
+        totalReceiveAmount: number;
+        senders: Sender[];
+        receivers: Receiver[];
+    }
+
     role?: string;
     country?: string;
     address?: string;
@@ -48,6 +56,34 @@ export interface UserDataTypes {
     _id?: string;
     __v?: number;
 };
+
+interface Sender {
+    userId: string;
+    useremail: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    country: string;
+    postalCode: string;
+    amount: number;
+    transactionId: string;
+    time: Date;
+}
+
+interface Receiver {
+    userId: string;
+    useremail: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    country: string;
+    postalCode: string;
+    amount: number;
+    transactionId: string;
+    time: Date;
+}
+
+
 
 export interface AnsTypes {
     time: Date;
