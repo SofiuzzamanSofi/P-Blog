@@ -37,6 +37,15 @@ const userSchema = new mongoose.Schema<UserDataTypes>({
     required: false,
   },
 
+  whatsapp: { type: String },
+  website: { type: String },
+  github: { type: String },
+  linkedin: { type: String },
+  youtube: { type: String },
+  facebook: { type: String },
+  twitter: { type: String },
+  instagram: { type: String },
+
   // physical
   bodyType: { type: String },
   hair_color: { type: String },

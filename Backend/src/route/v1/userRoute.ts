@@ -1,9 +1,11 @@
-import { getMe, getUserByEmailController, updateUserWithRole, signInWithSocial, profilePicChange, updateProfile } from "../../controller/userController";
+import { getMe, getUserByEmailController, updateUserWithRole, signInWithSocial, profilePicChange, updateProfile, getUserById } from "../../controller/userController";
 import express from "express";
 
 export default (router: express.Router) => {
 
     router.post("/user/me", getMe);
+
+    router.patch("/user/by-id", getUserById);
 
     router.post("/user/signin-social-media", signInWithSocial); // sign GOOGLE FACEBOOK 
 

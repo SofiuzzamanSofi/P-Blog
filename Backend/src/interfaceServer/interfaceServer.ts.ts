@@ -8,6 +8,15 @@ export interface UserDataTypes {
     about?: string;
     othersCuriculam?: string;
 
+    whatsapp: string;
+    website: string;
+    github: string;
+    linkedin: string;
+    youtube: string;
+    facebook: string;
+    twitter: string;
+    instagram: string;
+
 
     // physical
     bodyType: String,

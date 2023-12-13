@@ -1,7 +1,7 @@
 "use client";
 
 import { BsPlus, BsPlusSquareDotted } from "react-icons/bs";
-import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, } from "react-icons/fa";
+import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 import { useState } from "react";
 import {
@@ -260,6 +260,27 @@ const About: React.FC<AboutProps> = () => {
           <h3 className="text-[20px] font-medium mb-4">Links</h3>
           <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4 mb-14">
 
+            {/* whatsapp */}
+            <div
+              onClick={() => handleGetValue("whatsapp")}
+              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
+            >
+              <div className="flex justify-start items-center  ">
+                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-x-2">
+                  <FaWhatsapp className="w-7 h-7 text-blue-800" />
+                  WhatsApp
+                </p>
+                {user?.whatsapp && (
+                  <p className="text-[14px] sm:text-[18px]  font-semibold text-blue-800">
+                    : {user?.whatsapp}
+                  </p>
+                )}
+              </div>
+              <button className="inset-0" type="button">
+                <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
+              </button>
+            </div>
+
             {/* website */}
             <div
               onClick={() => handleGetValue("website")}
@@ -270,9 +291,9 @@ const About: React.FC<AboutProps> = () => {
                   <TbWorldWww className="w-7 h-7 text-blue-800" />
                   Website
                 </p>
-                {user?.bodyType && (
+                {user?.website && (
                   <p className="text-[14px] sm:text-[18px]  font-semibold text-blue-800">
-                    : {user?.bodyType}
+                    : {user?.website.slice(0, 12)}...
                   </p>
                 )}
               </div>
@@ -291,9 +312,9 @@ const About: React.FC<AboutProps> = () => {
                   <FaGithub className="w-7 h-7 text-blue-800" />
                   github
                 </p>
-                {user?.bodyType && (
+                {user?.github && (
                   <p className="text-[14px] sm:text-[18px]  font-semibold text-blue-800">
-                    : {user?.bodyType}
+                    : {user?.github.slice(0, 12)}...
                   </p>
                 )}
               </div>
@@ -312,9 +333,9 @@ const About: React.FC<AboutProps> = () => {
                   <FaLinkedinIn className="w-7 h-7 text-blue-800" />
                   Linkedin
                 </p>
-                {user?.tattoos && (
+                {user?.linkedin && (
                   <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
-                    : {user?.tattoos}
+                    : {user?.linkedin.slice(0, 12)}...
                   </p>
                 )}
               </div>
@@ -333,9 +354,9 @@ const About: React.FC<AboutProps> = () => {
                   <FaYoutube className="w-7 h-7 text-blue-800" />
                   Youtube
                 </p>
-                {user?.hair_color && (
+                {user?.youtube && (
                   <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
-                    : {user?.hair_color}
+                    : {user?.youtube.slice(0, 12)}...
                   </p>
                 )}
               </div>
@@ -354,9 +375,9 @@ const About: React.FC<AboutProps> = () => {
                   <FaFacebook className="w-7 h-7 text-blue-800" />
                   Facebook
                 </p>
-                {user?.bodyType && (
+                {user?.facebook && (
                   <p className="text-[14px] sm:text-[18px]  font-semibold text-blue-800">
-                    : {user?.bodyType}
+                    : {user?.facebook.slice(0, 12)}...
                   </p>
                 )}
               </div>
@@ -375,9 +396,9 @@ const About: React.FC<AboutProps> = () => {
                   <FaTwitter className="w-7 h-7 text-blue-800" />
                   Twitter
                 </p>
-                {user?.eye_color && (
+                {user?.twitter && (
                   <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
-                    : {user?.eye_color}
+                    : {user?.twitter.slice(0, 12)}...
                   </p>
                 )}
               </div>
@@ -396,9 +417,9 @@ const About: React.FC<AboutProps> = () => {
                   <FaInstagram className="w-7 h-7 text-blue-800" />
                   Instagram
                 </p>
-                {user?.piercings && (
+                {user?.instagram && (
                   <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
-                    : {user?.piercings}
+                    : {user?.instagram.slice(0, 12)}...
                   </p>
                 )}
               </div>

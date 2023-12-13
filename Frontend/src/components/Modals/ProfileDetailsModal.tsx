@@ -23,6 +23,69 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   const [taglineValue, setTaglineValue] = useState<string>("");
   const [locationValue, setLocationValue] = useState<string>("");
 
+  const [link, setLink] = useState<string>("");
+
+  const handleLinkChange = async () => {
+
+    let values;
+    if (getValueType === "whatsapp") {
+      values = {
+        whatsapp: link,
+      };
+    }
+    else if (getValueType === "website") {
+      values = {
+        website: link,
+      };
+    }
+    else if (getValueType === "github") {
+      values = {
+        github: link,
+      };
+    }
+    else if (getValueType === "linkedin") {
+      values = {
+        linkedin: link,
+      };
+    }
+    else if (getValueType === "youtube") {
+      values = {
+        youtube: link,
+      };
+    }
+    else if (getValueType === "facebook") {
+      values = {
+        facebook: link,
+      };
+    }
+    else if (getValueType === "twitter") {
+      values = {
+        twitter: link,
+      };
+    }
+    else if (getValueType === "instagram") {
+      values = {
+        instagram: link,
+      };
+    }
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
+    const result = await res.json();
+    if (result.message === "User updated successfully") {
+      setUserReload((prev) => !prev);
+      setLink("");
+      profileDetailsModal.onClose();
+    }
+  };
+
   const handleBodyTypeClick = async (e: React.MouseEvent<HTMLLIElement>) => {
     if (e.currentTarget.textContent) {
       const values = {
@@ -255,12 +318,6 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
     }
   };
 
-
-  const handleIncreaseAge = (e: ChangeEvent<HTMLInputElement>) => {
-    const newFirstPoint = parseInt(e.target.value, 10);
-    setFirstPoint(newFirstPoint);
-  };
-
   const handleOfferFieldsValue = async () => {
     const values = {
       about: inputFieldsValue,
@@ -304,7 +361,6 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       }
     );
     const result = await res.json();
-
     if (result.message === "User updated successfully") {
       setUserReload((prev) => !prev);
       profileDetailsModal.onClose();
@@ -1103,7 +1159,6 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       </div>
     );
   }
-
   if (getValueType === "othersCuriculam") {
     bodyContent = (
       <div className="text-black">
@@ -1128,6 +1183,54 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
               : "bg-gray-300 text-center w-full py-4 rounded-full text-xl text-white mb-5"
           }
           disabled={taglineValue.length > 10 ? false : true}
+        >
+          Save
+        </button>
+      </div>
+    );
+  }
+  if (
+    getValueType === "whatsapp" ||
+    getValueType === "website" ||
+    getValueType === "github" ||
+    getValueType === "linkedin" ||
+    getValueType === "youtube" ||
+    getValueType === "facebook" ||
+    getValueType === "twitter" ||
+    getValueType === "instagram"
+  ) {
+    bodyContent = (
+      <div className="text-black">
+        <h1 className="text-center text-xl font-medium capitalize">
+          {getValueType} pls:
+        </h1>
+        <input
+          onChange={(e: any) => setLink(e.target.value)}
+          type={getValueType === "whatsapp" ? "number" : "text"}
+          name=""
+          id=""
+          className=" shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-4 rounded-full w-full my-6"
+          placeholder="Write a few words to tempt"
+          required
+          defaultValue={
+            getValueType === "whatsapp" ? user?.whatsapp :
+              getValueType === "website" ? user?.website :
+                getValueType === "github" ? user?.github :
+                  getValueType === "linkedin" ? user?.linkedin :
+                    getValueType === "youtube" ? user?.youtube :
+                      getValueType === "facebook" ? user?.facebook :
+                        getValueType === "twitter" ? user?.twitter :
+                          getValueType === "instagram" ? user?.instagram : ""
+          }
+        />
+        <button
+          onClick={handleLinkChange}
+          className={
+            link.length > 7
+              ? "bg-[#00C684] text-center w-full py-4 rounded-full text-xl text-white mb-5"
+              : "bg-gray-300 text-center w-full py-4 rounded-full text-xl text-white mb-5"
+          }
+          disabled={link.length > 7 ? false : true}
         >
           Save
         </button>

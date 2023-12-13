@@ -9,6 +9,15 @@ export interface UserDataTypes {
     about: string;
     othersCuriculam: string;
 
+    whatsapp: string;
+    website: string;
+    github: string;
+    linkedin: string;
+    youtube: string;
+    facebook: string;
+    twitter: string;
+    instagram: string;
+
     des1?: string;
     des2?: string;
     age: number;

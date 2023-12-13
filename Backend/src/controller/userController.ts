@@ -1,5 +1,5 @@
 import express from "express";
-import { createUserService, getUserByEmail, profilePicChangeService, updateProfileService, updateUserByEmail } from "../service/userService";
+import { createUserService, getUserByEmail, getUserByIdService, profilePicChangeService, updateProfileService, updateUserByEmail } from "../service/userService";
 import { generateToken } from "../utils/token/generateToken";
 
 // get user first time open on browser
@@ -22,6 +22,39 @@ export const getMe = async (
             return res.status(200).json({
                 success: true,
                 message: `Successfully got data by this: ${email}`,
+                data: user,
+            })
+        };
+    } catch (error) {
+        next(error);
+    };
+};
+
+// get user by id
+export const getUserById = async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+) => {
+    try {
+        const { _id } = req.body
+        if (!_id) {
+            return res.status(201).json({
+                success: false,
+                message: `Id not found`,
+            });
+        };
+        const user = await getUserByIdService(next, _id);
+        if (!user.email) {
+            return res.status(201).json({
+                success: false,
+                message: `User not found by id`,
+            });
+        } else {
+            const { createdAt, updatedAt, __v, ...others } = user.toObject();
+            return res.status(200).json({
+                success: true,
+                message: `Successfully got data by this id.`,
                 data: user,
             })
         };
@@ -104,8 +137,6 @@ export const updateProfile = async (
     try {
         const email = req.params.email;
         const userDetails = req.body;
-
-        console.log('hit-update-profile:');
         if (!userDetails || !email) {
             return res.status(400).json({
                 success: false,
