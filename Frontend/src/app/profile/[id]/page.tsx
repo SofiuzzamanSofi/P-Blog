@@ -59,7 +59,7 @@ const page = () => {
 
                         <Link
                             href="/profile/edit"
-                            className="flex justify-center font-medium gap-x-2 shadow-[0_0px_15px_rgba(0,0,0,0.15)] hover:opacity-90 transform py-5 rounded-full my-5 w-11/12 text-gray-600 text-xl"
+                            className="border flex justify-center font-medium gap-x-2 shadow-[0_0px_15px_rgba(0,0,0,0.15)] hover:opacity-90 transform py-5 rounded-full my-5 w-11/12 text-gray-600 text-xl"
                         >
                             <BiEdit
                                 className="h-8 w-8"
@@ -74,13 +74,7 @@ const page = () => {
                     </div>
                     <div>
                         <h2 className="text-xl font-semibold mb-4">
-                            {user?.des1 ? (
-                                user?.des1
-                            ) : (
-                                <span className="text-[14px] font-[300] text-gray-400">
-                                    No Intro yeat.
-                                </span>
-                            )}
+                            {user?.gender}
                         </h2>
                     </div>
                     <div className="flex justify-start items-center gap-1">

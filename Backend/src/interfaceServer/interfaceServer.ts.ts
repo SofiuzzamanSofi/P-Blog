@@ -3,6 +3,7 @@ export interface UserDataTypes {
     displayName: string;
     emailVerified: boolean;
     photoURL: string;
+    location: string;
 
     role?: string;
     gender?: string;

@@ -590,7 +590,7 @@ const About: React.FC<AboutProps> = () => {
             {/* Location */}
             <div
               onClick={() => handleGetValue("Location")}
-              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-4"
+              className="flex justify-between items-center gap-3 border hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-4"
             >
               <div className="flex justify-start items-center">
                 <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3">
@@ -609,19 +609,19 @@ const About: React.FC<AboutProps> = () => {
               </button>
             </div>
 
-            {/* Interested */}
+            {/* Gender */}
             <div
-              onClick={() => handleGetValue("Interested")}
-              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
+              onClick={() => handleGetValue("Gender")}
+              className="flex justify-between items-center gap-3 border hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
             >
               <div className="flex justify-start items-center ">
                 <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3">
                   <AiOutlineLike className="w-7 h-7 text-blue-800" />
-                  Interested
+                  Gender
                 </p>
-                {user?.interested && (
+                {user?.gender && (
                   <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
-                    : {user?.interested}
+                    : {user?.gender}
                   </p>
                 )}
               </div>

@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema<UserDataTypes>({
     type: "string",
     required: false,
   },
+  location: {
+    type: "string",
+    required: false,
+  },
 
 
   role: {

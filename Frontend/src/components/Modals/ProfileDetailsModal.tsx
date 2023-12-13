@@ -499,6 +499,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       handleProfilePercentage();
     }
   };
+
   const handleLocationFieldsValue = async () => {
     const values = {
       location: locationValue,
@@ -514,23 +515,22 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       }
     );
     const result = await res.json();
-
     if (result.message === "User updated successfully") {
       setUserReload((prev) => !prev);
       profileDetailsModal.onClose();
       setTaglineValue("");
     }
-    if (result.message === "User updated successfully" && !user?.location) {
-      profileDetailsModal.onClose();
-      setUserReload((prev) => !prev);
-      handleProfilePercentage();
-    }
+    // if (result.message === "User updated successfully" && !user?.location) {
+    //   profileDetailsModal.onClose();
+    //   setUserReload((prev) => !prev);
+    //   handleProfilePercentage();
+    // }
   };
 
-  const handleInterestedClick = async (e: React.MouseEvent<HTMLLIElement>) => {
+  const handleGenderClick = async (e: React.MouseEvent<HTMLLIElement>) => {
     if (e.currentTarget.textContent) {
       const values = {
-        interested: e.currentTarget.textContent,
+        gender: e.currentTarget.textContent,
       };
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
@@ -543,17 +543,15 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-      //    console.log(result);
       if (result.message === "User updated successfully") {
-        //    console.log(result);
         profileDetailsModal.onClose();
         setUserReload((prev) => !prev);
       }
-      if (result.message === "User updated successfully" && !user?.interested) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
-      }
+      // if (result.message === "User updated successfully" && !user?.gender) {
+      //   profileDetailsModal.onClose();
+      //   setUserReload((prev) => !prev);
+      //   handleProfilePercentage();
+      // }
     }
   };
 
@@ -561,7 +559,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   let bodyContent;
   if (getValueType === "Body Type") {
     bodyContent = (
-      <div className="max-h-[70vh] overflow-y-auto">
+      <div className="max-h-[70vh] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">
           What is your body type?
         </h1>
@@ -648,7 +646,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Hair Color") {
     bodyContent = (
-      <div className="max-h-[70vh] overflow-y-auto">
+      <div className="max-h-[70vh] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">
           What’s your hair color?
         </h1>
@@ -725,7 +723,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Eye Color") {
     bodyContent = (
-      <div className="max-h-[70vh] overflow-y-auto">
+      <div className="max-h-[70vh] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">
           What’s your eye color?
         </h1>
@@ -813,7 +811,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Piercings") {
     bodyContent = (
-      <div className="max-h-[70vh] overflow-y-auto">
+      <div className="max-h-[70vh] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">
           Have any piercings?
         </h1>
@@ -881,7 +879,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Tattoos") {
     bodyContent = (
-      <div className="max-h-[70vh] overflow-y-auto">
+      <div className="max-h-[70vh] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">
           Have any tattoos?
         </h1>
@@ -940,7 +938,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Height") {
     bodyContent = (
-      <div className="h-[24rem] overflow-y-auto">
+      <div className="h-[24rem] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">
           How tall are you?
         </h1>
@@ -972,7 +970,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Drinking") {
     bodyContent = (
-      <div className="h-[26rem] overflow-y-auto">
+      <div className="h-[26rem] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">Do you drink?</h1>
         <ul>
           <li
@@ -1019,7 +1017,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Yearly Income") {
     bodyContent = (
-      <div className="max-h-[70vh] overflow-y-auto">
+      <div className="max-h-[70vh] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">
           What’s your yearly income?
         </h1>
@@ -1099,7 +1097,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Smoking") {
     bodyContent = (
-      <div className="h-[26rem] overflow-y-auto">
+      <div className="h-[26rem] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">Do you smoke?</h1>
         <ul>
           <li
@@ -1146,7 +1144,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Net Worth") {
     bodyContent = (
-      <div className="max-h-[70vh] overflow-y-auto">
+      <div className="max-h-[70vh] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">
           What’s your net worth?
         </h1>
@@ -1216,7 +1214,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Education") {
     bodyContent = (
-      <div className="max-h-[70vh] overflow-y-auto">
+      <div className="max-h-[70vh] overflow-y-auto text-black">
         <h1 className="text-2xl font-medium text-center py-6">
           What’s your education level?
         </h1>
@@ -1299,7 +1297,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
     getValueType === "Edit your interest"
   ) {
     bodyContent = (
-      <div className="max-h-[70vh] overflow-y-auto">
+      <div className="max-h-[70vh] overflow-y-auto text-black">
         <p className="text-red-500 text-xl font-light text-center">{error}</p>
         <div>
           <div className="mt-5 text-xl ">
@@ -1869,7 +1867,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
 
   if (getValueType === "have to offer") {
     bodyContent = (
-      <div>
+      <div className="text-black">
         <h1 className="text-center text-xl font-medium">
           What do you have to offer?
         </h1>
@@ -1898,7 +1896,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "looking for") {
     bodyContent = (
-      <div>
+      <div className="text-black">
         <h1 className="text-center text-xl font-medium">
           What are you looking for?
         </h1>
@@ -1927,7 +1925,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Tagline") {
     bodyContent = (
-      <div>
+      <div className="text-black">
         <h1 className="text-center text-xl font-medium">
           What’s your tagline?
         </h1>
@@ -1956,7 +1954,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   }
   if (getValueType === "Location") {
     bodyContent = (
-      <div>
+      <div className="text-black">
         <h1 className="text-center text-xl font-medium">
           Where are you located?
         </h1>
@@ -1968,6 +1966,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
             id=""
             className=" shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-10 py-4 rounded-full w-full mt-6 "
             required
+            defaultValue={user?.location}
           />
           <BiSearch className="absolute left-3 bottom-[12.5px] h-7 w-7"></BiSearch>
         </div>
@@ -1977,28 +1976,28 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         <button
           onClick={handleLocationFieldsValue}
           className={
-            locationValue.length > 10
+            locationValue.length > 4
               ? "bg-[#00C684] text-center w-full py-4 rounded-full text-xl text-white mb-5"
               : "bg-gray-300 text-center w-full py-4 rounded-full text-xl text-white mb-5"
           }
-          disabled={locationValue.length > 10 ? false : true}
+          disabled={locationValue.length > 4 ? false : true}
         >
           Save
         </button>
       </div>
     );
   }
-  if (getValueType === "Interested") {
+  if (getValueType === "Gender") {
     bodyContent = (
-      <div>
+      <div className="text-black">
         <h1 className="text-center text-xl font-medium">
-          Which are you interested in?
+          What is your gender?
         </h1>
         <ul>
           <li
-            onClick={handleInterestedClick}
+            onClick={handleGenderClick}
             className={
-              user?.interested === "Men"
+              user?.gender === "Men"
                 ? "text-center py-4 my-3 text-xl cursor-pointer rounded-full border bg-gray-700 text-white"
                 : "text-center py-4 my-3 text-xl cursor-pointer rounded-full border"
             }
@@ -2006,9 +2005,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
             Men
           </li>
           <li
-            onClick={handleInterestedClick}
+            onClick={handleGenderClick}
             className={
-              user?.interested === "Women"
+              user?.gender === "Women"
                 ? "text-center py-4 my-3 text-xl cursor-pointer rounded-full border bg-gray-700 text-white"
                 : "text-center py-4 my-3 text-xl cursor-pointer rounded-full border"
             }
@@ -2016,9 +2015,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
             Women
           </li>
           <li
-            onClick={handleInterestedClick}
+            onClick={handleGenderClick}
             className={
-              user?.interested === "TS"
+              user?.gender === "TS"
                 ? "text-center py-4 my-3 text-xl cursor-pointer rounded-full border bg-gray-700 text-white"
                 : "text-center py-4 my-3 text-xl cursor-pointer rounded-full border"
             }

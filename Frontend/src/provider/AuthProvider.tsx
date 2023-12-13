@@ -45,7 +45,7 @@ const AuthProvider = (props: React.PropsWithChildren) => {
                         }
                     );
                     const userData = await resDataFromDb.json();
-                    // console.log('userData:', userData);
+                    // console.log('userData/user:', user);
                     setUser(userData?.data);
                 }
                 else {

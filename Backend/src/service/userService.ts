@@ -54,6 +54,24 @@ export const profilePicChangeService = async (
     };
 };
 
+//
+export const updateProfileService = async (
+    next: NextFunction,
+    userDetails: any,
+    email: string,
+) => {
+    try {
+        const updateUser = await UserModel.updateOne(
+            { email: email },
+            { $set: userDetails },
+            { runValidators: true }
+        );
+        return updateUser;
+    } catch (error) {
+        next(error);
+    };
+};
+
 
 
 

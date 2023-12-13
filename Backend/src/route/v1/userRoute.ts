@@ -1,4 +1,4 @@
-import { getMe, getUserByEmailController, updateUserWithRole, signInWithSocial, profilePicChange } from "../../controller/userController";
+import { getMe, getUserByEmailController, updateUserWithRole, signInWithSocial, profilePicChange, updateProfile } from "../../controller/userController";
 import express from "express";
 
 export default (router: express.Router) => {
@@ -9,7 +9,9 @@ export default (router: express.Router) => {
 
     router.put("/user/profile-pic-change", profilePicChange);
 
-    // router.put("/user/registration", verifyToken, updateUserWithRole); // // edit user with  role and other info
+    router.put("/user/register/putNew/:email", updateProfile);
+
+
     router.put("/user/registration", updateUserWithRole); // // edit user with  role and other info
 
     // router.get("/user/applicant/:email", verifyToken, authorization("Candidate", "Employer"), getUserByEmailController); // get a APPLICANT/user by email
