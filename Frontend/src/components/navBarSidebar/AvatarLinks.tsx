@@ -21,7 +21,7 @@ const AvatarMenu: FC<AvatarMenuProps> = ({
     handleSignOut,
 }: AvatarMenuProps) => {
 
-    const navClassName = "flex items-center gap-x-3.5 p-2 rounded-md text-sm hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 text-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+    const navClassName = "flex items-center gap-x-3.5 p-2 rounded-md text-sm hover:bg-gray-900 focus:ring-2 focus:ring-blue-500 text-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300"
 
     return (
         <div>
@@ -30,7 +30,7 @@ const AvatarMenu: FC<AvatarMenuProps> = ({
                 onMouseUpCapture={handleCloseProfileAndMenu}
                 ref={profileRef as React.RefObject<HTMLDivElement>}
                 className={`py-4 px-8 rounded-lg shadow-md  absolute
-                        top-[3.5rem] md:top-[5.25rem] right-[0.0625rem] z-30 ${isProfileOpen ? "translate-y-0" : "translate-y-[-500px]"} duration-1000 transition-all bg-gray-800 border`}
+                        top-[3.5rem] md:top-[5.25rem] right-[0.0625rem] z-30 ${isProfileOpen ? "translate-y-0" : "translate-y-[-500px]"} duration-1000 transition-all bg-gray-900 border border-gray-700`}
             >
                 <div className={`${navClassName} cursor-auto`}>
                     <div>
