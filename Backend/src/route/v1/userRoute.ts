@@ -9,7 +9,7 @@ export default (router: express.Router) => {
 
     router.put("/user/profile-pic-change", profilePicChange);
 
-    router.put("/user/register/putNew/:email", updateProfile);
+    router.put("/user/update-user/:email", updateProfile);
 
 
     router.put("/user/registration", updateUserWithRole); // // edit user with  role and other info

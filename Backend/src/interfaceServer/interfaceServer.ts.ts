@@ -4,9 +4,27 @@ export interface UserDataTypes {
     emailVerified: boolean;
     photoURL: string;
     location: string;
+    gender?: string;
+    about?: string;
+    othersCuriculam?: string;
+
+
+    // physical
+    bodyType: String,
+    hair_color: String,
+    eye_color: String,
+    piercings: String,
+    tattoos: String,
+    height: String,
+
+    // life style
+    drinking: String,
+    yearly_income: String,
+    smoking: String,
+    net_worth: String,
+    education: String,
 
     role?: string;
-    gender?: string;
     country?: string;
     address?: string;
     city?: string;

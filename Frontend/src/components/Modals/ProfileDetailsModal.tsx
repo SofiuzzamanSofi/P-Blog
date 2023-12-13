@@ -23,33 +23,13 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   const [taglineValue, setTaglineValue] = useState<string>("");
   const [locationValue, setLocationValue] = useState<string>("");
 
-  // auth
-  // const { setUserReload } = useAuth();
-
-  const handleProfilePercentage = async () => {
-    const values = {
-      profilePercentage: 100,
-    };
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(values),
-      }
-    );
-    await res.json();
-  };
-
   const handleBodyTypeClick = async (e: React.MouseEvent<HTMLLIElement>) => {
     if (e.currentTarget.textContent) {
       const values = {
         bodyType: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -59,16 +39,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-      //    console.log(result);
       if (result.message === "User updated successfully") {
         profileDetailsModal.onClose();
-        // setUserReload((prev) => !prev); // auth reload
         setUserReload((prev) => !prev);
-      }
-      if (result.message === "User updated successfully" && !user?.bodyType) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
       }
     }
   };
@@ -79,7 +52,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         hair_color: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -89,18 +62,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-
       if (result.message === "User updated successfully") {
         setUserReload((prev) => !prev);
         profileDetailsModal.onClose();
-        if (
-          result.message === "User updated successfully" &&
-          !user?.hair_color
-        ) {
-          profileDetailsModal.onClose();
-          setUserReload((prev) => !prev);
-          handleProfilePercentage();
-        }
       }
     }
   };
@@ -111,7 +75,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         eye_color: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -121,15 +85,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-      //    console.log(result);
       if (result.message === "User updated successfully") {
         setUserReload((prev) => !prev);
         profileDetailsModal.onClose();
-      }
-      if (result.message === "User updated successfully" && !user?.eye_color) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
       }
     }
   };
@@ -140,7 +98,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         piercings: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -150,15 +108,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-      //    console.log(result);
       if (result.message === "User updated successfully") {
         setUserReload((prev) => !prev);
         profileDetailsModal.onClose();
-      }
-      if (result.message === "User updated successfully" && !user?.piercings) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
       }
     }
   };
@@ -169,7 +121,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         tattoos: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -179,15 +131,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-      //    console.log(result);
       if (result.message === "User updated successfully") {
         setUserReload((prev) => !prev);
         profileDetailsModal.onClose();
-      }
-      if (result.message === "User updated successfully" && !user?.tattoos) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
       }
     }
   };
@@ -198,7 +144,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         drinking: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -208,15 +154,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-      //    console.log(result);
       if (result.message === "User updated successfully") {
         setUserReload((prev) => !prev);
         profileDetailsModal.onClose();
-      }
-      if (result.message === "User updated successfully" && !user?.drinking) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
       }
     }
   };
@@ -227,7 +167,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         smoking: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -237,15 +177,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-      //    console.log(result);
       if (result.message === "User updated successfully") {
         setUserReload((prev) => !prev);
         profileDetailsModal.onClose();
-      }
-      if (result.message === "User updated successfully" && !user?.smoking) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
       }
     }
   };
@@ -258,7 +192,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         yearly_income: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -268,18 +202,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-      //    console.log(result);
       if (result.message === "User updated successfully") {
         setUserReload((prev) => !prev);
         profileDetailsModal.onClose();
-      }
-      if (
-        result.message === "User updated successfully" &&
-        !user?.yearly_income
-      ) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
       }
     }
   };
@@ -290,7 +215,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         net_worth: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -300,15 +225,9 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-      //    console.log(result);
       if (result.message === "User updated successfully") {
         setUserReload((prev) => !prev);
         profileDetailsModal.onClose();
-      }
-      if (result.message === "User updated successfully" && !user?.net_worth) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
       }
     }
   };
@@ -319,7 +238,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         education: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -329,87 +248,13 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         }
       );
       const result = await res.json();
-      //    console.log(result);
       if (result.message === "User updated successfully") {
         setUserReload((prev) => !prev);
         profileDetailsModal.onClose();
       }
-      if (result.message === "User updated successfully" && !user?.education) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
-      }
     }
   };
 
-  const [selectedValues, setSelectedValues] = useState<string[]>([]);
-  const [error, setError] = useState<string>("");
-
-  const handleInterestClick = async (value: string): Promise<void> => {
-    if (selectedValues.length <= 5) {
-      setSelectedValues((prevValues) => [...prevValues, value]);
-      const values = {
-        interest: selectedValues,
-      };
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
-        {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(values),
-        }
-      );
-      const result = await res.json();
-      if (
-        result.message === "User updated successfully" &&
-        selectedValues.length === 5
-      ) {
-        setUserReload((prev) => !prev);
-        profileDetailsModal.onClose();
-      }
-      if (
-        result.message === "User updated successfully" &&
-        selectedValues.length === 5 &&
-        user?.interest.length !== 5
-      ) {
-        profileDetailsModal.onClose();
-        setUserReload((prev) => !prev);
-        handleProfilePercentage();
-      }
-      setError("");
-    } else {
-      setError("You can only select up to 5 values.");
-    }
-  };
-
-  const onSubmit: SubmitHandler<FieldValues> = async () => {
-    const values = {
-      height: firstPoint,
-    };
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(values),
-      }
-    );
-    const result = await res.json();
-
-    if (result.message === "User updated successfully") {
-      setUserReload((prev) => !prev);
-      profileDetailsModal.onClose();
-    }
-    if (result.message === "User updated successfully" && !user?.height) {
-      profileDetailsModal.onClose();
-      setUserReload((prev) => !prev);
-      handleProfilePercentage();
-    }
-  };
 
   const handleIncreaseAge = (e: ChangeEvent<HTMLInputElement>) => {
     const newFirstPoint = parseInt(e.target.value, 10);
@@ -418,10 +263,10 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
 
   const handleOfferFieldsValue = async () => {
     const values = {
-      offer: inputFieldsValue,
+      about: inputFieldsValue,
     };
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+      `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
       {
         method: "PUT",
         headers: {
@@ -440,43 +285,16 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
     if (result.message === "User updated successfully" && !user?.offer) {
       profileDetailsModal.onClose();
       setUserReload((prev) => !prev);
-      handleProfilePercentage();
+
     }
   };
-  const handleLookingFieldsValue = async () => {
+
+  const handleOthersCuriculamValue = async () => {
     const values = {
-      looking_for: lookingFieldsValue,
+      othersCuriculam: taglineValue,
     };
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(values),
-      }
-    );
-    const result = await res.json();
-
-    if (result.message === "User updated successfully") {
-      setUserReload((prev) => !prev);
-      profileDetailsModal.onClose();
-
-      setLookingFieldsValue("");
-    }
-    if (result.message === "User updated successfully" && !user?.looking_for) {
-      profileDetailsModal.onClose();
-      setUserReload((prev) => !prev);
-      handleProfilePercentage();
-    }
-  };
-  const handleTaglineFieldsValue = async () => {
-    const values = {
-      tagLine: taglineValue,
-    };
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+      `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
       {
         method: "PUT",
         headers: {
@@ -493,11 +311,6 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
 
       setTaglineValue("");
     }
-    if (result.message === "User updated successfully" && !user?.tagLine) {
-      profileDetailsModal.onClose();
-      setUserReload((prev) => !prev);
-      handleProfilePercentage();
-    }
   };
 
   const handleLocationFieldsValue = async () => {
@@ -505,7 +318,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       location: locationValue,
     };
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+      `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
       {
         method: "PUT",
         headers: {
@@ -523,7 +336,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
     // if (result.message === "User updated successfully" && !user?.location) {
     //   profileDetailsModal.onClose();
     //   setUserReload((prev) => !prev);
-    //   handleProfilePercentage();
+    //   
     // }
   };
 
@@ -533,7 +346,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         gender: e.currentTarget.textContent,
       };
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER}/user/register/putNew/${email}`,
+        `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
         {
           method: "PUT",
           headers: {
@@ -550,7 +363,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       // if (result.message === "User updated successfully" && !user?.gender) {
       //   profileDetailsModal.onClose();
       //   setUserReload((prev) => !prev);
-      //   handleProfilePercentage();
+      //   
       // }
     }
   };
@@ -936,38 +749,6 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       </div>
     );
   }
-  if (getValueType === "Height") {
-    bodyContent = (
-      <div className="h-[24rem] overflow-y-auto text-black">
-        <h1 className="text-2xl font-medium text-center py-6">
-          How tall are you?
-        </h1>
-        <div>
-          <h2 className="text-[#EB4A90] text-xl">{firstPoint}</h2>
-          <input
-            type="range"
-            className="h-2 w-full cursor-pointer appearance-none rounded-full bg-gray-200 disabled:cursor-not-allowed my-11"
-            min={0}
-            max={10}
-            step={1}
-            value={firstPoint}
-            onChange={handleIncreaseAge}
-          />
-          <div>
-            <button
-              onClick={onSubmit}
-              className="text-center py-4 my-3 text-xl cursor-pointer rounded-full border bg-[#00C684] text-white  w-full"
-            >
-              Save
-            </button>
-            <button className="text-center py-4 my-3 text-xl cursor-pointer rounded-full border w-full">
-              Skip
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
   if (getValueType === "Drinking") {
     bodyContent = (
       <div className="h-[26rem] overflow-y-auto text-black">
@@ -1292,593 +1073,21 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       </div>
     );
   }
-  if (
-    getValueType === "Add your Interest" ||
-    getValueType === "Edit your interest"
-  ) {
-    bodyContent = (
-      <div className="max-h-[70vh] overflow-y-auto text-black">
-        <p className="text-red-500 text-xl font-light text-center">{error}</p>
-        <div>
-          <div className="mt-5 text-xl ">
-            {selectedValues.slice(0, 5).length} of 5 selected.
-          </div>
-          <div className="grid grid-cols-2 gap-2 my-5">
-            {selectedValues
-              .slice(0, 5)
-              .map((interest: string, index: number) => (
-                <h2
-                  key={index}
-                  className="border py-2 px-2 rounded-full text-center"
-                >
-                  {interest}
-                </h2>
-              ))}
-          </div>
-          <h1 className="text-2xl font-medium text-center py-6">
-            My Interested?
-          </h1>
-          <hr />
-
-          <h1 className="text-xl font-medium  py-6">Movies/Television</h1>
-
-          <div className="flex justify-center ">
-            {/* First list */}
-            <ul className="mr-4">
-              <li
-                onClick={() => handleInterestClick("🎬 Action")}
-                className={
-                  selectedValues.slice(0, 5).includes("🎬 Action")
-                    ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                    : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-                }
-              >
-                🎬 Action
-              </li>
-              <li
-                onClick={() => handleInterestClick("🎬 Comedies")}
-                className={
-                  selectedValues.slice(0, 5).includes("🎬 Comedies")
-                    ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                    : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-                }
-              >
-                🎬 Comedies
-              </li>
-              <li
-                onClick={() => handleInterestClick("🎬 Documentaries")}
-                className={
-                  selectedValues.slice(0, 5).includes("🎬 Documentaries")
-                    ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                    : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-                }
-              >
-                🎬 Documentaries
-              </li>
-            </ul>
-
-            {/* Second list */}
-            <ul>
-              <li
-                onClick={() => handleInterestClick("🎬 Animation")}
-                className={
-                  selectedValues.slice(0, 5).includes("🎬 Animation")
-                    ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                    : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-                }
-              >
-                🎬 Animation
-              </li>
-              <li
-                onClick={() => handleInterestClick("🎬 Dramas")}
-                className={
-                  selectedValues.slice(0, 5).includes("🎬 Dramas")
-                    ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                    : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-                }
-              >
-                🎬 Dramas
-              </li>
-            </ul>
-          </div>
-          <button className="  text-red-400 text-lg py-2 px-3 font-medium hover:text-red-500 rounded-xl mt-2 ">
-            View All
-          </button>
-          <hr />
-
-          <h1 className="text-xl font-medium  py-6">Values</h1>
-          <div className="flex justify-center ">
-            {/* First list */}
-            <ul className="mr-4">
-              <li
-                onClick={() => handleInterestClick("🤞 Ambition")}
-                className={
-                  selectedValues.slice(0, 5).includes("🤞 Ambition")
-                    ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                    : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-                }
-              >
-                🤞 Ambition
-              </li>
-              <li
-                onClick={() => handleInterestClick("🤫 Confidence")}
-                className={
-                  selectedValues.slice(0, 5).includes("🤫 Confidence")
-                    ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                    : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-                }
-              >
-                🤫 Confidence
-              </li>
-              <li
-                onClick={() => handleInterestClick("🤗 Empathy")}
-                className={
-                  selectedValues.slice(0, 5).includes("🤗 Empathy")
-                    ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                    : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-                }
-              >
-                🤗 Empathy
-              </li>
-            </ul>
-
-            {/* Second list */}
-            <ul>
-              <li
-                onClick={() => handleInterestClick("🧐 Intelligence")}
-                className={
-                  selectedValues.slice(0, 5).includes("🧐 Intelligence")
-                    ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                    : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-                }
-              >
-                🧐 Intelligence
-              </li>
-              <li
-                onClick={() => handleInterestClick("😄 Positivity")}
-                className={
-                  selectedValues.slice(0, 5).includes("😄 Positivity")
-                    ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                    : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-                }
-              >
-                😄 Positivity
-              </li>
-            </ul>
-          </div>
-        </div>
-        <hr className="mt-7" />
-        <h1 className="text-xl font-medium  py-6"> Activities</h1>
-        <div className="flex justify-center ">
-          {/* First list */}
-          <ul className="mr-4">
-            <li
-              onClick={() => handleInterestClick("🕹️ Arcades")}
-              className={
-                selectedValues.slice(0, 5).includes("🕹️ Arcades")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🕹️ Arcades
-            </li>
-            <li
-              onClick={() => handleInterestClick("🍻 Bars")}
-              className={
-                selectedValues.slice(0, 5).includes("🍻 Bars")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🍻 Bars
-            </li>
-            <li
-              onClick={() => handleInterestClick("🎲 Board Games")}
-              className={
-                selectedValues.slice(0, 5).includes("🎲 Board Games")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎲 Board Games
-            </li>
-          </ul>
-
-          {/* Second list */}
-          <ul>
-            <li
-              onClick={() => handleInterestClick("🥪 Brunch")}
-              className={
-                selectedValues.slice(0, 5).includes("🥪 Brunch")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🥪 Brunch
-            </li>
-            <li
-              onClick={() => handleInterestClick("☕ Cafes")}
-              className={
-                selectedValues.slice(0, 5).includes("☕ Cafes")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              ☕ Cafes
-            </li>
-          </ul>
-        </div>
-        <button className="  text-red-400 text-lg py-2 px-3 font-medium hover:text-red-500 rounded-xl mt-2 ">
-          View All
-        </button>
-        <hr className="mt-7" />
-        <h1 className="text-xl font-medium  py-6"> Interests</h1>
-        <div className="flex justify-center ">
-          {/* First list */}
-          <ul className="mr-4">
-            <li
-              onClick={() => handleInterestClick("🎨 Art")}
-              className={
-                selectedValues.slice(0, 5).includes("🎨 Art")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎨 Art
-            </li>
-            <li
-              onClick={() => handleInterestClick("🌌 Astrology")}
-              className={
-                selectedValues.slice(0, 5).includes("🌌 Astrology")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🌌 Astrology
-            </li>
-            <li
-              onClick={() => handleInterestClick("🥧 Baking")}
-              className={
-                selectedValues.slice(0, 5).includes("🥧 Baking")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🥧 Baking
-            </li>
-          </ul>
-
-          {/* Second list */}
-          <ul>
-            <li
-              onClick={() => handleInterestClick("🐈 Cats")}
-              className={
-                selectedValues.slice(0, 5).includes("🐈 Cats")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🐈 Cats
-            </li>
-            <li
-              onClick={() => handleInterestClick("🥘 Cooking")}
-              className={
-                selectedValues.slice(0, 5).includes("🥘 Cooking")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🥘 Cooking
-            </li>
-          </ul>
-        </div>
-        <button className="  text-red-400 text-lg py-2 px-3 font-medium hover:text-red-500 rounded-xl mt-2 ">
-          View All
-        </button>
-        <hr className="mt-7" />
-        <h1 className="text-xl font-medium  py-6"> Sports</h1>
-        <div className="flex justify-center ">
-          {/* First list */}
-          <ul className="mr-4">
-            <li
-              onClick={() => handleInterestClick("⚾ Baseball")}
-              className={
-                selectedValues.slice(0, 5).includes("⚾ Baseball")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              ⚾ Baseball
-            </li>
-            <li
-              onClick={() => handleInterestClick("🏀 Basketball")}
-              className={
-                selectedValues.slice(0, 5).includes("🏀 Basketball")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🏀 Basketball
-            </li>
-            <li
-              onClick={() => handleInterestClick("🎳 Bowling")}
-              className={
-                selectedValues.slice(0, 5).includes("🎳 Bowling")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎳 Bowling
-            </li>
-          </ul>
-
-          {/* Second list */}
-          <ul>
-            <li
-              onClick={() => handleInterestClick("🥊 Boxing")}
-              className={
-                selectedValues.slice(0, 5).includes("🥊 Boxing")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🥊 Boxing
-            </li>
-            <li
-              onClick={() => handleInterestClick("🏈 Football")}
-              className={
-                selectedValues.slice(0, 5).includes("🏈 Football")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🏈 Football
-            </li>
-          </ul>
-        </div>
-        <button className="  text-red-400 text-lg py-2 px-3 font-medium hover:text-red-500 rounded-xl mt-2 ">
-          View All
-        </button>
-        <hr className="mt-7" />
-        <h1 className="text-xl font-medium  py-6"> Travel Preferences</h1>
-        <div className="flex justify-center ">
-          {/* First list */}
-          <ul className="mr-4">
-            <li
-              onClick={() => handleInterestClick("🏖️ Beaches")}
-              className={
-                selectedValues.slice(0, 5).includes("🏖️ Beaches")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🏖️ Beaches
-            </li>
-            <li
-              onClick={() => handleInterestClick("🏕️ Camping")}
-              className={
-                selectedValues.slice(0, 5).includes("🏕️ Camping")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🏕️ Camping
-            </li>
-            <li
-              onClick={() => handleInterestClick("🚢 Cruises")}
-              className={
-                selectedValues.slice(0, 5).includes("🚢 Cruises")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🚢 Cruises
-            </li>
-          </ul>
-
-          {/* Second list */}
-          <ul>
-            <li
-              onClick={() => handleInterestClick("🗽 Historical Sites")}
-              className={
-                selectedValues.slice(0, 5).includes("🗽 Historical Sites")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🗽 Historical Sites
-            </li>
-            <li
-              onClick={() => handleInterestClick("🏛️ Museums")}
-              className={
-                selectedValues.slice(0, 5).includes("🏛️ Museums")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🏛️ Museums
-            </li>
-          </ul>
-        </div>
-        <button className="  text-red-400 text-lg py-2 px-3 font-medium hover:text-red-500 rounded-xl mt-2 ">
-          View All
-        </button>
-        <hr className="mt-7" />
-        <h1 className="text-xl font-medium  py-6"> Tastes</h1>
-        <div className="flex justify-center ">
-          {/* First list */}
-          <ul className="mr-4">
-            <li
-              onClick={() => handleInterestClick("🍺 Beer")}
-              className={
-                selectedValues.slice(0, 5).includes("🍺 Beer")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🍺 Beer
-            </li>
-            <li
-              onClick={() => handleInterestClick("☕ Coffee")}
-              className={
-                selectedValues.slice(0, 5).includes("☕ Coffee")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              ☕ Coffee
-            </li>
-            <li
-              onClick={() => handleInterestClick("🍸 Gin")}
-              className={
-                selectedValues.slice(0, 5).includes("🍸 Gin")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🍸 Gin
-            </li>
-          </ul>
-
-          {/* Second list */}
-          <ul>
-            <li
-              onClick={() => handleInterestClick("🍕 Pizza")}
-              className={
-                selectedValues.slice(0, 5).includes("🍕 Pizza")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🍕 Pizza
-            </li>
-            <li
-              onClick={() => handleInterestClick("🍱 Sushi")}
-              className={
-                selectedValues.slice(0, 5).includes("🍱 Sushi")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🍱 Sushi
-            </li>
-          </ul>
-        </div>
-        <button className="  text-red-400 text-lg py-2 px-3 font-medium hover:text-red-500 rounded-xl mt-2 ">
-          View All
-        </button>
-        <hr className="mt-7" />
-        <h1 className="text-xl font-medium  py-4"> Music</h1>
-        <div className="flex justify-center ">
-          {/* First list */}
-          <ul className="mr-4">
-            <li
-              onClick={() => handleInterestClick("🎵 Classical")}
-              className={
-                selectedValues.slice(0, 5).includes("🎵 Classical")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎵 Classical
-            </li>
-            <li
-              onClick={() => handleInterestClick("🎵 Country")}
-              className={
-                selectedValues.slice(0, 5).includes("🎵 Country")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎵 Country
-            </li>
-            <li
-              onClick={() => handleInterestClick("🎵 EDM")}
-              className={
-                selectedValues.slice(0, 5).includes("🎵 EDM")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎵 EDM
-            </li>
-            <li
-              onClick={() => handleInterestClick("🎵 Reggae")}
-              className={
-                selectedValues.slice(0, 5).includes("🎵 Reggae")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎵 Reggae
-            </li>
-          </ul>
-
-          {/* Second list */}
-          <ul>
-            <li
-              onClick={() => handleInterestClick("🎵 Hip Hop")}
-              className={
-                selectedValues.slice(0, 5).includes("🎵 Hip Hop")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎵 Hip Hop
-            </li>
-            <li
-              onClick={() => handleInterestClick("🎵 Pop")}
-              className={
-                selectedValues.slice(0, 5).includes("🎵 Pop")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎵 Pop
-            </li>
-            <li
-              onClick={() => handleInterestClick("🎵 Punk Music")}
-              className={
-                selectedValues.slice(0, 5).includes("🎵 Punk Music")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎵 Punk Music
-            </li>
-            <li
-              onClick={() => handleInterestClick("🎵 Rock N Roll")}
-              className={
-                selectedValues.slice(0, 5).includes("🎵 Rock N Roll")
-                  ? "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border px-4 bg-gray-700 text-white"
-                  : "text-center py-2 my-2 text-bs font-medium cursor-pointer rounded-full border border-indigo-500 px-4"
-              }
-            >
-              🎵 Rock N Roll
-            </li>
-          </ul>
-        </div>
-        <button className="  text-red-400 text-lg py-2 px-3 font-medium hover:text-red-500 rounded-xl mt-2 ">
-          View All
-        </button>
-      </div>
-    );
-  }
-
-  if (getValueType === "have to offer") {
+  if (getValueType === "about") {
     bodyContent = (
       <div className="text-black">
         <h1 className="text-center text-xl font-medium">
-          What do you have to offer?
+          Tell me about yourself
         </h1>
-        <input
+        <textarea
           onChange={(e: any) => setInputFieldsValue(e.target.value)}
-          type="text"
+          // type="text"
           name=""
           id=""
-          className=" shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-7 rounded-full w-full my-6"
-          placeholder="Describe yourself and why someone should want you as their sugar daddy."
+          className=" shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-7 rounded-xl w-full my-6"
+          placeholder="About yourself."
           required
+          defaultValue={user?.about}
         />
         <button
           onClick={handleOfferFieldsValue}
@@ -1894,52 +1103,25 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       </div>
     );
   }
-  if (getValueType === "looking for") {
+
+  if (getValueType === "othersCuriculam") {
     bodyContent = (
       <div className="text-black">
         <h1 className="text-center text-xl font-medium">
-          What are you looking for?
+          What’s your Others Curiculam
         </h1>
-        <input
-          onChange={(e: any) => setLookingFieldsValue(e.target.value)}
-          type="text"
-          name=""
-          id=""
-          className=" shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-7 rounded-full w-full my-6"
-          placeholder="Describe your wants e.g. a sugar baby for fun, dinner dates, travel, and great conversation."
-          required
-        />
-        <button
-          onClick={handleLookingFieldsValue}
-          className={
-            lookingFieldsValue.length > 10
-              ? "bg-[#00C684] text-center w-full py-4 rounded-full text-xl text-white mb-5"
-              : "bg-gray-300 text-center w-full py-4 rounded-full text-xl text-white mb-5"
-          }
-          disabled={lookingFieldsValue.length > 10 ? false : true}
-        >
-          Save
-        </button>
-      </div>
-    );
-  }
-  if (getValueType === "Tagline") {
-    bodyContent = (
-      <div className="text-black">
-        <h1 className="text-center text-xl font-medium">
-          What’s your tagline?
-        </h1>
-        <input
+        <textarea
           onChange={(e: any) => setTaglineValue(e.target.value)}
-          type="text"
+
           name=""
           id=""
-          className=" shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-4 rounded-full w-full my-6"
+          className=" shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-4 rounded-xl w-full my-6"
           placeholder="Write a few words to tempt"
           required
+          defaultValue={user?.othersCuriculam}
         />
         <button
-          onClick={handleTaglineFieldsValue}
+          onClick={handleOthersCuriculamValue}
           className={
             taglineValue.length > 10
               ? "bg-[#00C684] text-center w-full py-4 rounded-full text-xl text-white mb-5"
@@ -1997,22 +1179,22 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
           <li
             onClick={handleGenderClick}
             className={
-              user?.gender === "Men"
+              user?.gender === "Man"
                 ? "text-center py-4 my-3 text-xl cursor-pointer rounded-full border bg-gray-700 text-white"
                 : "text-center py-4 my-3 text-xl cursor-pointer rounded-full border"
             }
           >
-            Men
+            Man
           </li>
           <li
             onClick={handleGenderClick}
             className={
-              user?.gender === "Women"
+              user?.gender === "Woman"
                 ? "text-center py-4 my-3 text-xl cursor-pointer rounded-full border bg-gray-700 text-white"
                 : "text-center py-4 my-3 text-xl cursor-pointer rounded-full border"
             }
           >
-            Women
+            Woman
           </li>
           <li
             onClick={handleGenderClick}

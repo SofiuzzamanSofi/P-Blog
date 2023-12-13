@@ -1,15 +1,17 @@
 export interface UserDataTypes {
+    _id: string;
     email: string;
     displayName: string;
     emailVerified: boolean;
     photoURL: string;
-    _id: string;
+    gender: string;
+    location: string;
+    about: string;
+    othersCuriculam: string;
 
     des1?: string;
     des2?: string;
-    location: string;
     age: number;
-    gender: string;
     bodyType?: string; // optional property
     ethnicity?: string;
     height?: string;

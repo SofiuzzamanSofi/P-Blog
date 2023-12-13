@@ -24,13 +24,36 @@ const userSchema = new mongoose.Schema<UserDataTypes>({
     type: "string",
     required: false,
   },
-
-
-  role: {
+  gender: {
     type: "string",
     required: false,
   },
-  gender: {
+  about: {
+    type: "string",
+    required: false,
+  },
+  othersCuriculam: {
+    type: "string",
+    required: false,
+  },
+
+  // physical
+  bodyType: { type: String },
+  hair_color: { type: String },
+  eye_color: { type: String },
+  piercings: { type: String },
+  tattoos: { type: String },
+  height: { type: String },
+
+  // life style
+  drinking: { type: String },
+  yearly_income: { type: String },
+  smoking: { type: String },
+  net_worth: { type: String },
+  education: { type: String },
+
+
+  role: {
     type: "string",
     required: false,
   },

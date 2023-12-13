@@ -202,6 +202,106 @@ const About: React.FC<AboutProps> = () => {
 
         <div className="w-full">
 
+          {/* // BIO  */}
+          <h3 className="text-[20px] font-medium mb-4">Bio</h3>
+          <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
+            {/* // offer  */}
+            <div
+              onClick={() => handleGetValue("about")}
+              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-7"
+            >
+              <div className="flex justify-start items-center gap-3">
+                <div>
+                  <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3 mb-4">
+                    <MdFavorite className="w-7 h-7 text-blue-800" /> About
+                  </p>
+                  <p>
+                    {user?.about && (
+                      <span className="pt-2">{user?.about.slice(0, 25)}...</span>
+                    )}
+                  </p>
+                </div>
+              </div>
+
+              <button className="inset-0" type="button">
+                <CiEdit className="w-7 h-7 text-blue-800" />
+              </button>
+            </div>
+          </div>
+
+          {/* // tag line  */}
+          <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
+            <div
+              onClick={() => handleGetValue("othersCuriculam")}
+              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-7"
+            >
+              <div className="flex justify-start items-center gap-3">
+                <div>
+                  <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3 mb-4">
+                    <RiPriceTagLine className="w-7 h-7 text-blue-800" /> Others Curiculam
+                  </p>
+                  <p>
+                    {user?.othersCuriculam && (
+                      <span className="pt-2">{user?.othersCuriculam.slice(0, 25)}...</span>
+                    )}
+                  </p>
+                </div>
+              </div>
+              <button className="inset-0" type="button">
+                <CiEdit className="w-7 h-7 text-blue-800" />
+              </button>
+            </div>
+          </div>
+
+          <h3 className="text-[20px] font-medium mb-4">Basics</h3>
+          <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4 mb-14">
+
+            {/* Location */}
+            <div
+              onClick={() => handleGetValue("Location")}
+              className="flex justify-between items-center gap-3 border hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-4"
+            >
+              <div className="flex justify-start items-center">
+                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3">
+                  <FaLocationArrow className="w-6 h-6 text-blue-800" />
+                  Location
+                </p>
+                {user?.location && (
+                  <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
+                    : {user?.location}
+                  </p>
+                )}
+              </div>
+
+              <button className="inset-0" type="button">
+                <CiEdit className="w-7 h-7 text-blue-800" />
+              </button>
+            </div>
+
+            {/* Gender */}
+            <div
+              onClick={() => handleGetValue("Gender")}
+              className="flex justify-between items-center gap-3 border hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
+            >
+              <div className="flex justify-start items-center ">
+                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3">
+                  <AiOutlineLike className="w-7 h-7 text-blue-800" />
+                  Gender
+                </p>
+                {user?.gender && (
+                  <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
+                    : {user?.gender}
+                  </p>
+                )}
+              </div>
+
+              <button className="inset-0" type="button">
+                <CiEdit className="w-7 h-7 text-blue-800" />
+              </button>
+            </div>
+
+          </div>
+
           {/* // physical  */}
           <h3 className="text-[20px] font-medium mb-4">Physical</h3>
           <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4 mb-14">
@@ -316,27 +416,6 @@ const About: React.FC<AboutProps> = () => {
               </button>
             </div>
 
-            {/* Height */}
-            <div
-              onClick={() => handleGetValue("Height")}
-              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
-            >
-              <div className="flex justify-start items-center">
-                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-2">
-                  <CiLineHeight className="w-7 h-7 text-blue-800" />
-                  Height
-                </p>
-                {user?.height && (
-                  <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
-                    : {user?.height}
-                  </p>
-                )}
-              </div>
-
-              <button className="inset-0" type="button">
-                <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
-              </button>
-            </div>
           </div>
 
           {/* // Life Style  */}
@@ -452,185 +531,6 @@ const About: React.FC<AboutProps> = () => {
                 <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
               </button>
             </div>
-          </div>
-
-          {/* // Interest */}
-          <h3 className="text-[20px] font-medium mb-4">Interest</h3>
-
-          {/* // interest from database */}
-          <div className="my-5">
-            {user?.interest && (
-              <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                {user?.interest.map((interest: string | any[], index: number) => (
-                  <h2
-                    className="border py-2 px-2 rounded-full text-center"
-                    key={index}
-                  >
-                    {interest}
-                  </h2>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* interested edit */}
-          <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4 mb-14">
-            <div
-              onClick={(e: React.MouseEvent<HTMLParagraphElement>) =>
-                handleGetValue(e.currentTarget.textContent || "")
-              }
-              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
-            >
-              <div className="flex justify-start items-center gap-3">
-                {user?.interest?.length ? (
-                  <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3">
-                    <CiEdit className="w-7 h-7 text-blue-800" />
-                    Edit your interest
-                  </p>
-                ) : (
-                  <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3">
-                    <IoFootball className="w-7 h-7 text-blue-800" />
-                    Add your Interest
-                  </p>
-                )}
-              </div>
-              <button className="inset-0" type="button">
-                {user?.interest ? (
-                  <CiEdit className="w-7 h-7 text-blue-800" />
-                ) : (
-                  <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* // BIO  */}
-          <h3 className="text-[20px] font-medium mb-4">Bio</h3>
-          <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
-
-            {/* // offer  */}
-            <div
-              onClick={() => handleGetValue("have to offer")}
-              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-7"
-            >
-              <div className="flex justify-start items-center gap-3">
-                <div>
-                  <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3 mb-4">
-                    <MdFavorite className="w-7 h-7 text-blue-800" /> What do you
-                    have to offer?
-                  </p>
-                  <p>
-                    {user?.offer && (
-                      <span className="pt-2">{user?.offer}</span>
-                    )}
-                  </p>
-                </div>
-              </div>
-
-              <button className="inset-0" type="button">
-                <CiEdit className="w-7 h-7 text-blue-800" />
-              </button>
-            </div>
-          </div>
-
-          {/* // looking for  */}
-          <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
-            <div
-              onClick={() => handleGetValue("looking for")}
-              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-7"
-            >
-              <div>
-                <div className="flex justify-start items-center gap-3">
-                  <div>
-                    <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3  mb-4">
-                      <MdLocalOffer className="w-7 h-7 text-blue-800" /> What
-                      are you looking for?
-                    </p>
-                    <p>
-                      {user?.looking_for && (
-                        <span className="pt-2">{user?.looking_for}</span>
-                      )}
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <button className="inset-0" type="button">
-                <CiEdit className="w-7 h-7 text-blue-800" />
-              </button>
-            </div>
-          </div>
-
-          {/* // tag line  */}
-          <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
-            <div
-              onClick={() => handleGetValue("Tagline")}
-              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-7"
-            >
-              <div className="flex justify-start items-center gap-3">
-                <div>
-                  <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3 mb-4">
-                    <RiPriceTagLine className="w-7 h-7 text-blue-800" /> Tagline
-                  </p>
-                  <p>
-                    {user?.tagLine && (
-                      <span className="pt-2">{user?.tagLine}</span>
-                    )}
-                  </p>
-                </div>
-              </div>
-              <button className="inset-0" type="button">
-                <CiEdit className="w-7 h-7 text-blue-800" />
-              </button>
-            </div>
-          </div>
-
-          <h3 className="text-[20px] font-medium mb-4">Basics</h3>
-          <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4 mb-14">
-
-            {/* Location */}
-            <div
-              onClick={() => handleGetValue("Location")}
-              className="flex justify-between items-center gap-3 border hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-4"
-            >
-              <div className="flex justify-start items-center">
-                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3">
-                  <FaLocationArrow className="w-6 h-6 text-blue-800" />
-                  Location
-                </p>
-                {user?.location && (
-                  <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
-                    : {user?.location}
-                  </p>
-                )}
-              </div>
-
-              <button className="inset-0" type="button">
-                <CiEdit className="w-7 h-7 text-blue-800" />
-              </button>
-            </div>
-
-            {/* Gender */}
-            <div
-              onClick={() => handleGetValue("Gender")}
-              className="flex justify-between items-center gap-3 border hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
-            >
-              <div className="flex justify-start items-center ">
-                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3">
-                  <AiOutlineLike className="w-7 h-7 text-blue-800" />
-                  Gender
-                </p>
-                {user?.gender && (
-                  <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
-                    : {user?.gender}
-                  </p>
-                )}
-              </div>
-
-              <button className="inset-0" type="button">
-                <CiEdit className="w-7 h-7 text-blue-800" />
-              </button>
-            </div>
-
           </div>
         </div>
       </div>

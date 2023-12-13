@@ -1,7 +1,9 @@
 "use client";
 
-import { AiOutlineLike } from "react-icons/ai";
+import { PiLinkSimpleBold } from "react-icons/pi";
 import { BiDrink, BiEdit } from "react-icons/bi";
+import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, } from "react-icons/fa";
+import { TbWorldWww } from "react-icons/tb";
 import { MdCastForEducation, MdOutlineSmokingRooms } from "react-icons/md";
 import { CiLineHeight, CiLocationOn, CiUser } from "react-icons/ci";
 import { BsGift } from "react-icons/bs";
@@ -59,7 +61,7 @@ const page = () => {
 
                         <Link
                             href="/profile/edit"
-                            className="border flex justify-center font-medium gap-x-2 shadow-[0_0px_15px_rgba(0,0,0,0.15)] hover:opacity-90 transform py-5 rounded-full my-5 w-11/12 text-gray-600 text-xl"
+                            className="flex justify-center font-medium gap-x-2 shadow-[0_0px_15px_rgba(0,0,0,0.15)] hover:opacity-90 transform py-5 rounded-full my-5 w-11/12 text-xl"
                         >
                             <BiEdit
                                 className="h-8 w-8"
@@ -103,7 +105,7 @@ const page = () => {
                                     <CgGirl className="w-10 h-10" /> About
                                 </h3>
                                 <p className="text-[18px] mt-6">
-                                    {"About is comming soon"}
+                                    {user?.about || "About is comming soon"}
                                 </p>
                             </div>
                             <div className="bg-[#f9f9f984] p-8 pb-14 rounded-[20px]">
@@ -111,20 +113,22 @@ const page = () => {
                                     <TfiGift className="w-10 h-10" /> Others Curiculam
                                 </h3>
                                 <p className="text-[18px] mt-6">
-                                    {" Others curiculam is impty."}
-                                </p>
-                            </div>
-                            <div className="bg-[#f9f9f984] p-8 pb-14 rounded-[20px]">
-                                <h3 className="text-[26px] font-medium flex items-center gap-3">
-                                    <AiOutlineLike className="w-10 h-10" /> Interests
-                                </h3>
-                                <p className="text-[18px] mt-6">
-                                    {" Interest may be revil later."}
+                                    {user?.othersCuriculam || " Others curiculam is comming soon."}
                                 </p>
                             </div>
                         </div>
                     </div>
 
+                    <div className="mt-10 ">
+                        <div className="flex items-center gap-x-3">
+                            <PiLinkSimpleBold className="h-8 w-8" />
+                            <h1 className="text-[28px] font-semibold">Links</h1>
+                        </div>
+                        <div className="grid md:grid-cols-2 gap-x-10 gap-y-6 my-10">
+                            <p>hhhhhhe</p>
+                        </div>
+                    </div>
+                    <hr />
                     <div className="mt-10 ">
                         <div className="flex items-center gap-x-3">
                             <TfiMenuAlt className="h-8 w-8" />
@@ -133,38 +137,11 @@ const page = () => {
                         <div className="grid md:grid-cols-2 gap-x-10 gap-y-6 my-10">
                             <div className="flex justify-between border-b w-full py-4 px-2 rounded-md">
                                 <div className="flex justify-start items-center gap-3">
-                                    <BsGift className="w-6 h-6" />
-                                    <span> Age </span>
-                                </div>
-                                <span className="text-[18px] font-medium text-[#3757b9]">
-                                    {user?.age ? user?.age : "None"}
-                                </span>
-                            </div>
-                            <div className="flex justify-between border-b w-full py-4 px-2 rounded-md">
-                                <div className="flex justify-start items-center gap-3">
-                                    <CiLineHeight className="w-6 h-6" />
-                                    <span> HEIGHT</span>
-                                </div>
-                                <span className="text-[18px] font-medium text-[#3757b9]">
-                                    {user?.height ? user?.height : "None"}
-                                </span>
-                            </div>
-                            <div className="flex justify-between border-b w-full py-4 px-2 rounded-md">
-                                <div className="flex justify-start items-center gap-3">
                                     <LiaRunningSolid className="w-6 h-6" />
                                     <span> BODY TYPE </span>
                                 </div>
                                 <span className="text-[18px] font-medium text-[#3757b9]">
                                     {user?.bodyType ? user?.bodyType : "None"}
-                                </span>
-                            </div>
-                            <div className="flex justify-between border-b w-full py-4 px-2 rounded-md">
-                                <div className="flex justify-start items-center gap-3">
-                                    <CiUser className="w-6 h-6" />
-                                    <span> ETHNICITY</span>
-                                </div>
-                                <span className="text-[18px] font-medium text-[#3757b9]">
-                                    {user?.ethnicity ? user?.ethnicity : "None"}
                                 </span>
                             </div>
                             <div className="flex justify-between border-b w-full py-4 px-2 rounded-md">
