@@ -128,7 +128,7 @@ const Navbar = () => {
     else {
         return (
             <header
-                className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full text-sm py-0 sm:py-0 bg-gray-100"
+                className="flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full text-sm py-0 sm:py-0 bg-gray-800"
             >
                 <nav
                     className="relative max-w-[85rem] flex flex-wrap basis-full items-center w-full mx-auto sm:flex sm:items-center sm:justify-between px-4 py-1"

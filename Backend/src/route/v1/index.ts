@@ -10,6 +10,5 @@ export default (): express.Router => {
     createRegControllerRoute(router);
     createJobControllerRoute(router);
     createMessageControllerRoute(router);
-    // console.log('router:', router);
     return router;
 };

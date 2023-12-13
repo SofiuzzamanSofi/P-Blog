@@ -48,21 +48,23 @@ const About: React.FC<AboutProps> = () => {
     imageData.set("key", `${process.env.NEXT_PUBLIC_IMAGEBB_KEY}`);
     imageData.append("image", event.target.files![0]);
 
+    console.log('handlefileChanged:');
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_IMAGEBB_URL}`,
         imageData
       );
       const imageUrl = response?.data?.data?.display_url;
+      console.log('imageUrl:', imageUrl);
       if (imageUrl) {
         const res = await fetch(
-          `${process.env.NEXT_PUBLIC_SERVER}/user/profile/pic/single/a/b/${email}`,
+          `${process.env.NEXT_PUBLIC_SERVER}/user/profile-pic-change`,
           {
             method: "PUT",
             headers: {
               "content-type": "application/json",
             },
-            body: JSON.stringify({ photoURL: imageUrl }),
+            body: JSON.stringify({ photoURL: imageUrl, email: user?.email }),
           }
         );
         const result = await res.json();
@@ -81,7 +83,7 @@ const About: React.FC<AboutProps> = () => {
     profileDetailsModal.onOpen();
   };
 
-  console.log('user-on-profile-about-:', user);
+  // console.log('user-on-profile-about-:', user);
 
 
   return (
@@ -93,13 +95,15 @@ const About: React.FC<AboutProps> = () => {
               <>
                 {loadingStates ? (
                   <div
-                    className="w-full h-72 shadow-[0_0px_10px_rgba(0,0,0,0.15)]
-              hover:shadow-[0_0px_20px_rgba(0,0,0,0.26)] rounded-xl flex justify-center items-center"
+                    className="w-full h-72 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.26)] rounded-xl flex justify-center items-center"
                   >
                     <div className="h-full w-full flex justify-center items-center">
-                      <span className="loading loading-bars loading-lg"></span>
+                      <span className="loading loading-bars loading-lg">
+                        Loading...
+                      </span>
                     </div>
                   </div>
+
                 ) :
                   (
                     <div className="relative">
@@ -108,7 +112,7 @@ const About: React.FC<AboutProps> = () => {
                         src={user?.photoURL}
                         alt=""
                       />
-                      <button className="absolute right-0 bottom-1 bg-white p-2 rounded-full cursor-pointer">
+                      <button className="absolute right-0 bottom-1 bg-gray-400 p-2 rounded-full cursor-pointer">
                         <label htmlFor="fileInput">
                           <MdModeEdit className="h-6 w-6 cursor-pointer" />
                         </label>
@@ -158,7 +162,7 @@ const About: React.FC<AboutProps> = () => {
             <Link
               href={`/profile/${user?._id}`}
             >
-              <button className="shadow-[0_0px_10px_rgba(0,0,0,0.15)] rounded-lg px-3 py-1 text-[13px] my-4">
+              <button className="shadow-[0_0px_10px_rgba(0,0,0,0.15)] rounded-lg px-3 py-1 text-[13px] my-4 border">
                 View Profile
               </button>
             </Link>
@@ -167,7 +171,7 @@ const About: React.FC<AboutProps> = () => {
                 className="progress progress-success w-full bg-[#f1f1f180]"
                 value={
                   user ?
-                    "10"
+                    "100"
                     :
                     "100"
                 }
@@ -178,7 +182,7 @@ const About: React.FC<AboutProps> = () => {
               Profile: 100
             </p>
           </div>
-          <div className="bg-[#F2FCF9] rounded-lg p-6">
+          <div className="bg-[#F2FCF9] text-black rounded-lg p-6">
             <div className="flex items-center justify-between">
               <p className="text-[18px] font-medium">Get Verified</p>
               <MdVerified className="w-6 h-6 text-[#18BB9C]" />

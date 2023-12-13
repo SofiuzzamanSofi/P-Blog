@@ -1,5 +1,5 @@
 import express from "express";
-import { createUserService, getUserByEmail, updateUserByEmail } from "../service/userService";
+import { createUserService, getUserByEmail, profilePicChangeService, updateUserByEmail } from "../service/userService";
 import { generateToken } from "../utils/token/generateToken";
 
 // get user first time open on browser
@@ -25,95 +25,6 @@ export const getMe = async (
                 data: user,
             })
         };
-    } catch (error) {
-        next(error);
-    };
-};
-
-// signOut || clearCookie
-export const signOut = async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-) => {
-    try {
-        //  console.log('HITTED log out controller:');
-        return res.status(201).json({
-            success: true,
-            message: "Log out success."
-        });
-    } catch (error) {
-        next(error);
-    };
-};
-
-// signUp
-export const signUp = async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-) => {
-    try {
-        const handleUserData = req.body;
-        // console.log("hit- signUp:");
-        if (!handleUserData) {
-            return res.status(400).json({
-                success: false,
-                message: "Body is empty line 12",
-            });
-        };
-        const user = await createUserService(next, handleUserData);
-        if (!user.email) {
-            return res.status(400).json({
-                success: false,
-                message: `Function called but User not set on Db `,
-            });
-        } else {
-            const { createdAt, updatedAt, __v, ...others } = user.toObject();
-            return res.status(201).json({
-                success: true,
-                data: others,
-            });
-        }
-    } catch (error) {
-        next(error);
-    };
-};
-
-// signIn
-export const signIn = async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-) => {
-    try {
-        const handleUserData = req.body;
-        // console.log("hit- signIn:");
-        if (!handleUserData) {
-            return res.status(400).json({
-                success: false,
-                message: "Body is empty",
-            });
-        };
-        // get user form DB
-        const user = await getUserByEmail(next, handleUserData.email);
-        if (user.email) {
-            const { createdAt, updatedAt, __v, ...others } = user.toObject();
-            return res.status(201).json({
-                success: true,
-                data: others,
-            });
-        }
-        else {
-            // first time on DB
-            const user = await createUserService(next, handleUserData);
-            const { createdAt, updatedAt, __v, ...others } = user.toObject();
-            return res.status(201).json({
-                success: true,
-                data: others,
-            });
-        };
-
     } catch (error) {
         next(error);
     };
@@ -145,6 +56,38 @@ export const signInWithSocial = async (
             return res.status(400).json({
                 success: true,
                 data: userCreate,
+            });
+        }
+    } catch (error) {
+        next(error);
+    };
+};
+
+// 
+export const profilePicChange = async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+) => {
+    try {
+        const { photoURL, email } = req.body;
+        if (!photoURL || !email) {
+            return res.status(400).json({
+                success: false,
+                message: "Missing Information.",
+            });
+        };
+        const user = await profilePicChangeService(next, photoURL, email);
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "pic update failed",
+            });
+        } else {
+            return res.status(201).json({
+                success: true,
+                message: "User updated successfully",
+                data: user,
             });
         }
     } catch (error) {

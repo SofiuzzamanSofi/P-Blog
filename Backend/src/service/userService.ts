@@ -33,6 +33,48 @@ export const createUserService = async (
 };
 
 //
+export const profilePicChangeService = async (
+    next: NextFunction,
+    photoURL: string,
+    email: string,
+) => {
+    try {
+        const updateUser = await UserModel.updateOne(
+            { email: email },
+            {
+                $set: {
+                    photoURL: photoURL,
+                },
+            },
+            { runValidators: true }
+        );
+        return updateUser;
+    } catch (error) {
+        next(error);
+    };
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
 export const updateUserByEmail = async (
     next: NextFunction,
     handleUserData: UserDataTypes
