@@ -1,11 +1,12 @@
 "use client";
 
 import { BsPlus, BsPlusSquareDotted } from "react-icons/bs";
-import { useState, useContext } from "react";
+import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, } from "react-icons/fa";
+import { TbWorldWww } from "react-icons/tb";
+import { useState } from "react";
 import {
   MdCastForEducation,
   MdFavorite,
-  MdLocalOffer,
   MdModeEdit,
   MdOutlineSmokingRooms,
   MdVerified,
@@ -229,7 +230,7 @@ const About: React.FC<AboutProps> = () => {
             </div>
           </div>
 
-          {/* // tag line  */}
+          {/* // others curiculam */}
           <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
             <div
               onClick={() => handleGetValue("othersCuriculam")}
@@ -252,6 +253,161 @@ const About: React.FC<AboutProps> = () => {
               </button>
             </div>
           </div>
+
+
+
+          {/* // Links  */}
+          <h3 className="text-[20px] font-medium mb-4">Links</h3>
+          <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4 mb-14">
+
+            {/* website */}
+            <div
+              onClick={() => handleGetValue("website")}
+              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
+            >
+              <div className="flex justify-start items-center  ">
+                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-x-2">
+                  <TbWorldWww className="w-7 h-7 text-blue-800" />
+                  Website
+                </p>
+                {user?.bodyType && (
+                  <p className="text-[14px] sm:text-[18px]  font-semibold text-blue-800">
+                    : {user?.bodyType}
+                  </p>
+                )}
+              </div>
+              <button className="inset-0" type="button">
+                <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
+              </button>
+            </div>
+
+            {/* github */}
+            <div
+              onClick={() => handleGetValue("github")}
+              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
+            >
+              <div className="flex justify-start items-center  ">
+                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-x-2">
+                  <FaGithub className="w-7 h-7 text-blue-800" />
+                  github
+                </p>
+                {user?.bodyType && (
+                  <p className="text-[14px] sm:text-[18px]  font-semibold text-blue-800">
+                    : {user?.bodyType}
+                  </p>
+                )}
+              </div>
+              <button className="inset-0" type="button">
+                <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
+              </button>
+            </div>
+
+            {/* Linkedin */}
+            <div
+              onClick={() => handleGetValue("linkedin")}
+              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
+            >
+              <div className="flex justify-start items-center ">
+                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-2">
+                  <FaLinkedinIn className="w-7 h-7 text-blue-800" />
+                  Linkedin
+                </p>
+                {user?.tattoos && (
+                  <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
+                    : {user?.tattoos}
+                  </p>
+                )}
+              </div>
+              <button className="inset-0" type="button">
+                <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
+              </button>
+            </div>
+
+            {/* Youtube */}
+            <div
+              onClick={() => handleGetValue("youtube")}
+              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
+            >
+              <div className="flex justify-start items-center">
+                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-2">
+                  <FaYoutube className="w-7 h-7 text-blue-800" />
+                  Youtube
+                </p>
+                {user?.hair_color && (
+                  <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
+                    : {user?.hair_color}
+                  </p>
+                )}
+              </div>
+              <button className="inset-0" type="button">
+                <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
+              </button>
+            </div>
+
+            {/* Facebook */}
+            <div
+              onClick={() => handleGetValue("facebook")}
+              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
+            >
+              <div className="flex justify-start items-center  ">
+                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-x-2">
+                  <FaFacebook className="w-7 h-7 text-blue-800" />
+                  Facebook
+                </p>
+                {user?.bodyType && (
+                  <p className="text-[14px] sm:text-[18px]  font-semibold text-blue-800">
+                    : {user?.bodyType}
+                  </p>
+                )}
+              </div>
+              <button className="inset-0" type="button">
+                <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
+              </button>
+            </div>
+
+            {/* Twitter */}
+            <div
+              onClick={() => handleGetValue("twitter")}
+              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
+            >
+              <div className="flex justify-start items-center">
+                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-2">
+                  <FaTwitter className="w-7 h-7 text-blue-800" />
+                  Twitter
+                </p>
+                {user?.eye_color && (
+                  <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
+                    : {user?.eye_color}
+                  </p>
+                )}
+              </div>
+              <button className="inset-0" type="button">
+                <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
+              </button>
+            </div>
+
+            {/* Instagram */}
+            <div
+              onClick={() => handleGetValue("instagram")}
+              className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-full px-6 py-4"
+            >
+              <div className="flex justify-start items-center">
+                <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-2">
+                  <FaInstagram className="w-7 h-7 text-blue-800" />
+                  Instagram
+                </p>
+                {user?.piercings && (
+                  <p className="text-[14px] sm:text-[18px] font-semibold text-blue-800">
+                    : {user?.piercings}
+                  </p>
+                )}
+              </div>
+              <button className="inset-0" type="button">
+                <BsPlus className="w-5 h-5 sm:w-8 sm:h-8 hover:text-[#21558D]" />
+              </button>
+            </div>
+          </div>
+
 
           <h3 className="text-[20px] font-medium mb-4">Basics</h3>
           <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4 mb-14">
