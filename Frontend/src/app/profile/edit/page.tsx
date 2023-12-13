@@ -4,13 +4,14 @@ import { useState } from "react";
 import About from "../../../components/About";
 import Blog from "../../../components/Blog";
 import { useAuth } from "@/provider/AuthProvider";
+import Donation from "@/components/Donation";
 
 const page = () => {
 
     const [activeTab, setActiveTab] = useState("About");
 
     // auth-user
-    // const { user, setUser } = useAuth();
+    const { user, setUser } = useAuth();
 
     const handleTabClick = (tabName: string) => {
         setActiveTab(tabName);
@@ -47,6 +48,15 @@ const page = () => {
                         >
                             Blog
                         </li>
+                        <li
+                            className={`py-5 cursor-pointer hover:text-gray-700 border-b-2 ${activeTab === "Donation"
+                                ? "border-red-500 text-gray-700"
+                                : "border-transparent"
+                                }`}
+                            onClick={() => handleTabClick("Donation")}
+                        >
+                            Donation
+                        </li>
                     </ul>
                 </div>
                 <div className="px-4 py-6 lg:py-6 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6">
@@ -58,6 +68,13 @@ const page = () => {
                     )}
                     {activeTab === "Blog" && (
                         <Blog
+                        // user={user}
+                        // setUser={setUser}
+                        // setUserReload={setUserReload}
+                        />
+                    )}
+                    {activeTab === "Donation" && (
+                        <Donation
                         // user={user}
                         // setUser={setUser}
                         // setUserReload={setUserReload}

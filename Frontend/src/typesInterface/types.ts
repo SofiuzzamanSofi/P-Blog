@@ -1,13 +1,13 @@
 export interface UserDataTypes {
     _id: string;
-    email: string;
+    email?: string;
     displayName: string;
     emailVerified: boolean;
     photoURL: string;
-    gender: string;
     location: string;
-    about: string;
-    othersCuriculam: string;
+    gender?: string;
+    about?: string;
+    othersCuriculam?: string;
 
     whatsapp: string;
     website: string;
@@ -18,25 +18,67 @@ export interface UserDataTypes {
     twitter: string;
     instagram: string;
 
-    des1?: string;
-    des2?: string;
-    age: number;
-    bodyType?: string; // optional property
-    ethnicity?: string;
-    height?: string;
-    hair_color?: string;
-    eye_color?: string;
-    piercings?: string;
-    tattoos?: string;
-    smoking?: string;
-    drinking?: string;
-    education?: string;
-    yearly_income?: string;
-    net_worth?: string;
 
-    interest: string[];
-    offer?: string;
-    tagLine?: string;
-    interested?: string;
-    looking_for?: string;
+    // physical
+    bodyType: String,
+    hair_color: String,
+    eye_color: String,
+    piercings: String,
+    tattoos: String,
+    height: String,
+
+    // life style
+    drinking: String,
+    yearly_income: String,
+    smoking: String,
+    net_worth: String,
+    education: String,
+
+    // donate payment
+    donateDetails: {
+        totalSendAmount: number;
+        totalReceiveAmount: number;
+        senders: Sender[];
+        receivers: Receiver[];
+    }
+
+    role?: string;
+    country?: string;
+    address?: string;
+    city?: string;
+    postcode?: string;
+    companyName?: string;
+    companyCategory?: string;
+    employeeRange?: string;
+    roleInCompany?: string;
+    term?: boolean;
+    createdAt?: string;
+    updatedAt?: string;
+    __v?: number;
+};
+
+interface Sender {
+    userId: string;
+    useremail: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    country: string;
+    postalCode: string;
+    amount: number;
+    transactionId: string;
+    time: Date;
+}
+
+interface Receiver {
+    userId: string;
+    useremail: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    country: string;
+    postalCode: string;
+    amount: number;
+    transactionId: string;
+    time: Date;
 }
