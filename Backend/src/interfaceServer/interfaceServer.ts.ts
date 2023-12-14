@@ -110,6 +110,8 @@ export interface JobApplicants {
 
 export interface JobDataTypes {
     email: string;
+    displayName?: string;
+    bloggerId?: string;
     photoURLs?: string[];
     title?: string;
     details?: string;
@@ -152,13 +154,7 @@ export interface MessageObjectType {
 };
 
 // job query search types
-export interface getAllJobBySearchTextTypes {
-    position?: RegExp;
-    companyName?: RegExp;
-    isOpen?: boolean;
-    location?: RegExp;
-    // experience?: RegExp;
-    // createdAt?: Date;
+export interface getAllBlogBySearchTextTypes {
+    title?: RegExp;
     timestamp?: Date;
-    // Add other fields from your schema here...
 }

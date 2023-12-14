@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import { BlogModel } from "../model/blogSchema";
-import { AnsTypes, JobDataTypes, QuestionAnsTypes, getAllJobBySearchTextTypes } from "../interfaceServer/interfaceServer.ts";
+import { AnsTypes, JobDataTypes, QuestionAnsTypes, getAllBlogBySearchTextTypes } from "../interfaceServer/interfaceServer.ts";
 
 type NextFunction = express.NextFunction;
 type ObjectId = mongoose.Schema.Types.ObjectId;
@@ -17,9 +17,9 @@ export const getAllBlogService = async (
     };
 };
 
-export const getAllJobBySearchTextService = async (
+export const getAllBlogBySearchTextService = async (
     next: NextFunction,
-    query: getAllJobBySearchTextTypes,
+    query: getAllBlogBySearchTextTypes,
     assendingDessending: any
 ) => {
     try {

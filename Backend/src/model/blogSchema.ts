@@ -7,6 +7,14 @@ const blogSchema = new mongoose.Schema<JobDataTypes>({
         type: "string",
         required: false,
     },
+    displayName: {
+        type: "string",
+        required: false,
+    },
+    bloggerId: {
+        type: "string",
+        required: false,
+    },
     photoURLs: {
         type: ["string"],
         required: false,

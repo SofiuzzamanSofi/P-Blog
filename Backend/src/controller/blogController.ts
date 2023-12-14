@@ -1,7 +1,7 @@
 import express from "express";
 import { generateRandomStringId } from "../utils/randomId/randomId";
-import { getAllJobBySearchTextService, getAllBlogService, getAppliedJobService, getOneJobService, getPostedJobService, patchAnsJobService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, patchQuestionJobService, postBlogService } from "../service/blogService";
-import { AnsTypes, QuestionAnsTypes, getAllJobBySearchTextTypes } from "interfaceServer/interfaceServer.ts";
+import { getAllBlogBySearchTextService, getAllBlogService, getAppliedJobService, getOneJobService, getPostedJobService, patchAnsJobService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, patchQuestionJobService, postBlogService } from "../service/blogService";
+import { AnsTypes, QuestionAnsTypes, getAllBlogBySearchTextTypes } from "interfaceServer/interfaceServer.ts";
 
 
 // get all jobs 
@@ -31,7 +31,7 @@ export const getAllBlogController = async (
 };
 
 // get all jobs By Search Text
-export const getAllJobBySearchTextController = async (
+export const getAllBlogBySearchTextController = async (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction,
@@ -39,60 +39,15 @@ export const getAllJobBySearchTextController = async (
     try {
         const searchData = req.body;
 
-        interface QueryTypes {
-            position?: RegExp;
-            companyName?: RegExp;
-            isOpen?: boolean;
-            location?: RegExp;
-            // experience?: RegExp;
-            // createdAt?: Date;
-            timestamp?: Date;
-            // Add other fields from your schema here...
-        }
+        const query: getAllBlogBySearchTextTypes = {};
 
-        const query: getAllJobBySearchTextTypes = {};
-
-        if (searchData?.position) {
-            query.position = new RegExp(searchData.position, 'i');
-        }
-        if (searchData?.companyName) {
-            query.companyName = new RegExp(searchData.companyName, 'i');
-        }
-        if (searchData.location) {
-            query.location = new RegExp(searchData.location, 'i');
-        }
-        if (searchData?.isOpen === "open") {
-            query.isOpen = true;
-        }
-        if (searchData?.isOpen === "closed") {
-            query.isOpen = false;
-        }
-
-        // const targetDate = new Date(new Date());
-        // if (searchData?.timestamp === "new") {
-        //     query.createdAt = { $gt: targetDate } 
-        // }
-        // if (searchData?.timestamp === "old") {
-        //     query.createdAt = {
-        //         $expr: { $lt: ['$createdAt', new Date()] }, // Assuming the field is named createdAt
-        //       };
-        // }
-        // if (searchData?.isNewerJob === true) {
-        //     query.createdAt = {
-        //       $expr: { $gte: ['$createdAt', new Date()] }, // Assuming the field is named createdAt
-        //     };
-        //   }
-        //   if (searchData?.isNewerJob === false) {
-        //     query.createdAt = {
-        //       $expr: { $lt: ['$createdAt', new Date()] }, // Assuming the field is named createdAt
-        //     };
-        //   }
-
-        // console.log('query:', query);
+        if (searchData?.title) {
+            query.title = new RegExp(searchData.title, 'i');
+        };
 
         // Find the MOST RECENT  
         if (searchData?.timestamp === "new") {
-            const getRecentJobData = await getAllJobBySearchTextService(next, query, -1)
+            const getRecentJobData = await getAllBlogBySearchTextService(next, query, -1)
             // const getRecentJobData = await JobModel.find(query).sort({ timestamp: -1 });
             if (getRecentJobData.length) {
                 return res.status(200).json({
@@ -104,7 +59,7 @@ export const getAllJobBySearchTextController = async (
         }
         // Find the OLDEST 
         if (searchData?.timestamp === "old") {
-            const getOldestData = await getAllJobBySearchTextService(next, query, 1)
+            const getOldestData = await getAllBlogBySearchTextService(next, query, 1)
             // const getOldestData = await   JobModel.find(query).sort({ timestamp: 1 });
             if (getOldestData.length) {
                 return res.status(200).json({

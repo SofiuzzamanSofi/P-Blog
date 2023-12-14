@@ -31,6 +31,8 @@ const page = () => {
         const blogData = {
             photoURLs: photoURLs,
             email: user?.email,
+            displayName: user?.displayName,
+            bloggerId: user?._id,
             title: data.title,
             details: data.details,
             tags: data.tags,

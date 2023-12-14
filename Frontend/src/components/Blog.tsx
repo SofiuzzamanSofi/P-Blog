@@ -12,7 +12,7 @@ const Blog: FC<BlogProps> = ({ }) => {
             <div className='flex justify-between items-center'>
                 <h3 className='text-xl'> Blog</h3>
                 <Link
-                    href="/profile/add-blog"
+                    href="/profile/blog/add-blog"
                     className="flex justify-center md:justify-start font-medium gap-x-2 shadow-[0_0px_15px_rgba(0,0,0,0.15)] hover:opacity-90 transform py-5 rounded-full my-5 text-xl"
                 >
                     <TiDocumentAdd

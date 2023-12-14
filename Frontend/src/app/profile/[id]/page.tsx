@@ -59,7 +59,7 @@ const page = () => {
         } catch (error) {
 
         }
-    }, [])
+    }, []);
 
     return (
         <div className="my-10 sm:my-20">

@@ -109,12 +109,15 @@ export interface JobApplicantsTypes {
 };
 
 export interface BlogDataTypes {
-    email?: string | undefined;
+    email?: string;
+    displayName?: string;
+    bloggerId?: string;
     title?: string;
     details?: string;
     tags?: string[];
     _id?: string;
     __v?: string;
+    timestamp?: string;
     applicants?: JobApplicantsTypes[];
     questionAns?: QuestionAnsTypes[];
 };

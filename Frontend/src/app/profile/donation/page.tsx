@@ -9,7 +9,7 @@ import Link from "next/link";
 
 const page = () => {
 
-    const [activeTab, setActiveTab] = useState("About");
+    const [activeTab, setActiveTab] = useState("Donation");
 
     // auth-user
     const { user, setUser } = useAuth();
@@ -38,7 +38,9 @@ const page = () => {
                                 }`}
                             onClick={() => handleTabClick("About")}
                         >
-                            About
+                            <Link href="/profile/about">
+                                About
+                            </Link>
                         </li>
                         <li
                             className={`py-5 cursor-pointer hover:text-gray-700 border-b-2 ${activeTab === "Blog"
@@ -58,9 +60,7 @@ const page = () => {
                                 }`}
                             onClick={() => handleTabClick("Donation")}
                         >
-                            <Link href="/profile/donation">
-                                Donation
-                            </Link>
+                            Donation
                         </li>
                     </ul>
                 </div>

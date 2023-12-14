@@ -32,7 +32,7 @@ const Donation: FC<DonationProps> = ({ }) => {
                                 user?.donateDetails?.receivers?.map((data, index) => (
                                     <tr key={index} className='border border-slate-600'>
                                         <td className='border border-slate-600'>{index + 1}</td>
-                                        <td className='border border-slate-600'>{moment(data.time).format('MMMM D, YYYY, h:mm:ss A z')}</td>
+                                        <td className='border border-slate-600'>{moment(data.time).format('D MMMM, YYYY, h:mm:ss A z')}</td>
                                         <td className='border border-slate-600'>{data.useremail}</td>
                                         <td className='border border-slate-600 text-right'>{data.amount}</td>
                                     </tr>
@@ -65,7 +65,7 @@ const Donation: FC<DonationProps> = ({ }) => {
                                     user?.donateDetails?.senders?.map((data, index) => (
                                         <tr key={index} className='border border-slate-600'>
                                             <td className='border border-slate-600'>{index + 1}</td>
-                                            <td className='border border-slate-600'>{moment(data.time).format('MMMM D, YYYY, h:mm:ss A z')}</td>
+                                            <td className='border border-slate-600'>{moment(data.time).format('D MMMM, YYYY, h:mm:ss A z')}</td>
                                             <td className='border border-slate-600'>{data.useremail}</td>
                                             <td className='border border-slate-600 text-right'>{data.amount}</td>
                                         </tr>

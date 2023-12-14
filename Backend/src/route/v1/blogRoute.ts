@@ -1,6 +1,6 @@
 import express from 'express';
 import verifyToken from '../../middleware/verifyToken';
-import { postBlogController, getAllJobBySearchTextController, getAllBlogController, getAppliedJobController, getOneJobController, getPostedJobController, patchAnsJobController, patchAppliedJobController, patchIsOpenJobController, patchQuestionJobController } from '../../controller/blogController';
+import { postBlogController, getAllBlogBySearchTextController, getAllBlogController, getAppliedJobController, getOneJobController, getPostedJobController, patchAnsJobController, patchAppliedJobController, patchIsOpenJobController, patchQuestionJobController } from '../../controller/blogController';
 
 export default (router: express.Router) => {
 
@@ -8,7 +8,7 @@ export default (router: express.Router) => {
     // router.use(verifyToken);
 
     router.get("/blog/all-blog", getAllBlogController); // get all jobs 
-    router.post("/job/search", getAllJobBySearchTextController); // get all jobs By Search Text
+    router.post("/blog/search", getAllBlogBySearchTextController); // get all jobs By Search Text
     router.get("/job/:id", getOneJobController); // get 1 job by id 
     router.post("/blog/add-blog", postBlogController); // post a job 
     router.patch("/job/applied-job", patchAppliedJobController); // edit job for applicant: APPLIED
