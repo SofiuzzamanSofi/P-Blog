@@ -41,6 +41,9 @@ const AvatarMenu: FC<AvatarMenuProps> = ({
                 <Link href={`/profile/${_id}`} className={`${navClassName}`}>
                     Profile
                 </ Link>
+                <Link href="/profile/about" className={`${navClassName}`}>
+                    About
+                </ Link>
                 <Link href="/dashboard" className={`${navClassName}`}>
                     Dashboard
                 </ Link>

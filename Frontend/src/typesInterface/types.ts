@@ -81,4 +81,40 @@ interface Receiver {
     amount: number;
     transactionId: string;
     time: Date;
-}
+};
+
+
+
+export interface AnsTypes {
+    time: Date;
+    ansString: string;
+};
+
+export interface QuestionTypes {
+    time: Date;
+    questionString: string;
+};
+
+export interface QuestionAnsTypes {
+    userId: string;
+    userEmail: string;
+    questionId: string;
+    question: QuestionTypes;
+    ans?: AnsTypes[] | undefined;
+};
+
+export interface JobApplicantsTypes {
+    userId?: string;
+    userEmail?: string;
+};
+
+export interface BlogDataTypes {
+    email?: string | undefined;
+    title?: string;
+    details?: string;
+    tags?: string[];
+    _id?: string;
+    __v?: string;
+    applicants?: JobApplicantsTypes[];
+    questionAns?: QuestionAnsTypes[];
+};
