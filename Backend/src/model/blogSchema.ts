@@ -2,60 +2,25 @@ import { JobDataTypes } from "../interfaceServer/interfaceServer.ts.js";
 import mongoose from "mongoose";
 
 //create a schema
-const jobSchema = new mongoose.Schema<JobDataTypes>({
+const blogSchema = new mongoose.Schema<JobDataTypes>({
     email: {
         type: "string",
         required: false,
     },
-    position: {
-        type: "string",
-        required: false,
-    },
-    companyName: {
-        type: "string",
-        required: false,
-    },
-    experience: {
-        type: "string",
-        required: false,
-    },
-    workLevel: {
-        type: "string",
-        required: false,
-    },
-    employmentType: {
-        type: "string",
-        required: false,
-    },
-    location: {
-        type: "string",
-        required: false,
-    },
-    noOpening: {
-        type: "string",
-        required: true,
-    },
-    isOpen: {
-        type: "boolean",
-        required: true,
-    },
-    overview: {
-        type: "string",
-        required: false,
-    },
-    requirements: {
+    photoURLs: {
         type: ["string"],
         required: false,
     },
-    responsibilities: {
-        type: ["string"],
-        required: false,
-    },
-    salaryRange: {
+    title: {
         type: "string",
         required: false,
     },
-    skills: {
+    details: {
+        type: "string",
+        required: false,
+    },
+
+    tags: {
         type: ["string"],
         required: false,
     },
@@ -132,4 +97,4 @@ const jobSchema = new mongoose.Schema<JobDataTypes>({
 );
 
 // Create a modal
-export const JobModel = mongoose.model("Job", jobSchema);
+export const BlogModel = mongoose.model("Blog", blogSchema);

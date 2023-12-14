@@ -1,6 +1,6 @@
 import express from 'express'
 import createRegControllerRoute from "./userRoute"
-import createJobControllerRoute from "./jobRoute"
+import createBlogControllerRoute from "./blogRoute"
 import createMessageControllerRoute from "./messageRoute"
 import createPaymentControllerRoute from "./paymentRoute"
 
@@ -10,7 +10,8 @@ export default (): express.Router => {
 
     createRegControllerRoute(router);
     createPaymentControllerRoute(router);
-    createJobControllerRoute(router);
+    createBlogControllerRoute(router);
+
     createMessageControllerRoute(router);
     return router;
 };

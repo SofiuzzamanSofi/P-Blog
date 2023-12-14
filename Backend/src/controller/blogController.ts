@@ -1,27 +1,27 @@
 import express from "express";
 import { generateRandomStringId } from "../utils/randomId/randomId";
-import { getAllJobBySearchTextService, getAllJobService, getAppliedJobService, getOneJobService, getPostedJobService, patchAnsJobService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, patchQuestionJobService, postJobService } from "../service/jobService";
+import { getAllJobBySearchTextService, getAllBlogService, getAppliedJobService, getOneJobService, getPostedJobService, patchAnsJobService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, patchQuestionJobService, postBlogService } from "../service/blogService";
 import { AnsTypes, QuestionAnsTypes, getAllJobBySearchTextTypes } from "interfaceServer/interfaceServer.ts";
 
 
 // get all jobs 
-export const getAllJobController = async (
+export const getAllBlogController = async (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction,
 ) => {
     try {
         // console.log("hitted. all jobs");
-        const getJobData = await getAllJobService(next)
+        const getJobData = await getAllBlogService(next)
         if (!getJobData) {
             return res.status(200).json({
                 success: false,
-                message: `Job data not found.`,
+                message: `Blog data not found.`,
             });
         } else {
             return res.status(200).json({
                 success: true,
-                message: "Successfully got all jobs.",
+                message: "Successfully got all Blogs.",
                 data: getJobData,
             });
         };
@@ -164,26 +164,27 @@ export const getOneJobController = async (
 };
 
 // post a job 
-export const postJobController = async (
+export const postBlogController = async (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction,
 ) => {
     try {
-        const handleJobData = req.body;
-        // console.log("handleJobData", handleJobData);
-        if (!handleJobData) {
+        const handleBlogData = req.body;
+        // console.log("handleBlogData", handleBlogData);
+        // return
+        if (!handleBlogData) {
             return res.status(400).json({
                 success: false,
                 message: "Body is empty",
             });
         }
         else {
-            const createJobData = await postJobService(next, handleJobData);
+            const createJobData = await postBlogService(next, handleBlogData);
             if (!createJobData) {
                 return res.status(400).json({
                     success: false,
-                    message: "Failed to save job data to the database",
+                    message: "Failed to save a blog data to the database",
                 });
             } else {
                 return res.status(201).json({
@@ -280,38 +281,38 @@ export const patchIsOpenJobController = async (
                     message: `Job not found with jobId: ${jobId}`,
                 });
             }
-            if (isOpen === jobToUpdate.isOpen) {
-                const updatedIsOpen = !jobToUpdate.isOpen;
+            // if (isOpen === jobToUpdate.isOpen) {
+            //     const updatedIsOpen = !jobToUpdate.isOpen;
 
-                const patchJob = await patchIsOpenJob2Service(next, jobId, userEmail, updatedIsOpen)
-                // const patchJob = await JobModel.findOneAndUpdate(
-                //     {
-                //         _id: jobId,
-                //         email: userEmail,
-                //     },
-                //     {
-                //         $set: {
-                //             isOpen: updatedIsOpen,
-                //         },
-                //     },
-                //     {
-                //         new: true,
-                //     }
-                // );
+            //     const patchJob = await patchIsOpenJob2Service(next, jobId, userEmail, updatedIsOpen)
+            //     // const patchJob = await JobModel.findOneAndUpdate(
+            //     //     {
+            //     //         _id: jobId,
+            //     //         email: userEmail,
+            //     //     },
+            //     //     {
+            //     //         $set: {
+            //     //             isOpen: updatedIsOpen,
+            //     //         },
+            //     //     },
+            //     //     {
+            //     //         new: true,
+            //     //     }
+            //     // );
 
-                if (!patchJob) {
-                    return res.status(200).json({
-                        success: false,
-                        message: `Job data was not edited for jobId: ${jobId}`,
-                    });
-                } else {
-                    return res.status(200).json({
-                        success: true,
-                        message: `Successfully edited the job for jobId: ${jobId}`,
-                        data: patchJob,
-                    });
-                }
-            }
+            //     if (!patchJob) {
+            //         return res.status(200).json({
+            //             success: false,
+            //             message: `Job data was not edited for jobId: ${jobId}`,
+            //         });
+            //     } else {
+            //         return res.status(200).json({
+            //             success: true,
+            //             message: `Successfully edited the job for jobId: ${jobId}`,
+            //             data: patchJob,
+            //         });
+            //     }
+            // }
         }
     } catch (error) {
         next(error);

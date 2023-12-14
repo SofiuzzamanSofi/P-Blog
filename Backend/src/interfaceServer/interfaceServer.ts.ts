@@ -110,19 +110,10 @@ export interface JobApplicants {
 
 export interface JobDataTypes {
     email: string;
-    position?: string;
-    companyName?: string | undefined;
-    experience?: string;
-    workLevel?: string;
-    employmentType?: string;
-    location?: string;
-    noOpening: string;
-    isOpen: boolean;
-    overview?: string;
-    requirements?: string[];
-    responsibilities?: string[];
-    salaryRange?: string;
-    skills?: string[];
+    photoURLs?: string[];
+    title?: string;
+    details?: string;
+    tags?: string[];
     // _id?: string;
     // __v?: string;
     applicants?: JobApplicants[];

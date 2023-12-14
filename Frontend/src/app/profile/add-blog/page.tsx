@@ -27,18 +27,27 @@ const page = () => {
     } = useFieldArray({ control, name: "tags" });
 
 
-    const onSubmit: SubmitHandler<BlogDataTypes> = (data) => {
+    const onSubmit: SubmitHandler<BlogDataTypes> = async (data) => {
         const blogData = {
             photoURLs: photoURLs,
             email: user?.email,
             title: data.title,
             details: data.details,
             tags: data.tags,
+        };
+        console.log("data on submit handler addJobs:", blogData);
+        const response = await axios.post(
+            `${process.env.NEXT_PUBLIC_SERVER}/blog/add-blog`,
+            blogData,
+        );
+        console.log('response.data:', response.data);
+        if (response.data.success) {
+            toast.success("Bloag add success.");
+            router.push("/");
         }
-        console.log("data on submit handler addJObs:", blogData);
-        return
-        // postJob({ ...data, email: user?.email, isOpen: true });
+        // You can add further logic here if needed
     };
+
 
     //   useEffect(() => {
     //     if (isLoading) {

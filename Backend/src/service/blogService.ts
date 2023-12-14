@@ -1,17 +1,17 @@
 import express from "express";
 import mongoose from "mongoose";
-import { JobModel } from "../model/jobSchema";
+import { BlogModel } from "../model/blogSchema";
 import { AnsTypes, JobDataTypes, QuestionAnsTypes, getAllJobBySearchTextTypes } from "../interfaceServer/interfaceServer.ts";
 
 type NextFunction = express.NextFunction;
 type ObjectId = mongoose.Schema.Types.ObjectId;
 
-export const getAllJobService = async (
+export const getAllBlogService = async (
     next: NextFunction
 ) => {
     try {
-        const jobs = await JobModel.find();
-        return jobs;
+        const blogs = await BlogModel.find();
+        return blogs;
     } catch (error) {
         next(error);
     };
@@ -23,9 +23,9 @@ export const getAllJobBySearchTextService = async (
     assendingDessending: any
 ) => {
     try {
-        const jobs = await JobModel.find(query)
+        const blogs = await BlogModel.find(query)
             .sort({ timestamp: assendingDessending });
-        return jobs;
+        return blogs;
     } catch (error) {
         next(error);
     };
@@ -36,20 +36,20 @@ export const getOneJobService = async (
     id: string,
 ) => {
     try {
-        const jobs = await JobModel.findById(id);
+        const jobs = await BlogModel.findById(id);
         return jobs;
     } catch (error) {
         next(error);
     };
 };
 
-export const postJobService = async (
+export const postBlogService = async (
     next: NextFunction,
     handleJobData: JobDataTypes,
 ) => {
     try {
-        const jobs = await new JobModel(handleJobData).save();
-        return jobs;
+        const blogs = await new BlogModel(handleJobData).save();
+        return blogs;
     } catch (error) {
         next(error);
     };
@@ -62,7 +62,7 @@ export const patchAppliedJobService = async (
     userEmail: string,
 ) => {
     try {
-        const jobs = await JobModel.findByIdAndUpdate(
+        const jobs = await BlogModel.findByIdAndUpdate(
             jobId,
             {
                 $push: {
@@ -89,7 +89,7 @@ export const patchIsOpenJob1Service = async (
     isOpen: boolean,
 ) => {
     try {
-        const jobs = await JobModel.findOne({
+        const jobs = await BlogModel.findOne({
             _id: jobId,
             email: userEmail,
             isOpen,
@@ -107,7 +107,7 @@ export const patchIsOpenJob2Service = async (
     updatedIsOpen: boolean,
 ) => {
     try {
-        const jobs = await JobModel.findOneAndUpdate(
+        const jobs = await BlogModel.findOneAndUpdate(
             {
                 _id: jobId,
                 email: userEmail,
@@ -132,7 +132,7 @@ export const getAppliedJobService = async (
     email: string,
 ) => {
     try {
-        const jobs = await JobModel.find({ "applicants.userEmail": email })
+        const jobs = await BlogModel.find({ "applicants.userEmail": email })
         return jobs;
     } catch (error) {
         next(error);
@@ -144,7 +144,7 @@ export const getPostedJobService = async (
     email: string,
 ) => {
     try {
-        const jobs = await JobModel.find({ email })
+        const jobs = await BlogModel.find({ email })
         return jobs;
     } catch (error) {
         next(error);
@@ -157,7 +157,7 @@ export const patchQuestionJobService = async (
     questionAns: QuestionAnsTypes,
 ) => {
     try {
-        const jobs = await JobModel.findByIdAndUpdate(
+        const jobs = await BlogModel.findByIdAndUpdate(
             jobId,
             {
                 $push: {
@@ -182,7 +182,7 @@ export const patchAnsJobService = async (
     ans: AnsTypes,
 ) => {
     try {
-        const jobs = await JobModel.findOneAndUpdate(
+        const jobs = await BlogModel.findOneAndUpdate(
             {
                 _id: jobId,
                 email: userEmail,
