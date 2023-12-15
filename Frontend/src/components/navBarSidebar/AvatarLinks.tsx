@@ -30,7 +30,7 @@ const AvatarMenu: FC<AvatarMenuProps> = ({
                 onMouseUpCapture={handleCloseProfileAndMenu}
                 ref={profileRef as React.RefObject<HTMLDivElement>}
                 className={`py-4 px-8 rounded-lg shadow-md  absolute
-                        top-[3.5rem] md:top-[5.25rem] right-[0.0625rem] z-30 ${isProfileOpen ? "translate-y-0" : "translate-y-[-500px]"} duration-1000 transition-all bg-gray-900 border border-gray-700`}
+                        top-[3.5rem] md:top-[5.25rem] right-[0.0625rem] z-30 ${isProfileOpen ? "translate-y-0" : "translate-y-[-1000px]"} duration-1000 transition-all bg-gray-900 border border-gray-700`}
             >
                 <div className={`${navClassName} cursor-auto`}>
                     <div>
@@ -47,14 +47,11 @@ const AvatarMenu: FC<AvatarMenuProps> = ({
                 <Link href="/profile/blog" className={`${navClassName}`}>
                     Blog
                 </ Link>
+                <Link href="/profile/blog/add-blog" className={`${navClassName}`}>
+                    Add Blog
+                </ Link>
                 <Link href="/profile/donation" className={`${navClassName}`}>
                     Donation
-                </ Link>
-                <Link href="/dashboard" className={`${navClassName}`}>
-                    Dashboard
-                </ Link>
-                <Link href="" className={`${navClassName} cursor-not-allowed`}>
-                    Others Comming
                 </ Link>
                 <Link href="" className={`${navClassName} cursor-not-allowed`}>
                     Settings

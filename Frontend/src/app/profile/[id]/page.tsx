@@ -17,12 +17,10 @@ import { CgGirl } from "react-icons/cg";
 import { GiRecycle, GiTakeMyMoney } from "react-icons/gi";
 import { GiPencilRuler } from "react-icons/gi";
 import ScrollToTopButton from "../../../components/ScrollToTopButton";
-
 import Link from "next/link";
 import { useAuth } from "@/provider/AuthProvider";
 import Image from "next/image";
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import 'react-photo-view/dist/react-photo-view.css';
 import { useEffect, useState } from "react";
 import { UserDataTypes } from "@/typesInterface/types";
 

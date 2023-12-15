@@ -1,6 +1,6 @@
 import express from 'express';
 import verifyToken from '../../middleware/verifyToken';
-import { postBlogController, getAllBlogBySearchTextController, getAllBlogController, getAppliedJobController, getOneJobController, getBlogByAuthorController, patchAnsJobController, patchAppliedJobController, patchIsOpenJobController, patchQuestionJobController, deleteBlogById } from '../../controller/blogController';
+import { postBlogController, getAllBlogBySearchTextController, getAllBlogController, getAppliedJobController, getOneJobController, getBlogByAuthorController, patchAnsJobController, patchAppliedJobController, patchIsOpenJobController, patchQuestionJobController, deleteBlogById, getBlogById } from '../../controller/blogController';
 
 export default (router: express.Router) => {
 
@@ -11,6 +11,7 @@ export default (router: express.Router) => {
     router.post("/blog/search", getAllBlogBySearchTextController); // get all jobs By Search Text
     router.get("/blog-by-author/:email", getBlogByAuthorController); // get posted-job by email 
     router.delete("/blog-by-author/:_id", deleteBlogById); // get posted-job by email 
+    router.patch("/blog/by-id", getBlogById);
 
     router.get("/blog/all-blog", getAllBlogController); // get all jobs 
     router.get("/job/:id", getOneJobController); // get 1 job by id 

@@ -57,12 +57,14 @@ export default function Home() {
   }
   else {
     return (
-      <div>
+      <div
+        className='py-5'
+      >
         <div
-          className='py-5'
+          className='pb-5'
         >
           <div>
-            <h1 className='font-bold text-4xl pb-5 text-center dark:text-slate-300'>Blogs</h1>
+            <h1 className='font-bold text-4xl pb-5 text-center dark:text-slate-300'>P- Blog</h1>
           </div>
           <form
             className="border border-gray-200 dark:border-gray-700 rounded-md p-5"

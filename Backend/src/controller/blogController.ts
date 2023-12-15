@@ -1,6 +1,6 @@
 import express from "express";
 import { generateRandomStringId } from "../utils/randomId/randomId";
-import { getAllBlogBySearchTextService, getAllBlogService, getAppliedJobService, getOneJobService, getBlogByAuthorService, patchAnsJobService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, patchQuestionJobService, postBlogService, deleteBlogByid } from "../service/blogService";
+import { getAllBlogBySearchTextService, getAllBlogService, getAppliedJobService, getBlogByAuthorService, patchAnsJobService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, patchQuestionJobService, postBlogService, deleteBlogByid, getOneBlogByIdService } from "../service/blogService";
 import { AnsTypes, QuestionAnsTypes, getAllBlogBySearchTextTypes } from "interfaceServer/interfaceServer.ts";
 
 
@@ -94,7 +94,7 @@ export const getOneJobController = async (
             });
         }
         else {
-            const getJobData = await getOneJobService(next, id);
+            const getJobData = await getOneBlogByIdService(next, id);
             if (!getJobData) {
                 return res.status(200).json({
                     success: false,
@@ -344,6 +344,7 @@ export const getBlogByAuthorController = async (
         next(error);
     };
 };
+
 // get posted-jobs by email 
 export const deleteBlogById = async (
     req: express.Request,
@@ -376,6 +377,45 @@ export const deleteBlogById = async (
         };
     } catch (error) {
         next(error);
+    };
+};
+
+// get Blog by id
+export const getBlogById = async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+) => {
+    try {
+        const { _id } = req.body
+        if (!_id) {
+            return res.status(400).json({
+                success: false,
+                message: "id is missing in the request",
+            });
+        }
+        else {
+            const getBlogData = await getOneBlogByIdService(next, _id);
+            if (!getBlogData) {
+                return res.status(200).json({
+                    success: false,
+                    message: `Blog data not found for the id: ${_id}`,
+                });
+            } else {
+                return res.status(200).json({
+                    success: true,
+                    message: `Successfully found the Blog By id: ${_id}`,
+                    data: getBlogData,
+                });
+            };
+        };
+    } catch (error) {
+        next(error);
+        console.error("Error fetching job data:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch job data",
+        });
     };
 };
 

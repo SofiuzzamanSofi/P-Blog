@@ -109,6 +109,7 @@ export interface JobApplicantsTypes {
 };
 
 export interface BlogDataTypes {
+    photoURLs?: string[];
     email?: string;
     displayName?: string;
     bloggerId?: string;

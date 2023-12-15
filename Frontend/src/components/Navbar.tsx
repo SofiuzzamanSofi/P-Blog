@@ -102,11 +102,11 @@ const Navbar = () => {
         signOut(auth)
             .then(() => {
                 setUser(null);
+                window.location.href = "/sign-in";
             })
             .catch((error) => {
                 // Handle error if needed
             });
-        router.push("sign-in");
         console.log('hit-log-out-success.');
     };
 

@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import AuthProvider from '@/provider/AuthProvider';
 import { Toaster } from 'react-hot-toast';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,7 +24,9 @@ export default function RootLayout({
       <AuthProvider>
         <body className={inter.className}>
           <Navbar />
-          {children}
+          <section className='max-w-[85rem] mx-auto px-4 '>
+            {children}
+          </section>
           <Footer />
           <Toaster />
         </body>

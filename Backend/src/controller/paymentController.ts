@@ -39,6 +39,7 @@ export const payment = async (
 ) => {
   try {
     const paymentData = req.body;
+    // console.log('paymentData:', paymentData); return
     const sender = await UserModel.findOne({ _id: paymentData.sender });
     const receiver = await UserModel.findOne({ _id: paymentData.receiver });
     if (!sender || !receiver) {

@@ -31,13 +31,13 @@ export const getAllBlogBySearchTextService = async (
     };
 };
 
-export const getOneJobService = async (
+export const getOneBlogByIdService = async (
     next: NextFunction,
     id: string,
 ) => {
     try {
-        const jobs = await BlogModel.findById(id);
-        return jobs;
+        const blog = await BlogModel.findById(id);
+        return blog;
     } catch (error) {
         next(error);
     };
