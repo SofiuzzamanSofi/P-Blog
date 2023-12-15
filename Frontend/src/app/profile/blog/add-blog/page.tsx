@@ -45,17 +45,14 @@ const page = () => {
             details: data.details,
             tags: data.tags,
         };
-        console.log("data on submit handler addJobs:", blogData);
         const response = await axios.post(
             `${process.env.NEXT_PUBLIC_SERVER}/blog/add-blog`,
             blogData,
         );
-        console.log('response.data:', response.data);
         if (response.data.success) {
             toast.success("Bloag Post success.");
             router.push("/");
         }
-        // You can add further logic here if needed
     };
 
     // image upload on imageBB
@@ -77,7 +74,6 @@ const page = () => {
                 imageData
             );
             const imageUrl = response?.data?.data?.display_url;
-            console.log('imageUrl:', imageUrl);
             setImgArray((prevArray: any) => [...prevArray, imageUrl]);
             setLoadingStates((prevStates) => {
                 const newStates = [...prevStates];
@@ -157,7 +153,6 @@ const page = () => {
     const addButtonClass = "shrink-0 h-10 w-10 bg-primary/10 border border-primary dark:border-darkPrimary hover:bg-primary dark:hover:bg-darkPrimary hover:text-white rounded-full grid place-items-center text-primary dark:text-darkPrimary transition-all duration-500 hover:scale-100 scale-90"
     const removeButtonClass = "shrink-0 h-10 w-10 bg-primary/10 border border-red-600 hover:bg-red-600 text-red-600 hover:text-white rounded-full grid place-items-center transition-all duration-500 hover:scale-100 scale-90"
 
-    console.log('loading:', loading);
     if (!user?.email && !loading) {
         return <Loading />
     }

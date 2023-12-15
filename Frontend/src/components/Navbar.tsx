@@ -107,7 +107,6 @@ const Navbar = () => {
             .catch((error) => {
                 // Handle error if needed
             });
-        console.log('hit-log-out-success.');
     };
 
     const headerRoutes = [

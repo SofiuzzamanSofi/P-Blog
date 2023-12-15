@@ -15,10 +15,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [titleText, setTitleText] = useState<string>("");
   const [newOrOld, setnewOrOld] = useState<string>("new");
-  //
-  const { user: runningUser } = useAuth();
-  // const pathname = usePathname()
-  // const _id = pathname?.split("/")[2] as string;
 
   const handleFromSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -30,14 +26,12 @@ export default function Home() {
         title: titleText?.trim(),
         timestamp: newOrOld,
       };
-      console.log('hitted:', searchData);
       const getData = async () => {
         // setIsLoading(true);
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_SERVER}/blog/search`,
           searchData,
         );
-        console.log('response.data:', response.data);
         if (response?.data?.success) {
           // setIsLoading(false);
           setBlogs(response?.data?.data);

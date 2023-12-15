@@ -30,7 +30,6 @@ const Blog: FC<BlogProps> = ({ }) => {
                     const response = await axios.delete(
                         `${process.env.NEXT_PUBLIC_SERVER}/blog-by-author/${_id}`,
                     );
-                    console.log('response.data:', response.data);
                     if (response?.data?.success) {
                         setIsReload((prev) => !prev);
                         toast.success("Delete success.")
@@ -44,13 +43,11 @@ const Blog: FC<BlogProps> = ({ }) => {
     useEffect(() => {
         if (user?.email) {
             try {
-                console.log('hitted:');
                 const getData = async () => {
                     setIsLoading(true);
                     const response = await axios.get(
                         `${process.env.NEXT_PUBLIC_SERVER}/blog-by-author/${user?.email}`,
                     );
-                    console.log('response.data:', response.data);
                     if (response?.data?.success) {
                         setIsLoading(false);
                         setBlogs(response?.data?.data);

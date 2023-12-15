@@ -15,7 +15,6 @@ const page = () => {
     const searchParams = useSearchParams()
     const price = searchParams.get('price') as string;
     const receiver = searchParams.get('receiver') as string;
-    console.log('price:', price);
 
     if (!receiver || !price) {
         router.push("/");

@@ -63,7 +63,6 @@ const page = () => {
             userEmail: user?.email,
             ...data,
         };
-        console.log(questionData);
         try {
             const res = await axios.patch(
                 `${process.env.NEXT_PUBLIC_SERVER}/blog/query`,
@@ -73,7 +72,6 @@ const page = () => {
                 setReloadBlog((prev) => !prev)
             }
         } catch (err) {
-
         }
         reset();
     };
@@ -86,7 +84,6 @@ const page = () => {
             userEmail: user?.email,
             riplay: e.currentTarget.ans.value,
         };
-        console.log("ansData", ansData);
         try {
             const res = await axios.patch(
                 `${process.env.NEXT_PUBLIC_SERVER}/blog/riplay`,
@@ -96,7 +93,6 @@ const page = () => {
                 setReloadBlog((prev) => !prev)
             }
         } catch (err) {
-
         }
         (e.target as HTMLFormElement).reset();
     };

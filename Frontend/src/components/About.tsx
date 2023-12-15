@@ -44,19 +44,19 @@ const About: React.FC<AboutProps> = () => {
   const handleFileChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
+
     const imageData = new FormData();
     setLoadingStates(true);
     imageData.set("key", `${process.env.NEXT_PUBLIC_IMAGEBB_KEY}`);
     imageData.append("image", event.target.files![0]);
 
-    console.log('handlefileChanged:');
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_IMAGEBB_URL}`,
         imageData
       );
       const imageUrl = response?.data?.data?.display_url;
-      console.log('imageUrl:', imageUrl);
+
       if (imageUrl) {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_SERVER}/user/profile-pic-change`,
