@@ -2,10 +2,8 @@
 
 import BlogCard from '@/components/BlogCard';
 import Loading from '@/components/Loading';
-import { useAuth } from '@/provider/AuthProvider';
 import { BlogDataTypes } from '@/typesInterface/types';
 import axios from 'axios';
-import Image from 'next/image'
 import { useEffect, useState } from 'react';
 
 export default function Home() {

@@ -339,11 +339,6 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       profileDetailsModal.onClose();
       setInputFieldsValue("");
     }
-    if (result.message === "User updated successfully" && !user?.offer) {
-      profileDetailsModal.onClose();
-      setUserReload((prev) => !prev);
-
-    }
   };
 
   const handleOthersCuriculamValue = async () => {

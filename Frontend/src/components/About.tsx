@@ -26,6 +26,7 @@ import Link from "next/link";
 
 import useProfileDetailsModal from "./Hooks/useProfileDetailsModal";
 import ProfileDetailsModal from "./Modals/ProfileDetailsModal";
+import Image from "next/image";
 
 interface AboutProps {
 }
@@ -108,7 +109,7 @@ const About: React.FC<AboutProps> = () => {
                 ) :
                   (
                     <div className="relative">
-                      <img
+                      <Image
                         className="w-full md:w-[240px] lg:w-[260px] h-full object-cover rounded-lg"
                         src={user?.photoURL}
                         alt=""

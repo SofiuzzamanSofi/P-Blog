@@ -29,7 +29,7 @@ interface PageProps {
     params: { _id: string }
 };
 
-const page: FC<PageProps> = ({ params }) => {
+const Page: FC<PageProps> = ({ params }) => {
 
     //
     const [user, setUser] = useState<UserDataTypes | null>(null);
@@ -64,7 +64,7 @@ const page: FC<PageProps> = ({ params }) => {
         } catch (error) {
             setisLoading(false);
         }
-    }, []);
+    }, [_id]);
 
 
     const handleCopyToClipBoard = () => {
@@ -417,7 +417,7 @@ const page: FC<PageProps> = ({ params }) => {
     }
 };
 
-export default page;
+export default Page;
 
 
 // export const getData = async (_id: string) => {

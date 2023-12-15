@@ -102,7 +102,6 @@ export const getBlogByAuthorController = async (
 ) => {
     try {
         const email = req.params?.email as string;
-        console.log('email:', email);
         if (!email) {
             return res.status(400).json({
                 success: false,

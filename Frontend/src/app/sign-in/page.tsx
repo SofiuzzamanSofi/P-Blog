@@ -1,22 +1,19 @@
 "use client"
 
-import Link from "next/link";
 import Image from "next/image";
 import toast from 'react-hot-toast';
-import loginImage from "@/assets/login.svg";
 import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from "react";
-import Loading from "@/components/Loading";
+import React, { useEffect } from "react";
 import googleIcon from "../../assets/google.svg";
-import { onAuthStateChanged, signInWithPopup, signOut, GoogleAuthProvider } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "@/firebase/firebase.config";
 import { useAuth } from "@/provider/AuthProvider";
 
 const SignIn = () => {
 
-  const router = useRouter();
   // 
   const { setUser, user } = useAuth();
+  const router = useRouter();
 
   // 
   const handleGoogleLogin = async () => {

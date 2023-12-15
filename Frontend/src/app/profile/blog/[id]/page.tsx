@@ -15,7 +15,7 @@ import moment from "moment";
 import axios from "axios";
 
 
-const page = () => {
+const Page = () => {
 
     //
     const [blog, setBlog] = useState<BlogDataTypes | null>(null);
@@ -49,7 +49,7 @@ const page = () => {
         } catch (error) {
 
         }
-    }, [reloadBlog]);
+    }, [reloadBlog, _id]);
 
     const submitQuestion = async (data: { question: string }) => {
         if (!user?._id) {
@@ -255,4 +255,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

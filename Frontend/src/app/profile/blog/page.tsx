@@ -3,25 +3,16 @@
 import { useState } from "react";
 import About from "../../../components/About";
 import Blog from "../../../components/Blog";
-import { useAuth } from "@/provider/AuthProvider";
 import Donation from "@/components/Donation";
 import Link from "next/link";
 
-const page = () => {
+const Page = () => {
 
     const [activeTab, setActiveTab] = useState("Blog");
-
-    // auth-user
-    const { user, setUser } = useAuth();
 
     const handleTabClick = (tabName: string) => {
         setActiveTab(tabName);
     };
-
-    // const setUserTab = (tabName: string) => {
-    //     setUser(user);
-    //     setActiveTab(tabName);
-    // };
 
     return (
         <div className="my-8">
@@ -91,4 +82,4 @@ const page = () => {
     );
 };
 
-export default page;
+export default Page;

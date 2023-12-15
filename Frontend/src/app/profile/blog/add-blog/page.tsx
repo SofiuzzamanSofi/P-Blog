@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useFieldArray, useForm, SubmitHandler } from "react-hook-form";
 import { FiTrash, FiPlusCircle } from "react-icons/fi";
 import { useRouter } from "next/navigation";
@@ -12,12 +12,12 @@ import axios from "axios";
 import Loading from "@/components/Loading";
 
 
-const page = () => {
+const Page = () => {
 
-    const router = useRouter();
     const { user, loading } = useAuth();
     const [photoURLs, setPhotosURLs] = useState([]);
     const [loadingStates, setLoadingStates] = useState(Array(6).fill(false));
+    const router = useRouter();
 
     //   const [postJob, { isLoading, isSuccess, isError }] = usePostJobMutation();
     const { handleSubmit, register, control } = useForm();
@@ -267,4 +267,4 @@ const page = () => {
     };
 };
 
-export default page;
+export default Page;

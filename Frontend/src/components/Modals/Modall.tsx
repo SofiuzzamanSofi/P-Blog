@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
@@ -117,7 +118,7 @@ const Modal: React.FC<ModalProps> = ({
               >
                 <div className="flex gap-x-2">
                   {src && (
-                    <img src={src} alt="" className="h-12 w-12 rounded-full" />
+                    <Image src={src} alt="" className="h-12 w-12 rounded-full" />
                   )}
                   <div className="text-lg font-semibold">{title}</div>
                 </div>
