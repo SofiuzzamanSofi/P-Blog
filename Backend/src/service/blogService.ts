@@ -163,14 +163,14 @@ export const deleteBlogByid = async (
     };
 };
 
-export const patchQuestionJobService = async (
+export const patchQuestionBlogService = async (
     next: NextFunction,
-    jobId: ObjectId,
+    blogId: ObjectId,
     questionAns: QuestionAnsTypes,
 ) => {
     try {
-        const jobs = await BlogModel.findByIdAndUpdate(
-            jobId,
+        const blog = await BlogModel.findByIdAndUpdate(
+            blogId,
             {
                 $push: {
                     questionAns,
@@ -180,23 +180,23 @@ export const patchQuestionJobService = async (
                 new: true,
             },
         );
-        return jobs;
+        return blog;
     } catch (error) {
         next(error);
     };
 };
 
-export const patchAnsJobService = async (
+export const patchAnsBlogService = async (
     next: NextFunction,
-    jobId: ObjectId,
+    blogId: ObjectId,
     userEmail: string,
     questionId: string,
     ans: AnsTypes,
 ) => {
     try {
-        const jobs = await BlogModel.findOneAndUpdate(
+        const blog = await BlogModel.findOneAndUpdate(
             {
-                _id: jobId,
+                _id: blogId,
                 email: userEmail,
                 "questionAns.questionId": questionId,
             },
@@ -209,7 +209,7 @@ export const patchAnsJobService = async (
                 new: true,
             },
         );
-        return jobs;
+        return blog;
     } catch (error) {
         next(error);
     };

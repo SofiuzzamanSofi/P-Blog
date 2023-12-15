@@ -9,12 +9,13 @@ import { useAuth } from "@/provider/AuthProvider";
 import { BlogDataTypes } from "@/typesInterface/types";
 import { BsPlusSquareDotted } from "react-icons/bs";
 import axios from "axios";
+import Loading from "@/components/Loading";
 
 
 const page = () => {
 
     const router = useRouter();
-    const { user } = useAuth();
+    const { user, loading } = useAuth();
     const [photoURLs, setPhotosURLs] = useState([]);
     const [loadingStates, setLoadingStates] = useState(Array(6).fill(false));
 
@@ -28,6 +29,13 @@ const page = () => {
 
 
     const onSubmit: SubmitHandler<BlogDataTypes> = async (data) => {
+
+        if (!user?._id) {
+            toast.error("Login First.");
+            window.location.href = "/sign-in";
+            return;
+        };
+
         const blogData = {
             photoURLs: photoURLs,
             email: user?.email,
@@ -49,23 +57,6 @@ const page = () => {
         }
         // You can add further logic here if needed
     };
-
-
-    //   useEffect(() => {
-    //     if (isLoading) {
-    //       toast.loading("Please wait...", { id: "post-job" });
-    //     }
-    //     else if (isSuccess) {
-    //       toast.success("Post Job Success", { id: "post-job" });
-    //       router.push("/dashboard/posted-jobs");
-    //     }
-    //   }, [isLoading, isSuccess, router]);
-
-    // useEffect(() => {
-    //     if (user?.role !== "Employer") {
-    //         router.push("/");
-    //     };
-    // }, []);
 
     // image upload on imageBB
     const imageUploadHandler = async (event: any, setImgArray: any, index: number) => {
@@ -166,105 +157,119 @@ const page = () => {
     const addButtonClass = "shrink-0 h-10 w-10 bg-primary/10 border border-primary dark:border-darkPrimary hover:bg-primary dark:hover:bg-darkPrimary hover:text-white rounded-full grid place-items-center text-primary dark:text-darkPrimary transition-all duration-500 hover:scale-100 scale-90"
     const removeButtonClass = "shrink-0 h-10 w-10 bg-primary/10 border border-red-600 hover:bg-red-600 text-red-600 hover:text-white rounded-full grid place-items-center transition-all duration-500 hover:scale-100 scale-90"
 
-    return (
-        <div className='flex justify-center items-center overflow-auto py-5'>
-            <form
-                className='flex flex-wrap gap-3 max-w-3xl justify-between md:border border-gray-200 dark:border-gray-700 rounded-md md:p-5'
-                onSubmit={handleSubmit(onSubmit)}
-            >
-                <div className="w-full">
-                    <h1 className='font-bold text-4xl pb-5 text-center dark:text-slate-300'>
-                        Add A Blog
-                    </h1>
-                </div>
+    console.log('loading:', loading);
+    if (!user?.email && !loading) {
+        return <Loading />
+    }
+    else if (!user?.email && loading) {
+        <Loading />
+        // return window.location.href = "/sign-in";
+    }
+    else if (!user?.email && !loading) {
+        return window.location.href = "/sign-in";
+    }
 
-                <div className='flex flex-col w-full'>
-                    <label className='pt-2 dark:text-slate-300' htmlFor='images'>
-                        Images
-                    </label>
-                    <div className="w-11/12 mx-auto flex justify-center items-center">
-                        <div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                                {photoURLs.map((url, index) =>
-                                    loadingStates[index]
-                                        ? renderLoadingPlaceholder(index)
-                                        : renderPhotos(url, index)
-                                )}
-                                {Array.from({ length: 6 - photoURLs.length }, (_, index) =>
-                                    loadingStates[index + photoURLs.length]
-                                        ? renderLoadingPlaceholder(index + photoURLs.length)
-                                        : renderPhotoPlaceholder(index + photoURLs.length)
-                                )}
+    if (user?.email) {
+        return (
+            <div className='flex justify-center items-center overflow-auto py-5'>
+                <form
+                    className='flex flex-wrap gap-3 max-w-3xl justify-between md:border border-gray-200 dark:border-gray-700 rounded-md md:p-5'
+                    onSubmit={handleSubmit(onSubmit)}
+                >
+                    <div className="w-full">
+                        <h1 className='font-bold text-4xl pb-5 text-center dark:text-slate-300'>
+                            Add A Blog
+                        </h1>
+                    </div>
+
+                    <div className='flex flex-col w-full'>
+                        <label className='pt-2 dark:text-slate-300' htmlFor='images'>
+                            Images
+                        </label>
+                        <div className="w-11/12 mx-auto flex justify-center items-center">
+                            <div>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                                    {photoURLs.map((url, index) =>
+                                        loadingStates[index]
+                                            ? renderLoadingPlaceholder(index)
+                                            : renderPhotos(url, index)
+                                    )}
+                                    {Array.from({ length: 6 - photoURLs.length }, (_, index) =>
+                                        loadingStates[index + photoURLs.length]
+                                            ? renderLoadingPlaceholder(index + photoURLs.length)
+                                            : renderPhotoPlaceholder(index + photoURLs.length)
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div className='flex flex-col w-full'>
-                    <label className='pt-2 dark:text-slate-300' htmlFor='title'>
-                        Title
-                    </label>
-                    <input className={searchBarInputClass} type='text' id='title' {...register("title")} required />
-                </div>
+                    <div className='flex flex-col w-full'>
+                        <label className='pt-2 dark:text-slate-300' htmlFor='title'>
+                            Title
+                        </label>
+                        <input className={searchBarInputClass} type='text' id='title' {...register("title")} required />
+                    </div>
 
 
-                <div className='flex flex-col w-full'>
-                    <label className='pt-2 dark:text-slate-300' htmlFor='details'>
-                        Details
-                    </label>
-                    <textarea className={`${searchBarInputClass}`} rows={8} {...register("details")} id='details' required />
-                </div>
-                <div className='flex flex-col w-full'>
-                    <label className='pt-2 dark:text-slate-300' >Tags:</label>
-                    <div>
+                    <div className='flex flex-col w-full'>
+                        <label className='pt-2 dark:text-slate-300' htmlFor='details'>
+                            Details
+                        </label>
+                        <textarea className={`${searchBarInputClass}`} rows={8} {...register("details")} id='details' required />
+                    </div>
+                    <div className='flex flex-col w-full'>
+                        <label className='pt-2 dark:text-slate-300' >Tags:</label>
                         <div>
-                            {tagsFields.map((item, index) => {
-                                return (
-                                    <div key={index} className='flex items-center gap-3 mb-5'>
-                                        <input
-                                            className={searchBarInputClass}
-                                            type='text'
-                                            {...register(`tags[${index}]`)}
-                                        />
-                                        <button
-                                            type='button'
-                                            onClick={() => tagsRemove(index)}
-                                            className={removeButtonClass}
-                                        >
-                                            <FiTrash
-                                                size='20'
+                            <div>
+                                {tagsFields.map((item, index) => {
+                                    return (
+                                        <div key={index} className='flex items-center gap-3 mb-5'>
+                                            <input
+                                                className={searchBarInputClass}
+                                                type='text'
+                                                {...register(`tags[${index}]`)}
                                             />
-                                        </button>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                        <div>
-                            <button
-                                type='button'
-                                onClick={() => tagsAppend("")}
-                                className={addButtonClass}
-                            >
-                                <FiPlusCircle
-                                    size='20'
-                                />
-                            </button>
+                                            <button
+                                                type='button'
+                                                onClick={() => tagsRemove(index)}
+                                                className={removeButtonClass}
+                                            >
+                                                <FiTrash
+                                                    size='20'
+                                                />
+                                            </button>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                            <div>
+                                <button
+                                    type='button'
+                                    onClick={() => tagsAppend("")}
+                                    className={addButtonClass}
+                                >
+                                    <FiPlusCircle
+                                        size='20'
+                                    />
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
 
 
-                <div className='flex justify-end items-center w-full mt-3'>
-                    <button
-                        type="submit"
-                        className={"cursor-pointer py-3 px-4 rounded-md border border-primary dark:border-darkPrimary hover:bg-primary dark:hover:bg-darkPrimary text-primary  dark:text-darkPrimary  hover:text-white font-bold"}
-                    >
-                        Submit
-                    </button>
-                </div>
-            </form>
-        </div>
-    );
+                    <div className='flex justify-end items-center w-full mt-3'>
+                        <button
+                            type="submit"
+                            className={"cursor-pointer py-3 px-4 rounded-md border border-primary dark:border-darkPrimary hover:bg-primary dark:hover:bg-darkPrimary text-primary  dark:text-darkPrimary  hover:text-white font-bold"}
+                        >
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        );
+    };
 };
 
 export default page;

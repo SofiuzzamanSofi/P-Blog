@@ -30,6 +30,7 @@ const AuthProvider = (props: React.PropsWithChildren) => {
         const fetchData = async () => {
             onAuthStateChanged(auth, async (user) => {
                 if (user?.email) {
+                    setLoading(true);
                     const resDataFromDb = await fetch(
                         `${process.env.NEXT_PUBLIC_SERVER}/user/me`,
                         {
@@ -45,11 +46,12 @@ const AuthProvider = (props: React.PropsWithChildren) => {
                         }
                     );
                     const userData = await resDataFromDb.json();
-                    // console.log('userData/user:', user);
+                    setLoading(false);
                     setUser(userData?.data);
                 }
                 else {
                     setUser(null);
+                    setLoading(false);
                 }
             });
         };

@@ -1,6 +1,6 @@
 import express from "express";
 import { generateRandomStringId } from "../utils/randomId/randomId";
-import { getAllBlogBySearchTextService, getAllBlogService, getAppliedJobService, getBlogByAuthorService, patchAnsJobService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, patchQuestionJobService, postBlogService, deleteBlogByid, getOneBlogByIdService } from "../service/blogService";
+import { getAllBlogBySearchTextService, getAllBlogService, getAppliedJobService, getBlogByAuthorService, patchAnsBlogService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, postBlogService, deleteBlogByid, getOneBlogByIdService, patchQuestionBlogService } from "../service/blogService";
 import { AnsTypes, QuestionAnsTypes, getAllBlogBySearchTextTypes } from "interfaceServer/interfaceServer.ts";
 
 
@@ -420,14 +420,14 @@ export const getBlogById = async (
 };
 
 // edit job for Question
-export const patchQuestionJobController = async (
+export const patchQuestionBlogController = async (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction,
 ) => {
     try {
-        const { jobId, userId, userEmail, question } = req.body;
-        if (!jobId || !userId || !userEmail || !question) {
+        const { blogId, userId, userEmail, question } = req.body;
+        if (!blogId || !userId || !userEmail || !question) {
             return res.status(400).json({
                 success: false,
                 message: "jobId, userId, userEmail, and question are required in the request body",
@@ -444,9 +444,9 @@ export const patchQuestionJobController = async (
                 },
             };
             // console.log("questionAns:", questionAns);
-            const updateJobforQuestion = await patchQuestionJobService(next, jobId, questionAns);
-            // const updateJobforQuestion = await JobModel.findByIdAndUpdate(
-            //     jobId,
+            const updateBlogforQuestion = await patchQuestionBlogService(next, blogId, questionAns);
+            // const updateBlogforQuestion = await BlogModel.findByIdAndUpdate(
+            //     BlogId,
             //     {
             //         $push: {
             //             questionAns,
@@ -456,17 +456,17 @@ export const patchQuestionJobController = async (
             //         new: true,
             //     },
             // );
-            if (!updateJobforQuestion) {
+            if (!updateBlogforQuestion) {
                 return res.status(400).json({
                     success: false,
-                    message: `Job with jobId: ${jobId} not found or not updated for question`,
+                    message: `Blog with BlogId: ${blogId} not found or not updated for question`,
                 });
             }
             else {
                 return res.status(200).json({
                     success: true,
-                    message: `Successfully added question to job with jobId: ${jobId}`,
-                    data: updateJobforQuestion,
+                    message: `Successfully added question to Blog with BlogId: ${blogId}`,
+                    data: updateBlogforQuestion,
                 });
             };
         };
@@ -476,18 +476,18 @@ export const patchQuestionJobController = async (
 };
 
 // edit job for Ans
-export const patchAnsJobController = async (
+export const patchAnsBlogController = async (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction,
 ) => {
     try {
-        const { jobId, questionId, userEmail, riplay } = req.body;
-        // console.log("jobId, questionId, userEmail, riplay :", jobId, questionId, userEmail, riplay);
-        if (!jobId || !questionId || !userEmail || !riplay) {
+        const { blogId, questionId, userEmail, riplay } = req.body;
+        // console.log("blogId, questionId, userEmail, riplay :", blogId, questionId, userEmail, riplay);
+        if (!blogId || !questionId || !userEmail || !riplay) {
             return res.status(400).json({
                 success: false,
-                message: "userId, jobId, userEmail is missing in the request",
+                message: "userId, blogId, userEmail is missing in the request",
             });
         }
         else {
@@ -495,11 +495,11 @@ export const patchAnsJobController = async (
                 time: new Date(),
                 ansString: riplay,
             };
-            // console.log("ANS DATA:", ans, jobId, questionId, userEmail, riplay);
-            const updateJObforAns = await patchAnsJobService(next, jobId, userEmail, questionId, ans)
+            // console.log("ANS DATA:", ans, blogId, questionId, userEmail, riplay);
+            const updateBlogforAns = await patchAnsBlogService(next, blogId, userEmail, questionId, ans)
             // const updateJObforAns = await JobModel.findOneAndUpdate(
             //     {
-            //         _id: jobId,
+            //         _id: blogId,
             //         email: userEmail,
             //         "questionAns.questionId": questionId,
             //     },
@@ -512,16 +512,16 @@ export const patchAnsJobController = async (
             //         new: true,
             //     },
             // );
-            if (!updateJObforAns) {
+            if (!updateBlogforAns) {
                 return res.status(200).json({
                     success: false,
-                    message: `Job data in not EDIT by the jobId: ${jobId}`,
+                    message: `Job data in not EDIT by the blogId: ${blogId}`,
                 });
             } else {
                 return res.status(200).json({
                     success: true,
-                    message: `Successfully EDIT the job by the jobId: ${jobId}`,
-                    data: updateJObforAns,
+                    message: `Successfully EDIT the job by the blogId: ${blogId}`,
+                    data: updateBlogforAns,
                 });
             };
         };

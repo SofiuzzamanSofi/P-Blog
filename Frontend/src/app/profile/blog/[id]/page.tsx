@@ -12,12 +12,14 @@ import { useAuth } from "@/provider/AuthProvider";
 import { BlogDataTypes } from "@/typesInterface/types";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import moment from "moment";
+import axios from "axios";
 
 
 const page = () => {
 
     //
     const [blog, setBlog] = useState<BlogDataTypes | null>(null);
+    const [reloadBlog, setReloadBlog] = useState<boolean>(false);
     const { user } = useAuth();
     const pathname = usePathname()
     const _id = pathname?.split("/")[3] as string;
@@ -47,30 +49,55 @@ const page = () => {
         } catch (error) {
 
         }
-    }, []);
+    }, [reloadBlog]);
 
-    const submitQuestion = (data: { question: string }) => {
-        // const questionData = {
-        //     jobId: _id,
-        //     userId: reduxStore.auth.user?._id,
-        //     userEmail: reduxStore.auth.user?.email,
-        //     ...data,
-        // };
-        // // console.log(questionData);
-        // jobQuestion(questionData);
+    const submitQuestion = async (data: { question: string }) => {
+        if (!user?._id) {
+            toast.error("Login First.");
+            window.location.href = "/sign-in";
+            return;
+        };
+        const questionData = {
+            blogId: _id,
+            userId: user?._id,
+            userEmail: user?.email,
+            ...data,
+        };
+        console.log(questionData);
+        try {
+            const res = await axios.patch(
+                `${process.env.NEXT_PUBLIC_SERVER}/blog/query`,
+                questionData
+            )
+            if (res.data.success) {
+                setReloadBlog((prev) => !prev)
+            }
+        } catch (err) {
+
+        }
         reset();
     };
 
-    const submitAns = (e: React.FormEvent<HTMLFormElement>, questionId: string) => {
+    const submitAns = async (e: React.FormEvent<HTMLFormElement>, questionId: string) => {
         e.preventDefault();
-        // const ansData = {
-        //     jobId: _id,
-        //     questionId,
-        //     userEmail: reduxStore.auth.user?.email,
-        //     riplay: e.currentTarget.ans.value,
-        // };
-        // // console.log("ansData", ansData);
-        // jobAns(ansData);
+        const ansData = {
+            blogId: _id,
+            questionId,
+            userEmail: user?.email,
+            riplay: e.currentTarget.ans.value,
+        };
+        console.log("ansData", ansData);
+        try {
+            const res = await axios.patch(
+                `${process.env.NEXT_PUBLIC_SERVER}/blog/riplay`,
+                ansData
+            )
+            if (res.data.success) {
+                setReloadBlog((prev) => !prev)
+            }
+        } catch (err) {
+
+        }
         (e.target as HTMLFormElement).reset();
     };
 
@@ -81,7 +108,6 @@ const page = () => {
 
     return (
         <div className='py-5'>
-            {/* <div className='min-h-[120px] max-w-[83rem] grid sm:grid-cols-2 md:grid-cols-3 overflow-hidden'> */}
             <div className='min-h-[120px] flex flex-wrap gap-4 overflow-hidden'>
                 <PhotoProvider>
                     {
@@ -130,14 +156,18 @@ const page = () => {
 
                 <div>
                     <h1 className='text-primary dark:text-darkPrimary text-lg font-medium mt-3'>Author Info:</h1>
-                    <p className="hover:underline">
+                    <Link
+                        href={`/profile/${blog?.bloggerId}`}
+                        className="hover:underline"
+                    >
                         {blog?.displayName}
+                    </Link>
+
+                    <p className="font-semibold">
+                        {blog?.timestamp ? moment(blog?.timestamp).format('D MMMM, YYYY, h:mm:ss A z') : 'No timestamp available'}
                     </p>
-                    <p>
-                        <span className='font-semibold'>
-                            {moment(blog?.timestamp).format('D MMMM, YYYY, h:mm:ss A z')}
-                        </span>
-                    </p>
+
+
                     {
                         user?._id !== blog?.bloggerId &&
                         <Link
@@ -176,8 +206,7 @@ const page = () => {
                                     ))
                                 }
                                 {
-                                    // reduxStore.auth.user?.role === 'Employer' &&
-                                    // reduxStore?.auth?.user?.email === email &&
+                                    user?._id === blog?.bloggerId &&
                                     <form
                                         onSubmit={(e) => submitAns(e, question?.questionId)}
                                     >
@@ -203,7 +232,7 @@ const page = () => {
                 </div>
 
                 {
-                    // reduxStore.auth.user?.role === 'Candidate' &&
+                    user?._id !== blog?.bloggerId &&
                     <form
                         onSubmit={handleSubmit(submitQuestion)}
                     >

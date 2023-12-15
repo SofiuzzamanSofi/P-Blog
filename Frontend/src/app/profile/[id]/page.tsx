@@ -2,12 +2,11 @@
 
 import { PiLinkSimpleBold } from "react-icons/pi";
 import { BiDrink, BiEdit } from "react-icons/bi";
-import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaMailBulk, FaDonate } from "react-icons/fa";
+import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaMailBulk, FaDonate, FaClipboard } from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 import { MdOutlinePeople } from "react-icons/md";
 import { MdCastForEducation, MdOutlineSmokingRooms } from "react-icons/md";
-import { CiLineHeight, CiLocationOn, CiUser } from "react-icons/ci";
-import { BsGift } from "react-icons/bs";
+import { CiLocationOn } from "react-icons/ci";
 import { TfiGift, TfiMenuAlt } from "react-icons/tfi";
 import noImageUserIcon from "../../../assets/no_image_user_icon.png";
 import { LiaRunningSolid, LiaSortAmountDownAltSolid } from "react-icons/lia";
@@ -23,12 +22,12 @@ import Image from "next/image";
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { useEffect, useState } from "react";
 import { UserDataTypes } from "@/typesInterface/types";
+import toast from "react-hot-toast";
 
 const page = () => {
 
     //
     const [user, setUser] = useState<UserDataTypes | null>(null);
-    //
     const { user: runningUser } = useAuth();
     const pathname = usePathname()
     const _id = pathname?.split("/")[2] as string;
@@ -59,8 +58,17 @@ const page = () => {
         }
     }, []);
 
+    const handleCopyToClipBoard = () => {
+
+        navigator.clipboard.writeText(`${window.location.origin}/${pathname}`)
+        toast.success("Profile link copy success")
+    }
+
     return (
         <div className="my-10 sm:my-20">
+            <div className="flex justify-end">
+                <FaClipboard className="h-6 w-6 cursor-pointer" title="Copy link to clipboard" onClick={handleCopyToClipBoard} />
+            </div>
             <div className="sm:grid grid-cols-12 px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6">
                 <div className="col-span-3">
                     <div className="sticky top-20">

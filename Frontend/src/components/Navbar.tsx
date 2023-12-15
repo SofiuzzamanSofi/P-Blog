@@ -165,7 +165,7 @@ const Navbar = () => {
                         ) : (
                             <>
                                 <div className="hidden md:flex flex-col gap-x-0 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7">
-                                    {
+                                    {/* {
                                         headerRoutes.map(({ name, path }, index) => (
                                             <Link
                                                 key={index}
@@ -174,7 +174,8 @@ const Navbar = () => {
                                             >
                                                 {name}
                                             </Link>
-                                        ))}
+                                        ))
+                                    } */}
                                 </div>
                                 {/* avatar  toggle */}
                                 <div className="flex flex-col items-center justify-center gap-x-0 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7">
