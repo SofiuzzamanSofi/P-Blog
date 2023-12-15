@@ -10,7 +10,7 @@ const CheckoutForm = ({ price, receiver }: any) => {
 
   // reload auth-context-provider
   const { setUserReload, user } = useAuth();
-
+  const router = useRouter();
 
   // disable button when processing
   const [processing, setProcessing] = useState(false);
@@ -46,11 +46,10 @@ const CheckoutForm = ({ price, receiver }: any) => {
         .then((data) => setClientSecret(data.clientSecret));
     } catch (error) {
       toast.error("Stripe-Payment is busy now");
-      const router = useRouter();
       router.push("/profile/donate")
       return
     }
-  }, [price]);
+  }, [price, router]);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
