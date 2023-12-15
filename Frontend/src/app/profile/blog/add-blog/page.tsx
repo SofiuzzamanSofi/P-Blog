@@ -10,6 +10,7 @@ import { BlogDataTypes } from "@/typesInterface/types";
 import { BsPlusSquareDotted } from "react-icons/bs";
 import axios from "axios";
 import Loading from "@/components/Loading";
+import Image from "next/image";
 
 
 const Page = () => {
@@ -121,7 +122,7 @@ const Page = () => {
 
     const renderPhotos = (url: any, index: number) => (
         <div key={index} className="relative">
-            <img src={url} className="w-[180px] h-[180px] object-cover rounded-xl" alt="" />
+            <Image src={url} className="w-[180px] h-[180px] object-cover rounded-xl" alt="" />
             <button
                 className="bg-gray-100 absolute right-1 bottom-1 py-1 px-2 rounded-full text-black"
                 onClick={() => handleRemoveImage(index)}

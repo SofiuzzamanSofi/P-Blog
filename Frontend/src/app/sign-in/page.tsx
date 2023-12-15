@@ -52,7 +52,7 @@ const SignIn = () => {
     if (user?.email) {
       router.push("/");
     };
-  }, [user]);
+  }, [user, router]);
 
   return (
     <div className='min-h-[calc(100vh-2rem)] flex items-center justify-center gap-4'>

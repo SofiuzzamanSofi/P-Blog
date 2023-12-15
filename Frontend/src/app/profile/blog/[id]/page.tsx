@@ -109,9 +109,8 @@ const Page = () => {
                     {
                         blog?.photoURLs && blog?.photoURLs?.length > 0 &&
                         blog?.photoURLs.map((photo, index) => (
-                            <PhotoView src={photo} >
+                            <PhotoView src={photo} key={index}>
                                 <Image
-                                    key={index}
                                     src={photo}
                                     alt='blog-photo'
                                     className='object-cover cursor-pointer'
