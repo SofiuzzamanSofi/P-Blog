@@ -1,36 +1,16 @@
 import express from "express";
 import { generateRandomStringId } from "../utils/randomId/randomId";
-import { getAllBlogBySearchTextService, getAllBlogService, getAppliedJobService, getBlogByAuthorService, patchAnsBlogService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, postBlogService, deleteBlogByid, getOneBlogByIdService, patchQuestionBlogService } from "../service/blogService";
+import {
+    getAllBlogBySearchTextService,
+    getBlogByAuthorService, patchAnsBlogService,
+    postBlogService, deleteBlogByid,
+    getOneBlogByIdService,
+    patchQuestionBlogService
+} from "../service/blogService";
 import { AnsTypes, QuestionAnsTypes, getAllBlogBySearchTextTypes } from "interfaceServer/interfaceServer.ts";
 
 
-// get all jobs 
-export const getAllBlogController = async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-) => {
-    try {
-        // console.log("hitted. all jobs");
-        const getJobData = await getAllBlogService(next)
-        if (!getJobData) {
-            return res.status(200).json({
-                success: false,
-                message: `Blog data not found.`,
-            });
-        } else {
-            return res.status(200).json({
-                success: true,
-                message: "Successfully got all Blogs.",
-                data: getJobData,
-            });
-        };
-    } catch (error) {
-        next(error);
-    };
-};
-
-// get all jobs By Search Text
+// get all Blogs By Search Text
 export const getAllBlogBySearchTextController = async (
     req: express.Request,
     res: express.Response,
@@ -52,7 +32,7 @@ export const getAllBlogBySearchTextController = async (
             if (getRecentJobData.length) {
                 return res.status(200).json({
                     success: true,
-                    message: "Successfully got all jobs.",
+                    message: "Successfully got all Blogs.",
                     data: getRecentJobData,
                 });
             }
@@ -64,7 +44,7 @@ export const getAllBlogBySearchTextController = async (
             if (getOldestData.length) {
                 return res.status(200).json({
                     success: true,
-                    message: "Successfully got all jobs.",
+                    message: "Successfully got all Blogs.",
                     data: getOldestData,
                 });
             }
@@ -76,45 +56,6 @@ export const getAllBlogBySearchTextController = async (
         });
     } catch (error) {
         next(error);
-    };
-};
-
-// get 1 job by id 
-export const getOneJobController = async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-) => {
-    try {
-        const id = req.params?.id as string;
-        if (!id) {
-            return res.status(400).json({
-                success: false,
-                message: "id is missing in the request",
-            });
-        }
-        else {
-            const getJobData = await getOneBlogByIdService(next, id);
-            if (!getJobData) {
-                return res.status(200).json({
-                    success: false,
-                    message: `Job data not found for the id: ${id}`,
-                });
-            } else {
-                return res.status(200).json({
-                    success: true,
-                    message: `Successfully found the job By id: ${id}`,
-                    data: getJobData,
-                });
-            };
-        };
-    } catch (error) {
-        next(error);
-        console.error("Error fetching job data:", error);
-        return res.status(500).json({
-            success: false,
-            message: "Failed to fetch job data",
-        });
     };
 };
 
@@ -153,164 +94,7 @@ export const postBlogController = async (
     };
 };
 
-// edit job for applicant: APPLIED
-export const patchAppliedJobController = async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-) => {
-    try {
-        const { jobId, userId, userEmail } = req.body;
-        // console.log("jobId, userId, userEmail:", jobId, userId, userEmail);
-        if (!jobId && !userId && !userEmail) {
-            return res.status(400).json({
-                success: false,
-                message: "userId, jobId, userEmail is missing in the request",
-            });
-        }
-        else {
-            const patchJOb = await patchAppliedJobService(next, jobId, userId, userEmail)
-            // const patchJOb = await JobModel.            findByIdAndUpdate(
-            //     jobId,
-            //     {
-            //         $push: {
-            //             applicants: {
-            //                 userId,
-            //                 userEmail,
-            //             },
-            //         },
-            //     },
-            //     {
-            //         new: true,
-            //     }
-            // );
-            if (!patchJOb) {
-                return res.status(200).json({
-                    success: false,
-                    message: `Job data in not EDIT by the jobId: ${jobId}`,
-                });
-            } else {
-                return res.status(200).json({
-                    success: true,
-                    message: `Successfully EDIT the job by the jobId: ${jobId}`,
-                    data: patchJOb,
-                });
-            };
-        };
-    } catch (error) {
-        next(error);
-        console.error("Error fetching job data:", error);
-        return res.status(500).json({
-            success: false,
-            message: "Failed to PATCH job data",
-        });
-    };
-};
-
-// edit job for isOpen or closed
-export const patchIsOpenJobController = async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-) => {
-    try {
-        const { jobId, isOpen, userId, userEmail } = req.body;
-
-        if (!jobId || !userId || !userEmail) {
-            return res.status(400).json({
-                success: false,
-                message: "userId, jobId, userEmail is missing in the request",
-            });
-        } else {
-            // console.log("jobId isOpen userId userEmail:", jobId, userId, userEmail);
-            const jobToUpdate = await patchIsOpenJob1Service(next, jobId, userEmail, isOpen)
-            // const jobToUpdate = await JobModel.findOne({
-            //     _id: jobId,
-            //     email: userEmail,
-            //     isOpen,
-            // });
-
-            if (!jobToUpdate) {
-                return res.status(404).json({
-                    success: false,
-                    message: `Job not found with jobId: ${jobId}`,
-                });
-            }
-            // if (isOpen === jobToUpdate.isOpen) {
-            //     const updatedIsOpen = !jobToUpdate.isOpen;
-
-            //     const patchJob = await patchIsOpenJob2Service(next, jobId, userEmail, updatedIsOpen)
-            //     // const patchJob = await JobModel.findOneAndUpdate(
-            //     //     {
-            //     //         _id: jobId,
-            //     //         email: userEmail,
-            //     //     },
-            //     //     {
-            //     //         $set: {
-            //     //             isOpen: updatedIsOpen,
-            //     //         },
-            //     //     },
-            //     //     {
-            //     //         new: true,
-            //     //     }
-            //     // );
-
-            //     if (!patchJob) {
-            //         return res.status(200).json({
-            //             success: false,
-            //             message: `Job data was not edited for jobId: ${jobId}`,
-            //         });
-            //     } else {
-            //         return res.status(200).json({
-            //             success: true,
-            //             message: `Successfully edited the job for jobId: ${jobId}`,
-            //             data: patchJob,
-            //         });
-            //     }
-            // }
-        }
-    } catch (error) {
-        next(error);
-    };
-};
-
-// get applied-jobs by email 
-export const getAppliedJobController = async (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction,
-) => {
-    try {
-        const email = req.params?.email as string;
-        if (!email) {
-            return res.status(400).json({
-                success: false,
-                message: "Email is missing in the request",
-            });
-        }
-        else {
-            // const query = { "applicants.userEmail": email }
-            const getAppliedJobData = await getAppliedJobService(next, email)
-            // const getAppliedJobData = await JobModel.find({ "applicants.userEmail": email })
-            if (!getAppliedJobData) {
-                return res.status(200).json({
-                    success: false,
-                    message: `Job data not found for the email: ${email}`,
-                });
-            } else {
-                return res.status(200).json({
-                    success: true,
-                    message: `Successfully found the job By id: ${email}`,
-                    data: getAppliedJobData,
-                });
-            };
-        };
-    } catch (error) {
-        next(error);
-    };
-};
-
-// get posted-jobs by email 
+// get posted-Blogs by email 
 export const getBlogByAuthorController = async (
     req: express.Request,
     res: express.Response,
@@ -345,7 +129,7 @@ export const getBlogByAuthorController = async (
     };
 };
 
-// get posted-jobs by email 
+// get posted-Blogs by email 
 export const deleteBlogById = async (
     req: express.Request,
     res: express.Response,

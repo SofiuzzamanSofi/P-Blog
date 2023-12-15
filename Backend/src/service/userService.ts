@@ -72,26 +72,6 @@ export const updateProfileService = async (
     };
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //
 export const updateUserByEmail = async (
     next: NextFunction,

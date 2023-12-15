@@ -1,8 +1,8 @@
-import { JobDataTypes } from "../interfaceServer/interfaceServer.ts.js";
+import { BlogDataTypes } from "../interfaceServer/interfaceServer.ts.js";
 import mongoose from "mongoose";
 
 //create a schema
-const blogSchema = new mongoose.Schema<JobDataTypes>({
+const blogSchema = new mongoose.Schema<BlogDataTypes>({
     email: {
         type: "string",
         required: false,

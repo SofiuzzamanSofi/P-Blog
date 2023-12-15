@@ -1,5 +1,5 @@
-import { createPaymentIntent, payment } from "../../controller/paymentController";
 import express from "express";
+import { createPaymentIntent, payment } from "../../controller/paymentController";
 
 export default (router: express.Router) => {
 

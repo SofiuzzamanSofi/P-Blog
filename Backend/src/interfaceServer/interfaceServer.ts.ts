@@ -103,12 +103,12 @@ export interface QuestionAnsTypes {
     ans?: AnsTypes[];
 };
 
-export interface JobApplicants {
+export interface BlogApplicants {
     userId?: string;
     userEmail?: string;
 };
 
-export interface JobDataTypes {
+export interface BlogDataTypes {
     email: string;
     displayName?: string;
     bloggerId?: string;
@@ -118,39 +118,9 @@ export interface JobDataTypes {
     tags?: string[];
     // _id?: string;
     // __v?: string;
-    applicants?: JobApplicants[];
+    applicants?: BlogApplicants[];
     questionAns?: QuestionAnsTypes[];
     timestamp: Date;
-};
-
-//
-export interface postMessageByIdServiceType {
-    messageId: string,
-    senderId: string;
-    senderEmail: string;
-    content: string;
-};
-// messageTypes 
-export interface MessageType {
-    messageId: string;
-    timestamp: Date; // Use Date type if you prefer
-    senderId: string;
-    senderEmail: string;
-    content: string;
-};
-
-export interface Participant {
-    userId: string;
-    userName: string;
-    userEmail: string;
-};
-
-export interface MessageObjectType {
-    _id: string;
-    __v: string;
-    chatId: string;
-    participants: Participant[];
-    messages: MessageType[];
 };
 
 // job query search types

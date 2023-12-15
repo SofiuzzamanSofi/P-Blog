@@ -103,7 +103,7 @@ export interface QuestionAnsTypes {
     ans?: AnsTypes[] | undefined;
 };
 
-export interface JobApplicantsTypes {
+export interface BlogApplicantsTypes {
     userId?: string;
     userEmail?: string;
 };
@@ -119,6 +119,6 @@ export interface BlogDataTypes {
     _id?: string;
     __v?: string;
     timestamp?: string;
-    applicants?: JobApplicantsTypes[];
+    applicants?: BlogApplicantsTypes[];
     questionAns?: QuestionAnsTypes[];
 };
