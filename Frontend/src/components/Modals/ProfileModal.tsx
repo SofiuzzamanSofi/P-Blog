@@ -21,7 +21,6 @@ const ProfileModal: React.FC<ModalProps> = ({
   body,
   footer,
   disabled,
-
   src,
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
@@ -111,7 +110,6 @@ const ProfileModal: React.FC<ModalProps> = ({
                 rounded-t
                 justify-between
                 relative
-
                 "
               >
                 <div className="flex gap-x-2">
@@ -141,7 +139,7 @@ const ProfileModal: React.FC<ModalProps> = ({
               {/*body*/}
               <div className="relative pt-12 px-6 flex-auto">{body}</div>
               {/*footer*/}
-              <div className="flex flex-col gap-2  px-6 pb-3">{footer}</div>
+              <div className="flex flex-col gap-2 px-6 pb-3">{footer}</div>
             </div>
           </div>
         </div>
