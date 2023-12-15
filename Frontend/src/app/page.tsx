@@ -105,7 +105,7 @@ export default function Home() {
               ))
               :
               <div>
-                <h1> No Jobs Yet On This Website.</h1>
+                <h1> No Blogs Yet On This Website.</h1>
               </div>
           }
         </div>

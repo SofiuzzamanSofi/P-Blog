@@ -112,7 +112,9 @@ const About: React.FC<AboutProps> = () => {
                       <Image
                         className="w-full md:w-[240px] lg:w-[260px] h-full object-cover rounded-lg"
                         src={user?.photoURL}
-                        alt=""
+                        alt="profile-image"
+                        width={240}
+                        height={260}
                       />
                       <button className="absolute right-0 bottom-1 bg-gray-400 p-2 rounded-full cursor-pointer">
                         <label htmlFor="fileInput">

@@ -2,7 +2,7 @@
 
 import { PiLinkSimpleBold } from "react-icons/pi";
 import { BiDrink, BiEdit } from "react-icons/bi";
-import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaMailBulk, FaDonate, FaClipboard } from "react-icons/fa";
+import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaMailBulk, FaDonate, FaClipboard, FaBlog } from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 import { MdOutlinePeople } from "react-icons/md";
 import { MdCastForEducation, MdOutlineSmokingRooms } from "react-icons/md";
@@ -21,9 +21,11 @@ import { useAuth } from "@/provider/AuthProvider";
 import Image from "next/image";
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { FC, useEffect, useState } from "react";
-import { UserDataTypes } from "@/typesInterface/types";
+import { BlogDataTypes, UserDataTypes } from "@/typesInterface/types";
 import toast from "react-hot-toast";
 import Loading from "@/components/Loading";
+import axios from "axios";
+import BlogCard from "@/components/BlogCard";
 
 interface PageProps {
     params: { _id: string }
@@ -33,16 +35,18 @@ const Page: FC<PageProps> = ({ params }) => {
 
     //
     const [user, setUser] = useState<UserDataTypes | null>(null);
-    const [isLoading, setisLoading] = useState<boolean>(false);
+    const [blogs, setBlogs] = useState<BlogDataTypes[] | null>(null);
+    // const [isLoading, setisLoading] = useState<boolean>(false);
     const { user: runningUser } = useAuth();
     const pathname = usePathname()
     const { _id } = params;
     // const user = await getData(_id);
 
+    // get user data
     useEffect(() => {
         try {
             const getData = async () => {
-                setisLoading(true);
+                // setisLoading(true);
                 const res = await fetch(
                     `${process.env.NEXT_PUBLIC_SERVER}/user/by-id`,
                     {
@@ -56,27 +60,42 @@ const Page: FC<PageProps> = ({ params }) => {
                 const result = await res.json();
                 if (result.success) {
                     setUser(result?.data);
-                    setisLoading(false);
+                    // setisLoading(false);
                 }
             }
             getData();
 
         } catch (error) {
-            setisLoading(false);
+            // setisLoading(false);
         }
     }, [_id]);
 
+    useEffect(() => {
+        if (user?.email) {
+            try {
+                const getData = async () => {
+                    const response = await axios.get(
+                        `${process.env.NEXT_PUBLIC_SERVER}/blog-by-author/${user?.email}`,
+                    );
+                    if (response?.data?.success) {
+                        setBlogs(response?.data?.data);
+                    };
+                }
+                getData();
+            } catch (error) {
+            };
+        };
+    }, [user?.email]);
 
     const handleCopyToClipBoard = () => {
         navigator.clipboard.writeText(`${window.location.origin}/${pathname}`)
         toast.success("Profile link copy success")
     };
 
-    // if (isLoading) {
-    //     return <Loading />
-    // }
-
-    if (user) {
+    if (!user?.email) {
+        return <Loading />
+    }
+    else {
         return (
             <div className="my-10 sm:my-20">
                 <div className="flex justify-end">
@@ -167,8 +186,8 @@ const Page: FC<PageProps> = ({ params }) => {
                             </p>
                         </div>
                         <div className="flex justify-start items-center gap-1 pt-2">
-                            <div className="w-3 h-3 bg-[#18bb9d99] rounded-full mx-1" />
-                            <span className="text-[16px] font-[500] text-[#18bb9d99]">
+                            <div className="w-3 h-3 bg-[#18bb9d99] rounded-full mx-1 hidden" />
+                            <span className="text-[16px] font-[500] text-[#18bb9d99] hidden">
                                 Online
                             </span>
                         </div>
@@ -206,6 +225,7 @@ const Page: FC<PageProps> = ({ params }) => {
                             </div>
                         </div>
 
+                        {/* Links  */}
                         <div className="mt-10 ">
                             <div className="flex items-center gap-x-3">
                                 <PiLinkSimpleBold className="h-8 w-8" />
@@ -305,6 +325,33 @@ const Page: FC<PageProps> = ({ params }) => {
                                 }
                             </div>
                         </div>
+
+                        {/* Blogs  */}
+                        <br />
+                        <hr />
+                        <div className="mt-10 ">
+                            <div className="flex items-center gap-x-3">
+                                <FaBlog className="h-8 w-8" />
+                                <h1 className="text-[28px] font-semibold">Blogs</h1>
+                            </div>
+                            <div
+                                className='grid gap-4 my-10'
+                            >
+                                {
+                                    blogs?.length ?
+                                        blogs?.map((blog, index) => (
+                                            <BlogCard key={index} blog={blog} />
+                                        ))
+                                        :
+                                        <div>
+                                            <h1> No Blogs Yet On For This Author.</h1>
+                                        </div>
+                                }
+                            </div>
+                        </div>
+
+                        {/* Attributes  */}
+                        <br />
                         <hr />
                         <div className="mt-10 ">
                             <div className="flex items-center gap-x-3">
@@ -411,9 +458,6 @@ const Page: FC<PageProps> = ({ params }) => {
                 </center>
             </div>
         );
-    }
-    else {
-        return <Loading />
     }
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { BsArrowRightShort, BsArrowReturnRight } from "react-icons/bs";
 import { FaDonate } from "react-icons/fa";
 import Image from "next/image";
@@ -14,15 +14,19 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import moment from "moment";
 import axios from "axios";
 
+interface PageProps {
+    params: { _id: string }
+};
 
-const Page = () => {
+const Page: FC<PageProps> = ({ params }) => {
 
     //
     const [blog, setBlog] = useState<BlogDataTypes | null>(null);
     const [reloadBlog, setReloadBlog] = useState<boolean>(false);
     const { user } = useAuth();
-    const pathname = usePathname()
-    const _id = pathname?.split("/")[3] as string;
+    const pathname = usePathname();
+    // const _id = pathname?.split("/")[3] as string;
+    const { _id } = params;
     const { register, handleSubmit, reset } = useForm<{ question: string }>();
 
     useEffect(() => {

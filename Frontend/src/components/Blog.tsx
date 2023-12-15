@@ -131,7 +131,7 @@ const Blog: FC<BlogProps> = ({ }) => {
                             ))
                             :
                             <div>
-                                <h1> No Jobs Yet On This Website.</h1>
+                                <h1> No Blogs Yet On For This Author.</h1>
                             </div>
                     }
                 </div>
