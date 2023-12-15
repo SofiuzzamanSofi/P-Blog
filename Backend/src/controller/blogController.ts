@@ -1,6 +1,6 @@
 import express from "express";
 import { generateRandomStringId } from "../utils/randomId/randomId";
-import { getAllBlogBySearchTextService, getAllBlogService, getAppliedJobService, getOneJobService, getPostedJobService, patchAnsJobService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, patchQuestionJobService, postBlogService } from "../service/blogService";
+import { getAllBlogBySearchTextService, getAllBlogService, getAppliedJobService, getOneJobService, getBlogByAuthorService, patchAnsJobService, patchAppliedJobService, patchIsOpenJob1Service, patchIsOpenJob2Service, patchQuestionJobService, postBlogService, deleteBlogByid } from "../service/blogService";
 import { AnsTypes, QuestionAnsTypes, getAllBlogBySearchTextTypes } from "interfaceServer/interfaceServer.ts";
 
 
@@ -311,13 +311,14 @@ export const getAppliedJobController = async (
 };
 
 // get posted-jobs by email 
-export const getPostedJobController = async (
+export const getBlogByAuthorController = async (
     req: express.Request,
     res: express.Response,
     next: express.NextFunction,
 ) => {
     try {
         const email = req.params?.email as string;
+        console.log('email:', email);
         if (!email) {
             return res.status(400).json({
                 success: false,
@@ -325,19 +326,51 @@ export const getPostedJobController = async (
             });
         }
         else {
-            // const query = { "applicants.userEmail": email }
-            const getPostedJobData = await getPostedJobService(next, email)
-            // const getPostedJobData = await JobModel.find({ email })
-            if (!getPostedJobData) {
+            const getPostedBlogData = await getBlogByAuthorService(next, email)
+            if (!getPostedBlogData) {
                 return res.status(200).json({
                     success: false,
-                    message: `Job data not found for the email: ${email}`,
+                    message: `Blog data not found for the email: ${email}`,
                 });
             } else {
                 return res.status(200).json({
                     success: true,
-                    message: `Successfully found the job By id: ${email}`,
-                    data: getPostedJobData,
+                    message: `Successfully found the Blog By id: ${email}`,
+                    data: getPostedBlogData,
+                });
+            };
+        };
+    } catch (error) {
+        next(error);
+    };
+};
+// get posted-jobs by email 
+export const deleteBlogById = async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+) => {
+    try {
+        const _id = req.params?._id as string;
+
+        if (!_id) {
+            return res.status(400).json({
+                success: false,
+                message: "Id is missing in the request",
+            });
+        }
+        else {
+            const response = await deleteBlogByid(next, _id)
+            if (!response) {
+                return res.status(200).json({
+                    success: false,
+                    message: `Blog data not found for the id`,
+                });
+            } else {
+                return res.status(200).json({
+                    success: true,
+                    message: `Successfully found the Blog and delete By id`,
+                    data: response,
                 });
             };
         };

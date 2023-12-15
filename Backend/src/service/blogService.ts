@@ -139,13 +139,25 @@ export const getAppliedJobService = async (
     };
 };
 
-export const getPostedJobService = async (
+export const getBlogByAuthorService = async (
     next: NextFunction,
     email: string,
 ) => {
     try {
-        const jobs = await BlogModel.find({ email })
-        return jobs;
+        const blog = await BlogModel.find({ email })
+        return blog;
+    } catch (error) {
+        next(error);
+    };
+};
+
+export const deleteBlogByid = async (
+    next: NextFunction,
+    _id: string,
+) => {
+    try {
+        const blog = await BlogModel.findByIdAndDelete({ _id })
+        return blog;
     } catch (error) {
         next(error);
     };
