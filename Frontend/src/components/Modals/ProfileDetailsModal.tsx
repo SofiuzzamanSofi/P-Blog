@@ -20,6 +20,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
 
   const [link, setLink] = useState<string>("");
 
+  // link saved on database
   const handleLinkChange = async () => {
 
     let values;
@@ -1081,12 +1082,12 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
           <li
             onClick={handleEducationClick}
             className={
-              user?.education === "Bachelor's Degree"
+              user?.education === "Bachelor Degree"
                 ? "text-center py-4 my-3 text-xl cursor-pointer rounded-full border bg-gray-700 text-white"
                 : "text-center py-4 my-3 text-xl cursor-pointer rounded-full border"
             }
           >
-            Bachelor's Degree
+            Bachelor Degree
           </li>
           <li
             onClick={handleEducationClick}
