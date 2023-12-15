@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAuth } from "@/provider/AuthProvider";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useRouter } from "next/navigation";
@@ -51,6 +49,7 @@ const CheckoutForm = ({ price, receiver }: any) => {
     }
   }, [price, router]);
 
+  // payment success and save on database.
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     if (!stripe || !elements) {
@@ -103,6 +102,7 @@ const CheckoutForm = ({ price, receiver }: any) => {
         amount: parseInt(price),
         transactionId: paymentIntent.id,
       };
+
       fetch(`${process.env.NEXT_PUBLIC_SERVER}/payment`, {
         method: "POST",
         headers: {

@@ -1,14 +1,11 @@
 "use client";
 
-
-import { useState, ChangeEvent } from "react";
-import { FieldValues, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
 import useProfileDetailsModal from "../Hooks/useProfileDetailsModal";
 import ProfileModal from "./ProfileModal";
 import Modal from "./Modall";
 import { BiSearch } from "react-icons/bi";
 import { useAuth } from "@/provider/AuthProvider";
-// import { useAuth } from "../Context/AuthProvider";
 
 const ProfileDetailsModal = ({ getValueType }: any) => {
 
@@ -17,9 +14,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
   const email = user?.email;
 
   const profileDetailsModal = useProfileDetailsModal();
-  const [firstPoint, setFirstPoint] = useState<number>(0);
   const [inputFieldsValue, setInputFieldsValue] = useState<string>("");
-  const [lookingFieldsValue, setLookingFieldsValue] = useState<string>("");
   const [taglineValue, setTaglineValue] = useState<string>("");
   const [locationValue, setLocationValue] = useState<string>("");
 
