@@ -8,7 +8,6 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
 
-  //
   const [blogs, setBlogs] = useState<BlogDataTypes[] | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [titleText, setTitleText] = useState<string>("");
@@ -25,19 +24,19 @@ export default function Home() {
         timestamp: newOrOld,
       };
       const getData = async () => {
-        // setIsLoading(true);
+        setIsLoading(true);
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_SERVER}/blog/search`,
           searchData,
         );
         if (response?.data?.success) {
-          // setIsLoading(false);
+          setIsLoading(false);
           setBlogs(response?.data?.data);
         };
       }
       getData();
     } catch (error) {
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   }, [titleText, newOrOld]);
 
@@ -47,7 +46,7 @@ export default function Home() {
   if (isLoading) {
     return <Loading />;
   }
-  else {
+  else if (blogs) {
     return (
       <div
         className='py-5'
