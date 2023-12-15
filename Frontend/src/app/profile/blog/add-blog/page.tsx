@@ -52,7 +52,7 @@ const page = () => {
         );
         console.log('response.data:', response.data);
         if (response.data.success) {
-            toast.success("Bloag add success.");
+            toast.success("Bloag Post success.");
             router.push("/");
         }
         // You can add further logic here if needed

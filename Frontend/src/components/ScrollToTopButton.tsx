@@ -30,7 +30,7 @@ const ScrollToTopButton: React.FC = () => {
       onClick={scrollToTop}
       style={{ display: isVisible ? 'block' : 'none', position: 'fixed', bottom: '20px', right: '20px' }}
     >
-     <IoIosArrowDropupCircle className="w-16 h-16" />
+      <IoIosArrowDropupCircle className="w-16 h-16" />
     </button>
   );
 };
