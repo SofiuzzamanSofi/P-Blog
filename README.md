@@ -69,7 +69,8 @@ Frontend side:
 <br> • `React.js`
 <br> • `Typescript`
 <br> • `Tailwind CSS`
-<br> • `Stripe`
+<br> • `stripe`
+<br> • `imageBB`
 <br> • `axios`
 <br> • `firebase for authentication`
 <br> • `moment for view date and time`
