@@ -54,7 +54,6 @@ const CheckoutForm = ({ price, receiver }: any) => {
     event.preventDefault();
 
     if (!user?.email) {
-      toast.error("Login First");
       window.location.href = "/sign-in";
       return;
     };

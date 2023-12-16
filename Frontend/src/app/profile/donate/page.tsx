@@ -6,11 +6,9 @@ import img3 from "../../../assets/card-master-98c300190b74e7751384e31f2895eaca8b
 import img4 from "../../../assets/card-visa-db7d5554eef04cd04e0085c42febaff040797b3e0b8f2ac9e3ab6be2d59fc19e.webp";
 import { CiCircleCheck } from "react-icons/ci";
 import { useRef } from "react";
-
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/provider/AuthProvider";
-import toast from "react-hot-toast";
 
 const Page = () => {
 
@@ -32,7 +30,6 @@ const Page = () => {
 
     const handleGetValue = (creditAmount: string, price: string) => {
         if (!user?.email) {
-            toast.error("Login First");
             window.location.href = "/sign-in";
             return;
         };
