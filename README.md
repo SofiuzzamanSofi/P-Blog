@@ -8,7 +8,7 @@ This is a [NextJS](https://nextjs.org/) project create with [`npx create-next-ap
 
 ### Frontend-Live: [live-url](https://)
 
-### Backend-Url: [backend-uul](https://)
+### Backend-Url: [backend-uul](https://p-blog-server-via-cli.vercel.app)
 
 <br/>
 

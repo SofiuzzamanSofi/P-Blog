@@ -202,7 +202,7 @@ export const getBlogById = async (
     };
 };
 
-// edit job for Question
+// edit Blog for Question
 export const patchQuestionBlogController = async (
     req: express.Request,
     res: express.Response,
@@ -213,7 +213,7 @@ export const patchQuestionBlogController = async (
         if (!blogId || !userId || !userEmail || !question) {
             return res.status(400).json({
                 success: false,
-                message: "jobId, userId, userEmail, and question are required in the request body",
+                message: "BlogId, userId, userEmail, and question are required in the request body",
             });
         }
         else {
@@ -258,7 +258,7 @@ export const patchQuestionBlogController = async (
     };
 };
 
-// edit job for Ans
+// edit Blog for Ans
 export const patchAnsBlogController = async (
     req: express.Request,
     res: express.Response,
@@ -280,7 +280,7 @@ export const patchAnsBlogController = async (
             };
             // console.log("ANS DATA:", ans, blogId, questionId, userEmail, riplay);
             const updateBlogforAns = await patchAnsBlogService(next, blogId, userEmail, questionId, ans)
-            // const updateJObforAns = await JobModel.findOneAndUpdate(
+            // const updateBlogforAns = await BlogModel.findOneAndUpdate(
             //     {
             //         _id: blogId,
             //         email: userEmail,
@@ -298,12 +298,12 @@ export const patchAnsBlogController = async (
             if (!updateBlogforAns) {
                 return res.status(200).json({
                     success: false,
-                    message: `Job data in not EDIT by the blogId: ${blogId}`,
+                    message: `Blog data in not EDIT by the blogId: ${blogId}`,
                 });
             } else {
                 return res.status(200).json({
                     success: true,
-                    message: `Successfully EDIT the job by the blogId: ${blogId}`,
+                    message: `Successfully EDIT the Blog by the blogId: ${blogId}`,
                     data: updateBlogforAns,
                 });
             };
