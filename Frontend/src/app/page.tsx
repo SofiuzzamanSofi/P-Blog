@@ -2,14 +2,16 @@
 
 import BlogCard from '@/components/BlogCard';
 import Loading from '@/components/Loading';
+import { useAuth } from '@/provider/AuthProvider';
 import { BlogDataTypes } from '@/typesInterface/types';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 export default function Home() {
 
+  const { loading } = useAuth();
   const [blogs, setBlogs] = useState<BlogDataTypes[] | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
   const [titleText, setTitleText] = useState<string>("");
   const [newOrOld, setnewOrOld] = useState<string>("new");
 
@@ -24,26 +26,26 @@ export default function Home() {
         timestamp: newOrOld,
       };
       const getData = async () => {
-        setIsLoading(true);
+        // setIsLoading(true);
         const response = await axios.post(
           `${process.env.NEXT_PUBLIC_SERVER}/blog/search`,
           searchData,
         );
         if (response?.data?.success) {
-          setIsLoading(false);
+          // setIsLoading(false);
           setBlogs(response?.data?.data);
         };
       }
       getData();
     } catch (error) {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   }, [titleText, newOrOld]);
 
 
   const searchBarInputClass = "p-2 w-full border border-gray-200 dark:border-gray-700 rounded-md bg-gray-100 dark:bg-gray-900 text-slate-700 dark:text-slate-400"
 
-  if (isLoading) {
+  if (loading) {
     return <Loading />;
   }
   else if (blogs) {
