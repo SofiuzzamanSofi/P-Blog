@@ -10,6 +10,14 @@ This is a [NextJS](https://nextjs.org/) project create with [`npx create-next-ap
 
 ### Backend-Url: [backend-uul](https://p-blog-server-via-cli.vercel.app)
 
+## Live Demo
+
+[
+![Alt text](image.png)](https://drive.google.com/file/d/1C8OqpgEhk-5MZ1PWB9swmPHF1eRWUB6C/view?usp=sharing)
+
+<br/>
+<br/>
+
 <br/>
 
 ## Cloning and Installing dependencies
