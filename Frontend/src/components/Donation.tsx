@@ -31,7 +31,7 @@ const Donation: FC<DonationProps> = ({ }) => {
                 </div>
                 {
                     user?.donateDetails?.totalReceiveAmount ?
-                        <table className="table-fixed border rounded-lg my-5 p-5 scroll-x-auto">
+                        <table className="table-auto border rounded-lg my-5 p-5 overflow-x-scroll">
                             <thead className='border'>
                                 <tr>
                                     <th >NO</th>
@@ -64,7 +64,7 @@ const Donation: FC<DonationProps> = ({ }) => {
                     <p>Total Send Donation: $ {user?.donateDetails?.totalSendAmount}</p>
                     {
                         user?.donateDetails?.totalSendAmount ?
-                            <table className="table-fixed border rounded-lg my-5 p-5 scroll-x-auto">
+                            <table className="table-fixed border rounded-lg my-5 p-5 overflow-x-scroll">
                                 <thead className='border'>
                                     <tr>
                                         <th >NO</th>
