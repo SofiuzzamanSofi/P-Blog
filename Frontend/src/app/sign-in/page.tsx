@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import toast from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
 import React, { useEffect } from "react";
 import googleIcon from "../../assets/google.svg";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
@@ -13,7 +12,6 @@ const SignIn = () => {
 
   // auth
   const { setUser, user } = useAuth();
-  const router = useRouter();
 
   // 
   const handleGoogleLogin = async () => {
@@ -49,10 +47,10 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    if (user?.email) {
-      router.push("/");
+    if (user?._id) {
+      window.location.href = `/profile/${user._id}`;
     };
-  }, [user, router]);
+  }, [user]);
 
   return (
     <div className='min-h-[calc(100vh-2rem)] flex items-center justify-center gap-4'>
