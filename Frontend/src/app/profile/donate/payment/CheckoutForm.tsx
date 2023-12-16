@@ -52,6 +52,13 @@ const CheckoutForm = ({ price, receiver }: any) => {
   // payment success and save on database.
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+
+    if (!user?.email) {
+      toast.error("Login First");
+      window.location.href = "/sign-in";
+      return;
+    };
+
     if (!stripe || !elements) {
       return;
     }

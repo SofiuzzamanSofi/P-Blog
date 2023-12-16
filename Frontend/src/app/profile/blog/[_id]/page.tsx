@@ -128,7 +128,7 @@ const Page: FC<PageProps> = ({ params }) => {
                 </PhotoProvider>
             </div>
 
-            {/* job info  */}
+            {/* blog info  */}
             <div className='space-y-5'>
                 <div className='flex justify-between items-center mt-5'>
                     <h1 className='text-xl font-semibold text-primary dark:text-darkPrimary'>{blog?.title}</h1>

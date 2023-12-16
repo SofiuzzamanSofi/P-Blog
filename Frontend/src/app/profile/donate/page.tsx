@@ -9,9 +9,13 @@ import { useRef } from "react";
 
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useAuth } from "@/provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Page = () => {
 
+    //
+    const { user } = useAuth();
     const searchParams = useSearchParams()
     const receiver = searchParams.get('receiver');
     const router = useRouter();
@@ -27,6 +31,11 @@ const Page = () => {
     const introductoryPriceRef = useRef<HTMLParagraphElement>(null);
 
     const handleGetValue = (creditAmount: string, price: string) => {
+        if (!user?.email) {
+            toast.error("Login First");
+            window.location.href = "/sign-in";
+            return;
+        };
         if (creditAmount && price) {
             router.push(`/profile/donate/payment?price=${price}&receiver=${receiver}`);
         }
