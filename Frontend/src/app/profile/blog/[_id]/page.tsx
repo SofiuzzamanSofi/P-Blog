@@ -161,6 +161,12 @@ const Page: FC<PageProps> = ({ params }) => {
                     >
                         {blog?.displayName}
                     </Link>
+                    <Link
+                        href={`/profile/${blog?.bloggerId}`}
+                        className="flex items-center gap-2 border w-32 py-2 pl-1 rounded-md hover:underline my-2"
+                    >
+                        Author Profile
+                    </Link>
 
                     <p className="font-semibold">
                         {blog?.timestamp ? moment(blog?.timestamp).format('D MMMM, YYYY, h:mm:ss A z') : 'No timestamp available'}
@@ -171,7 +177,7 @@ const Page: FC<PageProps> = ({ params }) => {
                         user?._id !== blog?.bloggerId &&
                         <Link
                             href={`/profile/donate?receiver=${blog?.bloggerId}`}
-                            className="flex items-center gap-2 border w-24 rounded-md mt-2"
+                            className="flex items-center gap-2 border w-32 py-2 pl-1 rounded-md mt-2"
                         >
                             <FaDonate
                                 className="h-6 w-6"
