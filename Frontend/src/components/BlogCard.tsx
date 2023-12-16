@@ -15,7 +15,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
 
   return (
     <Link
-      href={`profile/blog/${blog._id}`}
+      href={`/profile/blog/${blog._id}`}
       className='border border-gray-300 dark:border-gray-700 shadow-xl p-5 rounded-md dark:hover:text-slate-300'
     >
       <div className='flex justify-between'>

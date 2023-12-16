@@ -128,7 +128,7 @@ const Blog: FC<BlogProps> = ({ }) => {
                                             </small>
                                         </div>
                                         <div className='flex justify-end items-center gap-5 mt-[-20px]'>
-                                            <Link href={`blog/${blog._id}`}
+                                            <Link href={`/profile/blog/${blog._id}`}
                                                 className='px-4 py-1 border rounded-md'
                                             >
                                                 Details
