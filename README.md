@@ -6,7 +6,7 @@ P-Blog
 
 This is a [NextJS](https://nextjs.org/) project create with [`npx create-next-app@latest`](https://nextjs.org/docs/getting-started/installation).
 
-### Frontend-Live: [live-url](https://)
+### Frontend-Live: [live-url](https://p-blog-five.vercel.app)
 
 ### Backend-Url: [backend-uul](https://p-blog-server-via-cli.vercel.app)
 
