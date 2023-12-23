@@ -1,8 +1,6 @@
-"use client";
-
 import { PiLinkSimpleBold } from "react-icons/pi";
 import { BiDrink, BiEdit } from "react-icons/bi";
-import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaMailBulk, FaDonate, FaClipboard, FaBlog } from "react-icons/fa";
+import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaMailBulk, FaDonate, FaBlog } from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 import { MdOutlinePeople } from "react-icons/md";
 import { MdCastForEducation, MdOutlineSmokingRooms } from "react-icons/md";
@@ -10,87 +8,49 @@ import { CiLocationOn } from "react-icons/ci";
 import { TfiGift, TfiMenuAlt } from "react-icons/tfi";
 import noImageUserIcon from "../../../assets/no_image_user_icon.png";
 import { LiaRunningSolid, LiaSortAmountDownAltSolid } from "react-icons/lia";
-import { usePathname } from 'next/navigation';
 import { IoEyeOutline } from "react-icons/io5";
 import { CgGirl } from "react-icons/cg";
 import { GiRecycle, GiTakeMyMoney } from "react-icons/gi";
 import { GiPencilRuler } from "react-icons/gi";
 import ScrollToTopButton from "../../../components/ScrollToTopButton";
 import Link from "next/link";
-import { useAuth } from "@/provider/AuthProvider";
 import Image from "next/image";
-import { PhotoProvider, PhotoView } from 'react-photo-view';
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { BlogDataTypes, UserDataTypes } from "@/typesInterface/types";
-import toast from "react-hot-toast";
 import Loading from "@/components/Loading";
-import axios from "axios";
 import BlogCard from "@/components/BlogCard";
+import { getData } from "@/utils/getProfileData";
+import ProfilePhotoView from "@/components/profile/ProfilePhotoView";
+import ProfileLinkCopy from "@/components/profile/ProfileLinkCopy";
+import EditAndDonateLink from "@/components/profile/EditAndDonateLink";
 
 interface PageProps {
     params: { _id: string }
 };
 
-const Page: FC<PageProps> = ({ params }) => {
+const Page: FC<PageProps> = async ({ params: { _id } }) => {
 
-    //
-    const [user, setUser] = useState<UserDataTypes | null>(null);
-    const [blogs, setBlogs] = useState<BlogDataTypes[] | null>(null);
-    // const [isLoading, setisLoading] = useState<boolean>(false);
-    const { user: runningUser } = useAuth();
-    const pathname = usePathname()
-    const { _id } = params;
-    // const user = await getData(_id);
 
-    // get user data
-    useEffect(() => {
-        try {
-            const getData = async () => {
-                // setisLoading(true);
-                const res = await fetch(
-                    `${process.env.NEXT_PUBLIC_SERVER}/user/by-id`,
-                    {
-                        method: "PATCH",
-                        headers: {
-                            "content-type": "application/json",
-                        },
-                        body: JSON.stringify({ _id }),
-                    }
-                );
-                const result = await res.json();
-                if (result.success) {
-                    setUser(result?.data);
-                    // setisLoading(false);
-                }
-            }
-            getData();
+    let user: UserDataTypes;
+    let blogs: BlogDataTypes[] | null;
 
-        } catch (error) {
-            // setisLoading(false);
-        }
-    }, [_id]);
+    const data = await getData(_id);
+    user = data?.user;
+    blogs = data?.blog;
 
-    useEffect(() => {
-        if (user?.email) {
-            try {
-                const getData = async () => {
-                    const response = await axios.get(
-                        `${process.env.NEXT_PUBLIC_SERVER}/blog-by-author/${user?.email}`,
-                    );
-                    if (response?.data?.success) {
-                        setBlogs(response?.data?.data);
-                    };
-                }
-                getData();
-            } catch (error) {
-            };
-        };
-    }, [user?.email]);
-
-    const handleCopyToClipBoard = () => {
-        navigator.clipboard.writeText(`${window.location.origin}/${pathname}`)
-        toast.success("Profile link copy success")
-    };
+    // try {
+    //     const constasync = async () => {
+    //         const data = await getData(_id);
+    //         console.log('data:', data);
+    //         // setUser(data?.user);
+    //         // setBlogs(data?.blog);
+    //     user = data?.user;
+    //     blogs = data?.blog;
+    //     }
+    //    await constasync();
+    // } catch (error) {
+    //     // setisLoading(false);
+    // }
 
     if (!user?.email) {
         return <Loading />
@@ -99,7 +59,9 @@ const Page: FC<PageProps> = ({ params }) => {
         return (
             <div className="my-10 sm:my-20">
                 <div className="flex justify-end">
-                    <FaClipboard className="h-6 w-6 cursor-pointer" title="Copy link to clipboard" onClick={handleCopyToClipBoard} />
+                    <ProfileLinkCopy
+                        _id={_id}
+                    />
                 </div>
                 <div className="sm:grid grid-cols-12 px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6">
                     <div className="col-span-3">
@@ -107,19 +69,9 @@ const Page: FC<PageProps> = ({ params }) => {
                             {
                                 user?.photoURL
                                     ?
-                                    <PhotoProvider>
-                                        <PhotoView src={user?.photoURL!}>
-                                            <Image
-                                                className="h-64 w-52 border-0 rounded-2xl cursor-pointer"
-                                                src={user?.photoURL}
-                                                height={256}
-                                                width={256}
-                                                // layout="fill"
-                                                alt="profile-photo"
-                                                title="click to fiew full page"
-                                            />
-                                        </PhotoView>
-                                    </PhotoProvider>
+                                    <ProfilePhotoView
+                                        photoURL={user.photoURL}
+                                    />
                                     :
                                     <Image
                                         className="h-64 w-52 border-0 rounded-2xl"
@@ -131,36 +83,9 @@ const Page: FC<PageProps> = ({ params }) => {
                                     />
                             }
 
-
-                            {
-                                runningUser?._id === _id ?
-                                    <Link
-                                        href="/profile/about"
-                                        className="flex justify-center md:justify-start font-medium gap-x-2 shadow-[0_0px_15px_rgba(0,0,0,0.15)] hover:opacity-90 transform py-5 rounded-full my-5 w-11/12 text-xl"
-                                    >
-                                        <BiEdit
-                                            className="h-8 w-8"
-                                        />
-                                        <span>Edit profile</span>
-                                    </Link>
-                                    :
-                                    ""
-                            }
-                            {
-                                // runningUser?._id === _id ?
-                                runningUser?._id !== _id ?
-                                    <Link
-                                        href={`/profile/donate?receiver=${_id}`}
-                                        className="flex justify-center md:justify-start font-medium gap-x-2 shadow-[0_0px_15px_rgba(0,0,0,0.15)] hover:opacity-90 transform py-5 rounded-full my-5 w-11/12 text-xl gap-4"
-                                    >
-                                        <FaDonate
-                                            className="h-8 w-8"
-                                        />
-                                        <span>Donate</span>
-                                    </Link>
-                                    :
-                                    ""
-                            }
+                            <EditAndDonateLink
+                                _id={_id}
+                            />
                         </div>
                     </div>
                     <div className="col-span-9 sm:ml-10 lg:ml-24">
@@ -338,7 +263,7 @@ const Page: FC<PageProps> = ({ params }) => {
                                 className='grid gap-4 my-10'
                             >
                                 {
-                                    blogs?.length ?
+                                    blogs && blogs?.length ?
                                         blogs?.map((blog, index) => (
                                             <BlogCard key={index} blog={blog} />
                                         ))

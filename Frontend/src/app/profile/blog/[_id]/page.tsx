@@ -5,7 +5,6 @@ import { BsArrowRightShort, BsArrowReturnRight } from "react-icons/bs";
 import { FaDonate } from "react-icons/fa";
 import Image from "next/image";
 import { toast } from "react-hot-toast";
-import { usePathname, useRouter } from "next/navigation"
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useAuth } from "@/provider/AuthProvider";
@@ -18,15 +17,13 @@ interface PageProps {
     params: { _id: string }
 };
 
-const Page: FC<PageProps> = ({ params }) => {
+const Page: FC<PageProps> = ({ params: { _id } }) => {
 
     //
     const [blog, setBlog] = useState<BlogDataTypes | null>(null);
     const [reloadBlog, setReloadBlog] = useState<boolean>(false);
     const { user } = useAuth();
-    const pathname = usePathname();
-    // const _id = pathname?.split("/")[3] as string;
-    const { _id } = params;
+
     const { register, handleSubmit, reset } = useForm<{ question: string }>();
 
     useEffect(() => {
@@ -100,7 +97,6 @@ const Page: FC<PageProps> = ({ params }) => {
         }
         (e.target as HTMLFormElement).reset();
     };
-
 
     // console.log("jobData", jobData);
 
