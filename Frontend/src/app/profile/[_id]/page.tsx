@@ -1,6 +1,6 @@
 import { PiLinkSimpleBold } from "react-icons/pi";
-import { BiDrink, BiEdit } from "react-icons/bi";
-import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaMailBulk, FaDonate, FaBlog } from "react-icons/fa";
+import { BiDrink } from "react-icons/bi";
+import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp, FaMailBulk, FaBlog } from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 import { MdOutlinePeople } from "react-icons/md";
 import { MdCastForEducation, MdOutlineSmokingRooms } from "react-icons/md";
@@ -29,7 +29,6 @@ interface PageProps {
 };
 
 const Page: FC<PageProps> = async ({ params: { _id } }) => {
-
 
     let user: UserDataTypes;
     let blogs: BlogDataTypes[] | null;
@@ -387,23 +386,3 @@ const Page: FC<PageProps> = async ({ params: { _id } }) => {
 };
 
 export default Page;
-
-
-// export const getData = async (_id: string) => {
-//     try {
-//         const res = await fetch(
-//             `${process.env.NEXT_PUBLIC_SERVER}/user/by-id`,
-//             {
-//                 method: 'PATCH',
-//                 headers: {
-//                     'content-type': 'application/json',
-//                 },
-//                 body: JSON.stringify({ _id }),
-//             }
-//         );
-//         const result = await res.json();
-//         return result.data;
-//     } catch (error) {
-//         return { notFound: true };
-//     }
-// }
