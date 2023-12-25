@@ -1,5 +1,6 @@
-import AllBlog from "@/components/blog/AllBlog";
+import HomePage from "@/components/homePage/HomePage";
+
 
 export default function Home() {
-  return <AllBlog />
+  return <HomePage />
 };
