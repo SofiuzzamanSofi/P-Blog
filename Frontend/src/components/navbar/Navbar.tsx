@@ -8,15 +8,15 @@ import signInIcon from "../assets/sign-in.svg";
 import userIcon from "../assets/user.svg";
 import { BiSearchAlt } from "react-icons/bi";
 import { usePathname } from "next/navigation";
-import { auth } from "../firebase/firebase.config";
+import { auth } from "../../firebase/firebase.config";
 // import { useDispatch, useSelector } from "react-redux";
 // import { AppDispatch, RootState } from "../redux/store";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 // import { getMe, signOutUser, } from "../redux/features/auth/authSlice";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
-import AvatarMenu from "./navBarSidebar/AvatarLinks";
-import NavLinks from "./navBarSidebar/NavLinks";
+import AvatarMenu from "../navBarSidebar/AvatarLinks";
+import NavLinks from "../navBarSidebar/NavLinks";
 import { useAuth } from "@/provider/AuthProvider";
 
 
@@ -111,12 +111,12 @@ const Navbar = () => {
 
     const headerRoutes = [
         {
-            name: <BiSearchAlt size='23' color='black' className="bg-white rounded-full p-1 h-7 w-7" />,
-            path: "/dashboard/search-jobs",
+            name: "Profile",
+            path: `/profile/${user?._id}`,
         },
         {
-            name: "Dashboard",
-            path: "/dashboard",
+            name: "Blogs",
+            path: "/blogs",
         },
     ];
 
@@ -133,7 +133,7 @@ const Navbar = () => {
                     className="relative max-w-[85rem] flex flex-wrap basis-full items-center w-full mx-auto sm:flex sm:items-center sm:justify-between px-4 py-1"
                     aria-label="Global"
                 >
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between border">
                         <Link
                             className="flex-none text-xl font-semibold"
                             aria-label="Brand"
@@ -148,7 +148,7 @@ const Navbar = () => {
                     </div>
 
                     {/* login || out */}
-                    <div className="flex justify-center items-center my-auto h-full gap-x-3.5 ml-auto sm:ml-0 sm:order-3">
+                    <div className="flex justify-center items-center my-auto h-full gap-x-3.5 ml-auto sm:ml-0 sm:order-3 border">
                         {!user?.email ? (
                             <>
                                 <div className="flex flex-col gap-x-0 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7">
@@ -164,7 +164,7 @@ const Navbar = () => {
                         ) : (
                             <>
                                 <div className="hidden md:flex flex-col gap-x-0 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7">
-                                    {/* {
+                                    {
                                         headerRoutes.map(({ name, path }, index) => (
                                             <Link
                                                 key={index}
@@ -174,7 +174,7 @@ const Navbar = () => {
                                                 {name}
                                             </Link>
                                         ))
-                                    } */}
+                                    }
                                 </div>
                                 {/* avatar  toggle */}
                                 <div className="flex flex-col items-center justify-center gap-x-0 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:pl-7">

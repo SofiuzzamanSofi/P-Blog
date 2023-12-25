@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import About from "../../../components/About";
-import Blog from "../../../components/Blog";
+import About from "../../../components/about/About";
+import Blog from "../../../components/blog/Blog";
 import { useAuth } from "@/provider/AuthProvider";
-import Donation from "@/components/Donation";
+import Donation from "@/components/donation/Donation";
 import Link from "next/link";
 
 const Page = () => {

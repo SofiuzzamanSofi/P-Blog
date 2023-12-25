@@ -7,7 +7,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { FiTrash } from "react-icons/fi";
 import toast from 'react-hot-toast';
-import Loading from './Loading';
+import Loading from '../shared/Loading';
 
 interface BlogProps {
 

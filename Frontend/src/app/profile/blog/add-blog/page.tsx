@@ -9,7 +9,7 @@ import { useAuth } from "@/provider/AuthProvider";
 import { BlogDataTypes } from "@/typesInterface/types";
 import { BsPlusSquareDotted } from "react-icons/bs";
 import axios from "axios";
-import Loading from "@/components/Loading";
+import Loading from "@/components/shared/Loading";
 import Image from "next/image";
 
 

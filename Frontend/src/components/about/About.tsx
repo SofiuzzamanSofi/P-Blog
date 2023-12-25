@@ -24,10 +24,10 @@ import { AiOutlineLike } from "react-icons/ai";
 import { useAuth } from "@/provider/AuthProvider";
 import Link from "next/link";
 
-import useProfileDetailsModal from "./Hooks/useProfileDetailsModal";
-import ProfileDetailsModal from "./Modals/ProfileDetailsModal";
+import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
+import ProfileDetailsModal from "../Modals/ProfileDetailsModal";
 import Image from "next/image";
-import Loading from "./Loading";
+import Loading from "../shared/Loading";
 
 interface AboutProps {
 }

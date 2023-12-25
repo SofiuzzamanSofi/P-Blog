@@ -1,7 +1,7 @@
 import { useAuth } from '@/provider/AuthProvider';
 import moment from 'moment';
 import { FC } from 'react';
-import Loading from './Loading';
+import Loading from '../shared/Loading';
 
 interface DonationProps {
 

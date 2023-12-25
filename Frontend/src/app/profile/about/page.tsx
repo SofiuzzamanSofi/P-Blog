@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import About from "../../../components/About";
-import Blog from "../../../components/Blog";
-import Donation from "@/components/Donation";
+import About from "../../../components/about/About";
+import Blog from "../../../components/blog/Blog";
+import Donation from "@/components/donation/Donation";
 import Link from "next/link";
 
 const Page = () => {

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FC } from 'react';
 
 interface NotFoundProps {
@@ -10,9 +11,9 @@ const NotFound: FC<NotFoundProps> = ({ }) => {
             <div>
                 <h1 className='font-bold'>Page Not Found</h1>
                 <br />
-                <button className='btn bg-slate-100 text-black py-5 px-10 rounded-md'>
+                <Link href="/" className='btn bg-slate-100 text-black py-5 px-10 rounded-md'>
                     Home
-                </button>
+                </Link>
             </div>
         </div>
     );
