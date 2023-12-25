@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import loading from "../assets/loading.gif";
+import loading from "../../assets/loading.gif";
 import Image from 'next/image';
 
 interface LoadingProps {

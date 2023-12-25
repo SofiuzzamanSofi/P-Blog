@@ -5,13 +5,11 @@ import moment from 'moment';
 import Link from "next/link";
 import { BlogDataTypes } from "@/typesInterface/types";
 
-
 interface BlogCardProps {
   blog: BlogDataTypes
 };
 
 const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
-
 
   return (
     <Link

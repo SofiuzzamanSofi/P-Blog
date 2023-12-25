@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
-import ProfileModal from "./ProfileModal";
-import Modal from "./Modall";
 import { BiSearch } from "react-icons/bi";
 import { useAuth } from "@/provider/AuthProvider";
+import ProfileModal from "./ProfileModal";
+import Modal from "./Modall";
 
 const ProfileDetailsModal = ({ getValueType }: any) => {
 

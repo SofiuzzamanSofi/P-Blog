@@ -15,13 +15,11 @@ interface BlogProps {
 
 const Blog: FC<BlogProps> = ({ }) => {
 
-
     //
     const { user, loading } = useAuth();
     const [blogs, setBlogs] = useState<BlogDataTypes[] | null>(null);
     // const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isReload, setIsReload] = useState<boolean>(false);
-
 
     const handleApply = async (_id: string | undefined) => {
         if (_id) {
@@ -60,8 +58,6 @@ const Blog: FC<BlogProps> = ({ }) => {
             };
         };
     }, [user?.email, isReload]);
-
-
 
     if (!user?.email && !loading) {
         return <Loading />

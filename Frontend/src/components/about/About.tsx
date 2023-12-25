@@ -14,16 +14,15 @@ import {
 import axios from "axios";
 import { LiaRunningSolid, LiaSortAmountDownAltSolid } from "react-icons/lia";
 import { CgGirl } from "react-icons/cg";
-import { IoEyeOutline, IoFootball } from "react-icons/io5";
+import { IoEyeOutline, } from "react-icons/io5";
 import { GiPencilRuler, GiRecycle, GiTakeMyMoney } from "react-icons/gi";
-import { CiEdit, CiLineHeight } from "react-icons/ci";
+import { CiEdit } from "react-icons/ci";
 import { BiDrink } from "react-icons/bi";
 import { RiPriceTagLine } from "react-icons/ri";
 import { FaLocationArrow } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { useAuth } from "@/provider/AuthProvider";
 import Link from "next/link";
-
 import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
 import ProfileDetailsModal from "../modals/ProfileDetailsModal";
 import Image from "next/image";
@@ -87,7 +86,6 @@ const About: React.FC<AboutProps> = () => {
   };
 
   // console.log('user-on-profile-about-:', user);
-
 
   if (!user?.email) {
     return <Loading />

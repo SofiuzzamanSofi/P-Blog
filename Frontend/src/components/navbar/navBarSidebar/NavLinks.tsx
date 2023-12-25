@@ -3,18 +3,12 @@ import Link from "next/link";
 import React from "react";
 import searchIcon from "@/assets/search.svg";
 import allJobsIcon from "@/assets/all-jobs-icon.svg";
-import postedJobsIcon from "@/assets/posted-jobs.svg";
-import addJobsIcon from "@/assets/add-jobs.svg";
-import appliedJobsIcon from "@/assets/applied-jobs.svg";
 import messageIcon from "@/assets/message.svg";
 import dashboardIcon from "@/assets/dashboard.svg";
-import backIcon from "@/assets/back.svg";
 import avatarIcon from "@/assets/avatar.svg";
 import Image from "next/image";
-// import { useSelector } from "react-redux";
 import { usePathname } from 'next/navigation';
 import { useRouter } from "next/navigation";
-// import { RootState } from "@/redux/store";
 
 interface NavLinksProps {
 
@@ -22,29 +16,8 @@ interface NavLinksProps {
 
 const NavLinks: FC<NavLinksProps> = () => {
 
-    // const reduxStore = useSelector((state: RootState) => state);
-    const router = useRouter();
     const pathname = usePathname() || "";
 
-    const employerRoutes = [
-        {
-            name: "Posted Jobs",
-            path: "/dashboard/posted-jobs",
-            image: <Image className="" src={postedJobsIcon} alt='posted-job-icon' />
-        },
-        {
-            name: "Add Job",
-            path: "/dashboard/add-job",
-            image: <Image className="" src={addJobsIcon} alt='add-jobs-icon' />
-        },
-    ];
-    const candidateRoutes = [
-        {
-            name: "Applied Jobs",
-            path: "/dashboard/applied-jobs",
-            image: <Image className="" src={appliedJobsIcon} alt='applied-jobs-icon' />
-        },
-    ];
     const allRoutes = [
         {
             name: "Search Jobs",

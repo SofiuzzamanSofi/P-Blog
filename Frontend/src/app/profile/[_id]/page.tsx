@@ -52,7 +52,18 @@ const Page: FC<PageProps> = async ({ params: { _id } }) => {
     // }
 
     if (!user?.email) {
-        return <Loading />
+        return (
+            <div className='min-h-screen flex justify-center items-center'>
+                <div className="text-center">
+                    <h1 className='font-bold'>No User Found</h1>
+                    <h1 className='text-xs'>Your Link May Be Broken</h1>
+                    <br />
+                    <Link href="/" className='btn bg-slate-100 text-black py-4 px-10 rounded-md'>
+                        Home
+                    </Link>
+                </div>
+            </div>
+        );
     }
     else {
         return (
