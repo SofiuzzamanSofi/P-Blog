@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/navbar/Navbar'
-import Footer from '@/components/Footer'
+import Footer from '@/components/footer/Footer'
 import AuthProvider from '@/provider/AuthProvider';
 import { Toaster } from 'react-hot-toast';
 import 'react-photo-view/dist/react-photo-view.css';

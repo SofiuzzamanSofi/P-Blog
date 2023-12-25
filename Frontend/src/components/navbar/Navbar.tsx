@@ -15,8 +15,8 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 // import { getMe, signOutUser, } from "../redux/features/auth/authSlice";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
-import AvatarMenu from "../navBarSidebar/AvatarLinks";
-import NavLinks from "../navBarSidebar/NavLinks";
+import AvatarMenu from "./navBarSidebar/AvatarLinks";
+import NavLinks from "./navBarSidebar/NavLinks";
 import { useAuth } from "@/provider/AuthProvider";
 
 

@@ -25,7 +25,7 @@ import { useAuth } from "@/provider/AuthProvider";
 import Link from "next/link";
 
 import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
-import ProfileDetailsModal from "../Modals/ProfileDetailsModal";
+import ProfileDetailsModal from "../modals/ProfileDetailsModal";
 import Image from "next/image";
 import Loading from "../shared/Loading";
 
