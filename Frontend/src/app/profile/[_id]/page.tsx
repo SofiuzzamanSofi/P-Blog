@@ -17,7 +17,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { FC } from "react";
 import { BlogDataTypes, UserDataTypes } from "@/typesInterface/types";
-import Loading from "@/components/shared/Loading";
 import BlogCard from "@/components/blog/BlogCard";
 import { getData } from "@/utils/getProfileData";
 import ProfilePhotoView from "@/components/profile/ProfilePhotoView";
@@ -36,20 +35,6 @@ const Page: FC<PageProps> = async ({ params: { _id } }) => {
     const data = await getData(_id);
     user = data?.user;
     blogs = data?.blog;
-
-    // try {
-    //     const constasync = async () => {
-    //         const data = await getData(_id);
-    //         console.log('data:', data);
-    //         // setUser(data?.user);
-    //         // setBlogs(data?.blog);
-    //     user = data?.user;
-    //     blogs = data?.blog;
-    //     }
-    //    await constasync();
-    // } catch (error) {
-    //     // setisLoading(false);
-    // }
 
     if (!user?.email) {
         return (
