@@ -52,7 +52,7 @@ const Page = () => {
         );
         if (response.data.success) {
             toast.success("Bloag Post success.");
-            router.push("/");
+            router.push(`/profile/blog/${response.data.data._id}`);
         }
     };
 
@@ -87,6 +87,7 @@ const Page = () => {
                 newStates[index] = false;
                 return newStates;
             });
+            toast.error("Image is not supported. Try Different image.")
         }
     }
 
@@ -122,7 +123,7 @@ const Page = () => {
 
     const renderPhotos = (url: any, index: number) => (
         <div key={index} className="relative">
-            <Image src={url} className="w-[180px] h-[180px] object-cover rounded-xl" alt="" />
+            <Image src={url} className="object-cover rounded-xl" width={180} height={180} alt="" />
             <button
                 className="bg-gray-100 absolute right-1 bottom-1 py-1 px-2 rounded-full text-black"
                 onClick={() => handleRemoveImage(index)}

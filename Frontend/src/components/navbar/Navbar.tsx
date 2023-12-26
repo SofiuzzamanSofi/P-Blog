@@ -18,13 +18,11 @@ import { useAuth } from "@/provider/AuthProvider";
 const Navbar = () => {
 
     const pathname = usePathname() ?? "";
-    console.log('pathname:', pathname);
     const pathNameTotalArray = pathname.split("/");
     const pathNameArray = pathNameTotalArray.filter((path) => path !== "");
     // 
     const { setUser, user } = useAuth();
     const router = useRouter();
-
     // small display slider and profile slider -----------
     const [isProfileOpen, setIsProfileOpen] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
