@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
+
 import { BiSearch } from "react-icons/bi";
 import { useAuth } from "@/provider/AuthProvider";
 import ProfileModal from "./ProfileModal";
 import Modal from "./Modall";
+import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
 
 const ProfileDetailsModal = ({ getValueType }: any) => {
 

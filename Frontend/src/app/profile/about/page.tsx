@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import About from "../../../components/about/About";
-import Blog from "../../../components/blog/Blog";
-import Donation from "@/components/donation/Donation";
+
 import Link from "next/link";
+import About from "@/components/about/About";
+import Blog from "@/components/blog/Blog";
+import Donation from "@/components/donation/Donation";
 
 const Page = () => {
 
@@ -58,23 +59,13 @@ const Page = () => {
                 <div className="px-4 py-6 lg:py-6 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6">
 
                     {activeTab === "About" && (
-                        <About
-                        // user={user} setUserTab={setUserTab}
-                        />
+                        <About />
                     )}
                     {activeTab === "Blog" && (
-                        <Blog
-                        // user={user}
-                        // setUser={setUser}
-                        // setUserReload={setUserReload}
-                        />
+                        <Blog />
                     )}
                     {activeTab === "Donation" && (
-                        <Donation
-                        // user={user}
-                        // setUser={setUser}
-                        // setUserReload={setUserReload}
-                        />
+                        <Donation />
                     )}
                 </div>
             </div>

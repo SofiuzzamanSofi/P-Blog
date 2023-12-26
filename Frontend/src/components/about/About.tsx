@@ -23,10 +23,10 @@ import { FaLocationArrow } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { useAuth } from "@/provider/AuthProvider";
 import Link from "next/link";
-import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
 import ProfileDetailsModal from "../modals/ProfileDetailsModal";
 import Image from "next/image";
 import Loading from "../shared/Loading";
+import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
 
 interface AboutProps {
 }
