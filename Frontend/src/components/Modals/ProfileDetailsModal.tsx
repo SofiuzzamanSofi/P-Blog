@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-
 import { BiSearch } from "react-icons/bi";
 import { useAuth } from "@/provider/AuthProvider";
 import ProfileModal from "./ProfileModal";
