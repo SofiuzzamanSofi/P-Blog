@@ -18,7 +18,7 @@ const HomePage: FC<HomePageProps> = ({ }) => {
     return (
         <div className="space-y-12">
             <section>
-                <div className="container flex flex-col items-center px-4 py-8 mx-auto text-center md:px-10 lg:px-32 xl:max-w-3xl">
+                <div className="container flex flex-col items-center px-4 py-8 mx-auto text-center md:px-10 lg:px-32 xl:max-w-3xl md:mt-8">
                     <h1 className="text-4xl font-bold leading-none sm:text-5xl">P-Blog is a
                         <span className="text-violet-300"> Business Portfolio </span>Website
                     </h1>
@@ -121,14 +121,12 @@ const HomePage: FC<HomePageProps> = ({ }) => {
                 </div>
             </section>
             <section className="py-8">
-                <div className="container mx-auto">
-                    <div className="p-4 mx-auto text-center md:px-10 lg:px-32 xl:max-w-3xl">
-                        <h2 className="text-2xl font-bold leading-none sm:text-4xl">So Lets Go Div Into P-Blog.</h2>
-                        <p className="px-8 my-4">
-                            All over the the worl P-Blog is now world's no 1 business portfolio website. We falu of you. We falue of all of our client. Our team works for you. Your well business is our priority. So keep smilling and keep using P-Blog.
-                        </p>
-                        <p>Well-Com in Advanced.</p>
-                    </div>
+                <div className="p-4 mx-auto text-center md:px-10">
+                    <h2 className="text-2xl font-bold leading-none sm:text-4xl">So Lets Go Div Into P-Blog.</h2>
+                    <p className="px-8 my-4">
+                        All over the the worl P-Blog is now world's no 1 business portfolio website. We falu of you. We falue of all of our client. Our team works for you. Your well business is our priority. So keep smilling and keep using P-Blog.
+                    </p>
+                    <p>Well-Com in Advanced.</p>
                 </div>
             </section>
             <section className="space-y-6 sm:space-y-12">

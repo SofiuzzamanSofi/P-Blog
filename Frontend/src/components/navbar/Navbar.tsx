@@ -102,6 +102,22 @@ const Navbar = () => {
 
     const headerRoutes = [
         {
+            name: "Add Blog",
+            path: `/profile/blog/add-blog`,
+        },
+        {
+            name: "Blog",
+            path: `/profile/blog/blog`,
+        },
+        {
+            name: "Donation",
+            path: `/profile/donation`,
+        },
+        {
+            name: "About",
+            path: `/profile/about`,
+        },
+        {
             name: "Profile",
             path: `/profile/${user?._id}`,
         },

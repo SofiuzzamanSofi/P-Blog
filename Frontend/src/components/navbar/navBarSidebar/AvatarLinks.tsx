@@ -29,8 +29,8 @@ const AvatarMenu: FC<AvatarMenuProps> = ({
             <div
                 onMouseUpCapture={handleCloseProfileAndMenu}
                 ref={profileRef as React.RefObject<HTMLDivElement>}
-                className={`py-4 px-8 rounded-lg shadow-md  absolute
-                        top-[3.5rem] md:top-[5.25rem] right-[0.0625rem] z-30 ${isProfileOpen ? "translate-y-0" : "translate-y-[-1000px]"} duration-1000 transition-all bg-gray-900 border border-gray-700`}
+                className={`py-4 px-8 rounded-lg shadow-md absolute
+                        top-[3.5rem] sm:top-[4.9rem] right-[0.0625rem] z-30 ${isProfileOpen ? "translate-y-0" : "translate-y-[-1000px]"} duration-1000 transition-all bg-gray-900 border border-gray-700`}
             >
                 <div className={`${navClassName} cursor-auto`}>
                     <div>
@@ -38,21 +38,23 @@ const AvatarMenu: FC<AvatarMenuProps> = ({
                         <p >{email}</p>
                     </div>
                 </ div>
-                <Link href={`/profile/${_id}`} className={`${navClassName}`}>
-                    Profile
-                </ Link>
-                <Link href="/profile/about" className={`${navClassName}`}>
-                    About
-                </ Link>
-                <Link href="/profile/blog" className={`${navClassName}`}>
-                    Blog
-                </ Link>
-                <Link href="/profile/blog/add-blog" className={`${navClassName}`}>
-                    Add Blog
-                </ Link>
-                <Link href="/profile/donation" className={`${navClassName}`}>
-                    Donation
-                </ Link>
+                <div className='md:hidden'>
+                    <Link href={`/profile/${_id}`} className={`${navClassName}`}>
+                        Profile
+                    </ Link>
+                    <Link href="/profile/about" className={`${navClassName}`}>
+                        About
+                    </ Link>
+                    <Link href="/profile/blog/blog" className={`${navClassName}`}>
+                        Blog
+                    </ Link>
+                    <Link href="/profile/blog/add-blog" className={`${navClassName}`}>
+                        Add Blog
+                    </ Link>
+                    <Link href="/profile/donation" className={`${navClassName}`}>
+                        Donation
+                    </ Link>
+                </div>
                 <Link href="" className={`${navClassName} cursor-not-allowed`}>
                     Settings
                 </ Link>
