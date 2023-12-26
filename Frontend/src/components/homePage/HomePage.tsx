@@ -62,7 +62,7 @@ const HomePage: FC<HomePageProps> = ({ }) => {
                     <div className="p-4 mx-auto text-center md:px-10 lg:px-32 xl:max-w-3xl">
                         <h2 className="text-2xl font-bold leading-none sm:text-4xl">What can we offer to you?</h2>
                         <p className="px-8 my-4">
-                            P-Blog serves as a dynamic online showcase, highlighting a company's products, services, and achievements. It provides a professional and accessible platform for potential clients and partners to explore the company's expertise, accomplishments, and contact information. With a well-designed portfolio website, businesses can effectively establish their online presence and make a compelling impression on visitors.
+                            P-Blog serves as a dynamic online showcase, highlighting a company &apos; s products, services, and achievements. It provides a professional and accessible platform for potential clients and partners to explore the company &apos; s expertise, accomplishments, and contact information. With a well-designed portfolio website, businesses can effectively establish their online presence and make a compelling impression on visitors.
                         </p>
                     </div>
                     <div className="grid grid-cols-5 p-4 md:p-8">
@@ -124,7 +124,7 @@ const HomePage: FC<HomePageProps> = ({ }) => {
                 <div className="p-4 mx-auto text-center md:px-10">
                     <h2 className="text-2xl font-bold leading-none sm:text-4xl">So Lets Go Div Into P-Blog.</h2>
                     <p className="px-8 my-4">
-                        All over the the worl P-Blog is now world's no 1 business portfolio website. We falu of you. We falue of all of our client. Our team works for you. Your well business is our priority. So keep smilling and keep using P-Blog.
+                        All over the the worl P-Blog is now world &apos; s no 1 business portfolio website. We falu of you. We falue of all of our client. Our team works for you. Your well business is our priority. So keep smilling and keep using P-Blog.
                     </p>
                     <p>Well-Com in Advanced.</p>
                 </div>
@@ -171,7 +171,7 @@ const HomePage: FC<HomePageProps> = ({ }) => {
             <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32">
                 <div className="flex flex-col justify-between">
                     <div className="space-y-2">
-                        <h2 className="text-4xl font-bold leading-tight lg:text-5xl">Let's talk!</h2>
+                        <h2 className="text-4xl font-bold leading-tight lg:text-5xl">Let &apos; s talk!</h2>
                         <div className="text-gray-400">Vivamus in nisl metus? Phasellus.</div>
                     </div>
                     <Image src={emailImage} alt="Contact our customer support" className="p-6 h-52 md:h-64 rounded-3xl" />

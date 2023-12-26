@@ -11,9 +11,7 @@ import { signOut } from "firebase/auth";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import AvatarMenu from "./navBarSidebar/AvatarLinks";
-import NavLinks from "./navBarSidebar/NavLinks";
 import { useAuth } from "@/provider/AuthProvider";
-
 
 const Navbar = () => {
 
@@ -29,7 +27,6 @@ const Navbar = () => {
     const profileRef = useRef<HTMLDivElement | null>(null);
     const menuRef = useRef<HTMLDivElement | null>(null);
 
-
     // Click outside or scroll to close profile and menu
     const handleCloseProfileAndMenu = () => {
         setIsMenuOpen(false);
@@ -42,13 +39,6 @@ const Navbar = () => {
         setIsMenuOpen(false);
         // console.log('toggleProfile:', isProfileOpen);
     };
-    // Define a function to toggle the profile
-    const toggleMenu = () => {
-        setIsMenuOpen((prev) => !prev);
-        setIsProfileOpen(false);
-        // console.log('toggleMenu:', isMenuOpen);
-    };
-
 
     // Add click event listener when the profile or mobile menu is open and closed this with click outside
     useEffect(() => {
@@ -199,15 +189,6 @@ const Navbar = () => {
                                         />
                                     </button>
                                 </div>
-                                {/* mobile menu toggle */}
-                                {/* <div className="md:hidden flex flex-col items-center justify-center gap-x-0 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0">
-                                    <button
-                                        className="p-2 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-black shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-gray-800 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-white dark:hover:text-white dark:focus:ring-offset-gray-800"
-                                        onClick={toggleMenu}
-                                    >
-                                        <Image className="hs-overlay-open:hidden w-4 h-4 dark:text-white" src={toggleIcon} alt='toggle-icon' />
-                                    </button>
-                                </div> */}
                             </>
                         )}
                     </div>
@@ -225,34 +206,6 @@ const Navbar = () => {
                             handleSignOut={handleSignOut}
                         />
                     }
-
-                    {/* mobile menu show  */}
-                    <div className="md:hidden">
-                        <div
-                            // onMouseUpCapture={handleCloseProfileAndMenu}
-                            ref={menuRef}
-                            id="docs-sidebar"
-                            className={`${isMenuOpen ? "translate-x-0" : "translate-x-[-3000px]"} transition-all duration-500 transform fixed top-0 left-0 bottom-0 z-[60] w-60 border-r p-1 md:p-4 overflow-y-auto scrollbar-y dark:scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0 bg-gray-800 border-gray-700`}
-                        >
-                            <div className="px-6 flex items-center justify-between gap-2">
-                                <Link className="flex-none text-xl font-semibold dark:text-white" href="/" aria-label="Brand">
-                                    <Image
-                                        src={logo}
-                                        alt='logo-image'
-                                        className='h-[2.904rem] w-[10.164rem] rounded-md'
-                                    />
-                                </Link>
-                                <button
-                                    className="shadow-lg bg-gray-100 dark:bg-gray-900 text-black dark:text-white border dark:border-gray-700 rounded-lg p-2"
-                                    title="closed-side-bar"
-                                    onClick={handleCloseProfileAndMenu}
-                                >
-                                    X
-                                </button>
-                            </div>
-                            <NavLinks />
-                        </div>
-                    </div>
                 </nav>
             </header>
         );
