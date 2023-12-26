@@ -63,7 +63,7 @@ const EmailSend: FC<EmailSendProps> = ({ }) => {
                     placeholder="describe your feedback/message/complain"
                     id="message" rows={3} className="w-full p-3 rounded bg-gray-800" data-gramm="false" wt-ignore-input="true"></textarea>
             </div>
-            <button type="submit" value={`${loading ? "Loading..." : "Send Your Feedback"}`} className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-violet-400 text-gray-900">Send Message</button>
+            <button type="submit" value={`${loading ? "Loading..." : "Send Your Feedback"}`} className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded bg-violet-300 text-gray-900">Send Message</button>
         </form>
     );
 };

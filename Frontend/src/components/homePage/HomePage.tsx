@@ -17,11 +17,10 @@ interface HomePageProps {
 const HomePage: FC<HomePageProps> = ({ }) => {
     return (
         <div className="space-y-12">
-
             <section>
                 <div className="container flex flex-col items-center px-4 py-8 mx-auto text-center md:px-10 lg:px-32 xl:max-w-3xl">
                     <h1 className="text-4xl font-bold leading-none sm:text-5xl">P-Blog is a
-                        <span className="text-violet-400"> Business Portfolio </span>Website
+                        <span className="text-violet-300"> Business Portfolio </span>Website
                     </h1>
                     <p className="px-8 mt-8 mb-12 text-lg">Make your own identity with P-Blog portfolio. Share your portfolio just one click. Share your work or idea to others with blog or post.</p>
                     <div className="flex flex-wrap justify-center">
@@ -121,107 +120,56 @@ const HomePage: FC<HomePageProps> = ({ }) => {
                     </div>
                 </div>
             </section>
-            <section>
-                <div className="container max-w-6xl p-6 space-y-6 sm:space-y-12">
-                    <Link href={`/profile/blog/658b1a432dcd426080a85988`} className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 bg-gray-900">
-                        <Image src={desertImage} alt="Website Design System" className="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 bg-gray-500" />
-                        <div className="p-6 space-y-2 lg:col-span-5">
-                            <h3 className="text-2xl font-semibold sm:text-4xl group-hover:underline group-focus:underline">How to Survive on Desert</h3>
-                            <span className="text-xs text-gray-400">December 26, 2023</span>
-                            <p>1. Make sure you have sufficient food rations and water. 2. One gallon of water...</p>
+            <section className="py-8">
+                <div className="container mx-auto">
+                    <div className="p-4 mx-auto text-center md:px-10 lg:px-32 xl:max-w-3xl">
+                        <h2 className="text-2xl font-bold leading-none sm:text-4xl">So Lets Go Div Into P-Blog.</h2>
+                        <p className="px-8 my-4">
+                            All over the the worl P-Blog is now world's no 1 business portfolio website. We falu of you. We falue of all of our client. Our team works for you. Your well business is our priority. So keep smilling and keep using P-Blog.
+                        </p>
+                        <p>Well-Com in Advanced.</p>
+                    </div>
+                </div>
+            </section>
+            <section className="space-y-6 sm:space-y-12">
+                <Link href={`/profile/blog/658b1a432dcd426080a85988`} className="block max-w-sm gap-3 sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 bg-gray-900">
+                    <Image src={desertImage} alt="Website Design System" className="object-cover w-full h-64 rounded sm:h-96 lg:col-span-7 bg-gray-500" />
+                    <div className="p-6 space-y-2 lg:col-span-5">
+                        <h3 className="text-2xl font-semibold sm:text-4xl group-hover:underline group-focus:underline">How to Survive on Desert</h3>
+                        <span className="text-xs text-gray-400">December 26, 2023</span>
+                        <p>1. Make sure you have sufficient food rations and water. 2. One gallon of water...</p>
+                    </div>
+                </Link>
+                <div className="grid justify-center grid-cols-1 gap-6 xl:gap-24 sm:grid-cols-2 lg:grid-cols-3">
+                    <Link href={`/profile/blog/658b23c1ef8fe31f4a47453e`} className="max-w-sm group hover:no-underline focus:no-underline bg-gray-900">
+                        <Image src={dogImage} alt='dog-image' role="presentation" className="object-cover w-full rounded h-44 bg-gray-500" />
+                        <div className="p-6 space-y-2">
+                            <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">A Clever Dog</h3>
+                            <span className="text-xs text-gray-400">January 21, 2023</span>
+                            <p>Once upon a time, there was a rich moneylender in a village. His name was Seth Karam Chand. One day, a kind and a generous man named Sunder Singh came to Seth Karam Chand to take a loan.</p>
                         </div>
                     </Link>
-                    <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                        <Link href={`/profile/blog/658b23c1ef8fe31f4a47453e`} className="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-gray-900">
-                            <Image src={dogImage} alt='dog-image' role="presentation" className="object-cover w-full rounded h-44 bg-gray-500" />
-                            <div className="p-6 space-y-2">
-                                <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">A Clever Dog</h3>
-                                <span className="text-xs text-gray-400">January 21, 2023</span>
-                                <p>Once upon a time, there was a rich moneylender in a village. His name was Seth Karam Chand. One day, a kind and a generous man named Sunder Singh came to Seth Karam Chand to take a loan.</p>
-                            </div>
-                        </Link>
-                        <Link href={`/profile/blog/658b25b198b950beb5e862a6`} className="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-gray-900">
-                            <Image src={stadiumImage} alt='stadium-image' role="presentation" className="object-cover w-full rounded h-44 bg-gray-500" />
-                            <div className="p-6 space-y-2">
-                                <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">Moin-ul-Haq Stadium</h3>
-                                <span className="text-xs text-gray-400">November 21, 2023</span>
-                                <p>Moin-ul-Haq Stadium is a multi-purpose stadium in Patna, Bihar, India. It has a capacity of 25,000 people and is used for cricket and association football. The stadium has hosted...</p>
-                            </div>
-                        </Link>
-                        <Link href={`/profile/blog/658b267798b950beb5e862b2`} className="max-w-sm mx-auto group hover:no-underline focus:no-underline bg-gray-900">
-                            <Image src={aiImage} alt='ai-image' role="presentation" className="object-cover w-full rounded h-44 bg-gray-500" />
-                            <div className="p-6 space-y-2">
-                                <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">Artificial intelligence AI</h3>
-                                <span className="text-xs text-gray-400">November 28, 2022</span>
-                                <p>Artificial intelligence (AI) is the intelligence of machines or software, as opposed to the intelligence of humans or animals. It is a field of study in computer science which develops and studies intelligent machines...</p>
-                            </div>
-                        </Link>
-                    </div>
-                    <div className="flex justify-center">
-                        <Link href="/blogs" className="px-6 py-3 text-sm rounded-md hover:underline bg-gray-900 text-gray-400">Show All Blogs ...</Link>
-                    </div>
+                    <Link href={`/profile/blog/658b25b198b950beb5e862a6`} className="max-w-sm group hover:no-underline focus:no-underline bg-gray-900">
+                        <Image src={stadiumImage} alt='stadium-image' role="presentation" className="object-cover w-full rounded h-44 bg-gray-500" />
+                        <div className="p-6 space-y-2">
+                            <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">Moin-ul-Haq Stadium</h3>
+                            <span className="text-xs text-gray-400">November 21, 2023</span>
+                            <p>Moin-ul-Haq Stadium is a multi-purpose stadium in Patna, Bihar, India. It has a capacity of 25,000 people and is used for cricket and association football. The stadium has hosted...</p>
+                        </div>
+                    </Link>
+                    <Link href={`/profile/blog/658b267798b950beb5e862b2`} className="max-w-sm group hover:no-underline focus:no-underline bg-gray-900">
+                        <Image src={aiImage} alt='ai-image' role="presentation" className="object-cover w-full rounded h-44 bg-gray-500" />
+                        <div className="p-6 space-y-2">
+                            <h3 className="text-2xl font-semibold group-hover:underline group-focus:underline">Artificial intelligence AI</h3>
+                            <span className="text-xs text-gray-400">November 28, 2022</span>
+                            <p>Artificial intelligence (AI) is the intelligence of machines or software, as opposed to the intelligence of humans or animals. It is a field of study in computer science which develops and studies intelligent machines...</p>
+                        </div>
+                    </Link>
+                </div>
+                <div className="flex justify-center">
+                    <Link href="/blogs" className="px-6 py-3 text-sm rounded-md hover:underline bg-gray-900 text-gray-400">Show All Blogs ...</Link>
                 </div>
             </section>
-
-            <section>
-                <div className="container px-6 py-12 mx-auto">
-                    <div className="grid items-center gap-4 xl:grid-cols-5">
-                        <div className="max-w-2xl mx-auto my-8 space-y-4 text-center xl:col-span-2 xl:text-left">
-                            <h2 className="text-4xl font-bold">Duo assum utroque appetere an</h2>
-                            <p className="text-gray-400">Pri ex magna scaevola moderatius. Nullam accommodare no vix, est ei diceret alienum, et sit cetero malorum. Et sea iudico consequat, est sanctus adipisci ex.</p>
-                        </div>
-                        <div className="p-6 xl:col-span-3">
-                            <div className="grid gap-4 md:grid-cols-2">
-                                <div className="grid content-center gap-4">
-                                    <div className="p-6 rounded shadow-md bg-gray-900">
-                                        <p>An audire commodo habemus cum. Ne sed corrumpit repudiandae. Tota aliquip democritum pro in, nec democritum intellegam ne. Propriae volutpat dissentiet ea sit, nec at lorem inani tritani, an ius populo perfecto vituperatoribus. Eu cum case modus salutandi, ut eum vocent sensibus reprehendunt.</p>
-                                        <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/51x51/?portrait" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-400">CTO of Company Co.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="p-6 rounded shadow-md bg-gray-900">
-                                        <p>Sit wisi sapientem ut, pri civibus temporibus voluptatibus et, ius cu hinc fabulas. Nam meliore minimum et, regione convenire cum id. Ex pro eros mucius consectetuer, pro magna nulla nonumy ne, eam putent iudicabit consulatu cu.</p>
-                                        <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/52x52/?portrait" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-400">CTO of Company Co.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="grid content-center gap-4">
-                                    <div className="p-6 rounded shadow-md bg-gray-900">
-                                        <p>Putant omnium elaboraret per ut. Id dicta tritani nominavi quo, mea id justo errem elaboraret. Agam mollis scripserit ea his, ut nec postea verear persecuti. Ea noster senserit eam, ferri omittantur ei nec. Id mel solet libris efficiantur, commune explicari et eos. Case movet ad est, sed tota vocent appetere ea.</p>
-                                        <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/53x53/?portrait" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-400">CTO of Company Co.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="p-6 rounded shadow-md bg-gray-900">
-                                        <p>Te omnes virtute volutpat sed. Ei esse eros interesset vel, ei populo denique ocurreret vix, eu cum pertinax mandamus vituperatoribus. Solum nihil luptatum per ex, ei amet viderer eos. Ea illum labitur mnesarchum pro. Eius meis salutandi ei nam, alterum expetenda et nec. Expetenda intellegat at eum, per mazim sanctus honestatis ad. Ei noluisse invenire vix. Te ancillae patrioque qui, probo bonorum vivendum ex vim.</p>
-                                        <div className="flex items-center mt-4 space-x-4">
-                                            <img src="https://source.unsplash.com/54x54/?portrait" alt="" className="w-12 h-12 bg-center bg-cover rounded-full bg-gray-500" />
-                                            <div>
-                                                <p className="text-lg font-semibold">Leroy Jenkins</p>
-                                                <p className="text-sm text-gray-400">CTO of Company Co.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <div className="grid max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32">
                 <div className="flex flex-col justify-between">
                     <div className="space-y-2">
