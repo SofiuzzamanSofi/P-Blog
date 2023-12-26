@@ -1,6 +1,7 @@
 {
   "name": "p-blog",
   "version": "0.1.0",
+  "description": "p-blog business portfolio website.",
   "private": true,
   "scripts": {
     "dev": "next dev",
