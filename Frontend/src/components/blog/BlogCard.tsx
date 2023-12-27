@@ -4,6 +4,7 @@ import React from "react";
 import moment from 'moment';
 import Link from "next/link";
 import { BlogDataTypes } from "@/typesInterface/types";
+import Image from "next/image";
 
 interface BlogCardProps {
   blog: BlogDataTypes
@@ -16,6 +17,22 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
       href={`/profile/blog/${blog._id}`}
       className='border border-gray-300 dark:border-gray-700 shadow-xl p-5 rounded-md dark:hover:text-slate-300'
     >
+      <div className='flex flex-wrap gap-4 overflow-hidden justify-center'>
+        {
+          blog?.photoURLs && blog?.photoURLs?.length > 0 &&
+          blog?.photoURLs.map((photo, index) => (
+            <Image
+              src={photo}
+              alt='blog-photo'
+              className='object-cover cursor-pointer'
+              title="click to full view"
+              height={128}
+              width={128}
+            />
+          ))
+        }
+      </div>
+
       <div className='flex justify-between'>
         <div>
           <p className='text-xl hover:underline transition-all'>{blog.title}</p>

@@ -1,5 +1,10 @@
 import AllBlog from "@/components/blog/AllBlog";
+import Sidebar from "@/components/home/Sidebar";
 
 export default function Page() {
-  return <AllBlog />
+  return (
+    <div>
+      <AllBlog />
+    </div>
+  );
 };
