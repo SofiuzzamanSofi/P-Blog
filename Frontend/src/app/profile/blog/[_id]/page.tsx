@@ -159,7 +159,7 @@ const Page: FC<PageProps> = ({ params: { _id } }) => {
                     </Link>
                     <Link
                         href={`/profile/${blog?.bloggerId}`}
-                        className="flex items-center gap-2 border w-32 py-2 pl-1 rounded-md hover:underline my-2"
+                        className="flex items-center gap-2 border border-gray-700 w-fit py-2 px-2 rounded-md hover:underline my-2 bg-gray-900"
                     >
                         Author Profile
                     </Link>

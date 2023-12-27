@@ -18,7 +18,7 @@ const HomePage: FC<HomePageProps> = ({ }) => {
     return (
         <div className="space-y-12">
             <section>
-                <div className="container flex flex-col items-center px-4 py-8 mx-auto text-center md:px-10 lg:px-32 xl:max-w-3xl md:mt-8">
+                <div className="container flex flex-col items-center px-4 py-8 mx-auto text-center md:px-10 lg:px-32 xl:max-w-4xl md:mt-8">
                     <h1 className="text-4xl font-bold leading-none sm:text-5xl">P-Blog is a
                         <span className="text-violet-300"> Business Portfolio </span>Website
                     </h1>
@@ -59,7 +59,7 @@ const HomePage: FC<HomePageProps> = ({ }) => {
             </section>
             <section className="py-8">
                 <div className="container mx-auto">
-                    <div className="p-4 mx-auto text-center md:px-10 lg:px-32 xl:max-w-3xl">
+                    <div className="p-4 mx-auto text-center md:px-10 lg:px-32 xl:max-w-4xl">
                         <h2 className="text-2xl font-bold leading-none sm:text-4xl">What can we offer to you?</h2>
                         <p className="px-8 my-4">
                             P-Blog serves as a dynamic online showcase, highlighting a company &apos; s products, services, and achievements. It provides a professional and accessible platform for potential clients and partners to explore the company &apos; s expertise, accomplishments, and contact information. With a well-designed portfolio website, businesses can effectively establish their online presence and make a compelling impression on visitors.
