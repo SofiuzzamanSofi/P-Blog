@@ -53,7 +53,7 @@ const SignIn = () => {
   }, [user]);
 
   return (
-    <div className='flex items-center justify-center gap-4'>
+    <div className='min-h-screen flex items-center justify-center gap-4'>
       <button
         onClick={handleGoogleLogin}
         className="flex justify-between items-center border min-w-[15.5rem] px-4 py-2 rounded-md"
