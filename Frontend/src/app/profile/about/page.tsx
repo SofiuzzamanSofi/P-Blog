@@ -25,7 +25,7 @@ const Page = () => {
                     <ul className="flex justify-start items-center gap-10 px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-6">
                         <li
                             className={`py-5 cursor-pointer hover:text-gray-700 border-b-2 ${activeTab === "About"
-                                ? "border-red-500 text-gray-700"
+                                ? "border-white text-white"
                                 : "border-transparent"
                                 }`}
                             onClick={() => handleTabClick("About")}
@@ -34,18 +34,18 @@ const Page = () => {
                         </li>
                         <li
                             className={`py-5 cursor-pointer hover:text-gray-700 border-b-2 ${activeTab === "Blog"
-                                ? "border-red-500 text-gray-700"
+                                ? "border-white text-white"
                                 : "border-transparent"
                                 }`}
                             onClick={() => handleTabClick("Blog")}
                         >
-                            <Link href="/profile/blog">
+                            <Link href="/profile/blog/blog">
                                 Blog
                             </Link>
                         </li>
                         <li
                             className={`py-5 cursor-pointer hover:text-gray-700 border-b-2 ${activeTab === "Donation"
-                                ? "border-red-500 text-gray-700"
+                                ? "border-white text-white"
                                 : "border-transparent"
                                 }`}
                             onClick={() => handleTabClick("Donation")}
