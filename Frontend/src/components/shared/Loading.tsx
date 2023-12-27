@@ -13,7 +13,7 @@ const Loading: FC<LoadingProps> = ({ }) => {
     };
 
     return (
-        <div className='relative flex justify-center items-center h-screen w-full'>
+        <div className='relative flex justify-center items-center min-h-[calc(100vh-9rem)] w-full'>
             <div style={style} className=' h-full w-full absolute top-0'></div>
             <Image src={loading} alt='Loading-Image' />
         </div>

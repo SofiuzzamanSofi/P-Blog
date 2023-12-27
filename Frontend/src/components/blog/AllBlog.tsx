@@ -51,7 +51,7 @@ export default function AllBlog() {
     else if (blogs) {
         return (
             <div
-                className='py-5'
+                className='py-5 min-h-[calc(100vh-9rem)]'
             >
                 <div
                     className='pb-5'

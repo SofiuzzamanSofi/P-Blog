@@ -7,7 +7,7 @@ interface NotFoundProps {
 
 const NotFound: FC<NotFoundProps> = ({ }) => {
     return (
-        <div className='min-h-screen flex justify-center items-center'>
+        <div className='flex justify-center items-center'>
             <div className='text-center'>
                 <h1 className='font-bold'>Page Not Found || 404</h1>
                 <br />

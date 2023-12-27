@@ -104,7 +104,7 @@ const Page: FC<PageProps> = ({ params: { _id } }) => {
 
     return (
         <div className='py-5'>
-            <div className='min-h-[120px] flex flex-wrap gap-4 overflow-hidden'>
+            <div className='flex flex-wrap gap-4 overflow-hidden'>
                 <PhotoProvider>
                     {
                         blog?.photoURLs && blog?.photoURLs?.length > 0 &&

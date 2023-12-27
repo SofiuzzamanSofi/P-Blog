@@ -31,7 +31,7 @@ const Page: FC<PageProps> = async ({ params: { _id } }) => {
 
     if (!user?.email) {
         return (
-            <div className='min-h-screen flex justify-center items-center'>
+            <div className='flex justify-center items-center'>
                 <div className="text-center">
                     <h1 className='font-bold'>No User Found</h1>
                     <h1 className='text-xs'>Your Link May Be Broken</h1>
