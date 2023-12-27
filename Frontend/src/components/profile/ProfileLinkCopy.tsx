@@ -16,7 +16,7 @@ const ProfileLinkCopy: FC<ProfileLinkCopyProps> = ({ _id }) => {
     };
 
     return (
-        <FaLink className="h-4 w-4 cursor-pointer" title="Copy link to clipboard" onClick={handleCopyToClipBoard} />
+        <FaLink className="h-4 w-4 md:h-6 md:w-6 cursor-pointer" title="Copy link to clipboard" onClick={handleCopyToClipBoard} />
     );
 };
 
