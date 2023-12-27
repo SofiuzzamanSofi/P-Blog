@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import loading from "../../assets/loading.gif";
+import loadingImage from "../../assets/p-blog-logo.png";
 import Image from 'next/image';
 
 interface LoadingProps {
@@ -8,14 +8,16 @@ interface LoadingProps {
 
 const Loading: FC<LoadingProps> = ({ }) => {
 
-    const style = {
-        background: `radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 30%)`,
-    };
-
     return (
-        <div className='relative flex justify-center items-center min-h-[calc(100vh-8.8rem)] w-full'>
-            <div style={style} className=' h-full w-full absolute top-0'></div>
-            <Image src={loading} alt='Loading-Image' />
+        <div className='absolute top-0 bottom-0 left-0 right-0 flex justify-center items-center'>
+            <div id="dot-loader">
+                <div className="lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
     );
 };
