@@ -25,7 +25,7 @@ export default function RootLayout({
       <AuthProvider>
         <body className={inter.className}>
           <Navbar />
-          <section className='max-w-[85rem] mx-auto px-4 min-h-[calc(100vh-9rem)]'>
+          <section className='max-w-[85rem] mx-auto px-4 min-h-[calc(100vh-8.8rem)]'>
             {children}
           </section>
           <Footer />

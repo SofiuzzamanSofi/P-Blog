@@ -1,6 +1,6 @@
 "use client";
 
-import { FaLink } from "react-icons/fa";
+import { FaCreativeCommonsShare } from "react-icons/fa";
 import { FC } from 'react';
 import toast from "react-hot-toast";
 
@@ -16,7 +16,7 @@ const ProfileLinkCopy: FC<ProfileLinkCopyProps> = ({ _id }) => {
     };
 
     return (
-        <FaLink className="h-4 w-4 md:h-6 md:w-6 cursor-pointer" title="Copy link to clipboard" onClick={handleCopyToClipBoard} />
+        <FaCreativeCommonsShare className="h-6 w-6 md:h-8 md:w-8 cursor-pointer" title="Copy link to clipboard" onClick={handleCopyToClipBoard} />
     );
 };
 
