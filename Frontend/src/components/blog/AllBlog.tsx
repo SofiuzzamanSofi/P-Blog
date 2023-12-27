@@ -80,7 +80,7 @@ export default function AllBlog() {
                             </div>
                         </div>
                         <div className="flex w-full justify-end  items-center pt-2 pb-1 gap-4 ">
-                            <div className='flex gap-2  max-w-xs'>
+                            <div className='flex gap-2 max-w-xs'>
                                 <div>
                                     <select
                                         name="onldNew" id="onldNew" className={searchBarInputClass}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import logo from "../../assets/p-blog-logo.png";
 import signInIcon from "../../assets/sign-in.svg";
+import homeIcon from "../../assets/house-door-fill.svg";
 import userIcon from "../../assets/user.svg";
 import { usePathname } from "next/navigation";
 import { auth } from "../../firebase/firebase.config";
@@ -92,12 +93,12 @@ const Navbar = () => {
 
     const headerRoutes = [
         {
-            name: "Add Blog",
-            path: `/profile/blog/add-blog`,
+            name: "My Blog",
+            path: `/profile/blog/blog`,
         },
         {
-            name: "Blog",
-            path: `/profile/blog/blog`,
+            name: "Add Blog",
+            path: `/profile/blog/add-blog`,
         },
         {
             name: "Donation",
@@ -135,7 +136,7 @@ const Navbar = () => {
                             <Image
                                 src={logo}
                                 alt='logo-image'
-                                className='h-[2.904rem] sm:h-[4.248rem] w-[10.164rem] sm:w-[14.05rem] rounded-md'
+                                className='h-[2.904rem] sm:h-[4.248rem] w-[9rem] sm:w-[14.05rem] rounded-md'
                             />
                         </Link>
                     </div>
@@ -143,10 +144,10 @@ const Navbar = () => {
                     {/* login || out */}
                     <div className="flex justify-center items-center my-auto h-full md:gap-x-3.5 ml-auto sm:ml-0 sm:order-3">
                         <Link
-                            href="/blogs"
-                            className={`${pathname.includes("blogs") ? "text-blue-500 underline" : ""} font-medium hover:text-blue-600 px-2 sm:py-6`}
+                            href="/home"
+                            className={`${pathname.includes("home") ? "text-blue-500 underline" : ""} font-medium hover:text-blue-600 px-2 sm:py-5`}
                         >
-                            Blogs
+                            <Image src={homeIcon} alt='home-image-logo' className={`h-7 w-7 ${pathname.includes("home") ? "border-b-4 border-blue-500" : ""}`} />
                         </Link>
                         {!user?.email ? (
                             <>
