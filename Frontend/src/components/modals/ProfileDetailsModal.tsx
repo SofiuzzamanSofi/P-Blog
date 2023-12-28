@@ -380,11 +380,6 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       profileDetailsModal.onClose();
       setTaglineValue("");
     }
-    // if (result.message === "User updated successfully" && !user?.location) {
-    //   profileDetailsModal.onClose();
-    //   setUserReload((prev) => !prev);
-    //   
-    // }
   };
 
   const handleGenderClick = async (e: React.MouseEvent<HTMLLIElement>) => {
@@ -407,11 +402,6 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
         profileDetailsModal.onClose();
         setUserReload((prev) => !prev);
       }
-      // if (result.message === "User updated successfully" && !user?.gender) {
-      //   profileDetailsModal.onClose();
-      //   setUserReload((prev) => !prev);
-      //   
-      // }
     }
   };
 
@@ -1312,6 +1302,7 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
     );
   }
 
+  // not 
   if (
     getValueType === "have to offer" ||
     getValueType === "looking for" ||
