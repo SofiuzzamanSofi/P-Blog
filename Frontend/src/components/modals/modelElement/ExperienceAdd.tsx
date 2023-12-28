@@ -209,7 +209,7 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                 <div>
                     <label htmlFor="skills" className='block'>Skills</label>
 
-                    <SkillsTag inputSkillsArray={inputSkillsArray} />
+                    <SkillsTag inputSkillsArray={inputSkillsArray} setInputSkillsArray={setInputSkillsArray} />
                     <input
                         type="text"
                         placeholder='Skill (ex:Project Management)'
