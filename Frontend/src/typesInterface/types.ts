@@ -1,6 +1,6 @@
 export interface UserDataTypes {
     _id: string;
-    email?: string;
+    email: string;
     displayName: string;
     emailVerified: boolean;
     photoURL: string;
@@ -136,4 +136,8 @@ export interface ExperienceTypes {
     industry: string;
     description: string;
     skillsArray: string[];
+}
+
+export interface ExperienceResponseTypes extends ExperienceTypes {
+    _id: string | undefined;
 }

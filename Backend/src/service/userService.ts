@@ -71,6 +71,22 @@ export const updateProfileService = async (
         next(error);
     };
 };
+//
+export const updateProfileExperienceService = async (
+    next: NextFunction,
+    reqData: any,
+) => {
+    try {
+        const updateUser = await UserModel.updateOne(
+            { _id: reqData._id },
+            { $set: reqData },
+            { runValidators: true }
+        );
+        return updateUser;
+    } catch (error) {
+        next(error);
+    };
+};
 
 //
 export const updateUserByEmail = async (

@@ -1,5 +1,5 @@
 import express from "express";
-import { createUserService, getUserByEmail, getUserByIdService, profilePicChangeService, updateProfileService, updateUserByEmail } from "../service/userService";
+import { createUserService, getUserByEmail, getUserByIdService, profilePicChangeService, updateProfileExperienceService, updateProfileService, updateUserByEmail } from "../service/userService";
 import { generateToken } from "../utils/token/generateToken";
 
 // get user first time open on browser
@@ -144,6 +144,38 @@ export const updateProfile = async (
             });
         };
         const user = await updateProfileService(next, userDetails, email);
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "pic update failed",
+            });
+        } else {
+            return res.status(201).json({
+                success: true,
+                message: "User updated successfully",
+                data: user,
+            });
+        }
+    } catch (error) {
+        next(error);
+    };
+};
+// 
+export const updateProfileExperience = async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+) => {
+    try {
+        const reqData = req.body;
+        if (!reqData) {
+            return res.status(400).json({
+                success: false,
+                message: "Missing Information.",
+            });
+        };
+        console.log('reqData:', reqData); return
+        const user = await updateProfileExperienceService(next, reqData);
         if (!user) {
             return res.status(401).json({
                 success: false,

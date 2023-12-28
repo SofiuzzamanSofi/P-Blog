@@ -2,6 +2,8 @@ import { UserDataTypes } from '@/typesInterface/types';
 import { FC, FormEvent, useState } from 'react';
 import SkillsTag from './SkillsTag';
 import toast from 'react-hot-toast';
+import axios from 'axios';
+import { experienceEditFn } from '@/utils/experienceEditFn';
 
 interface ExperienceAddProps {
     user: UserDataTypes | null;
@@ -46,32 +48,17 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
             industry: inputIndustry,
             description: inputDescription,
             skillsArray: inputSkillsArray,
+            _id: user?._id
         };
         console.log('hitted: experienceData:', experienceData);
-        return;
+        // return;
+        setbuttonLoading(true);
         try {
-            const values = {
-                about: inputFieldsValue,
-            };
-            setbuttonLoading(true);
-
-
-            const res = await fetch(
-                `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${user?.email}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify(values),
-                }
-            );
-            const result = await res.json();
-
-            if (result.message === "User updated successfully") {
+            const res = await experienceEditFn(experienceData)
+            if (res) {
                 setUserReload((prev) => !prev);
                 onClose();
-                setInputFieldsValue("");
+                setInputFieldsValue('');
                 setbuttonLoading(false);
             }
         } catch (error) {

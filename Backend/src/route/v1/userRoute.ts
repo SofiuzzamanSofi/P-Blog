@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    getMe, signInWithSocial, profilePicChange, updateProfile, getUserById
+    getMe, signInWithSocial, profilePicChange, updateProfile, getUserById, updateProfileExperience
 } from "../../controller/userController";
 
 export default (router: express.Router) => {
@@ -13,5 +13,8 @@ export default (router: express.Router) => {
 
     router.put("/user/profile-pic-change", profilePicChange);
 
+    router.patch("/user/update-user/experience", updateProfileExperience);
+
     router.put("/user/update-user/:email", updateProfile);
+
 };
