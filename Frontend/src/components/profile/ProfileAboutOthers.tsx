@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { CgGirl } from "react-icons/cg";
 import { TfiGift } from "react-icons/tfi";
+import { GrPowerForceShutdown } from "react-icons/gr";
 
 interface ProfileAboutOthersProps {
     about: string | undefined;
@@ -10,7 +11,10 @@ interface ProfileAboutOthersProps {
 const ProfileAboutOthers: FC<ProfileAboutOthersProps> = ({ about, othersCuriculam }) => {
     return (
         <div className="my-20">
-            <h1 className="text-[28px] font-semibold">Profile</h1>
+            <div className="flex items-center gap-x-3">
+                <GrPowerForceShutdown className="h-8 w-8" />
+                <h1 className="text-[28px] font-semibold">About Me</h1>
+            </div>
             <hr className="my-5" />
             <div className="space-y-6">
                 <div className="border border-gray-700 p-8 pb-14 rounded-[20px]">

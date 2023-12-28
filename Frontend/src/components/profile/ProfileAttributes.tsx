@@ -15,11 +15,12 @@ interface ProfileAttributesProps {
 
 const ProfileAttributes: FC<ProfileAttributesProps> = ({ user }) => {
     return (
-        <div className="mt-10 ">
+        <div className="mt-20 ">
             <div className="flex items-center gap-x-3">
                 <TfiMenuAlt className="h-8 w-8" />
                 <h1 className="text-[28px] font-semibold">Attributes</h1>
             </div>
+            <hr className="my-5" />
             <div className="grid md:grid-cols-2 gap-x-10 gap-y-6 my-10">
                 <div className="flex justify-between border-b w-full py-4 px-2 rounded-md">
                     <div className="flex justify-start items-center gap-3">

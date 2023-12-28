@@ -2,6 +2,7 @@
 
 import { BsPlus, BsPlusSquareDotted } from "react-icons/bs";
 import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { MdAssuredWorkload } from "react-icons/md";
 import { TbWorldWww } from "react-icons/tb";
 import { useState } from "react";
 import {
@@ -9,7 +10,6 @@ import {
   MdFavorite,
   MdModeEdit,
   MdOutlineSmokingRooms,
-  MdVerified,
 } from "react-icons/md";
 import axios from "axios";
 import { LiaRunningSolid, LiaSortAmountDownAltSolid } from "react-icons/lia";
@@ -22,11 +22,12 @@ import { RiPriceTagLine } from "react-icons/ri";
 import { FaLocationArrow } from "react-icons/fa";
 import { AiOutlineLike } from "react-icons/ai";
 import { useAuth } from "@/provider/AuthProvider";
-import Link from "next/link";
 import ProfileDetailsModal from "../modals/ProfileDetailsModal";
 import Image from "next/image";
 import Loading from "../shared/Loading";
 import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
+import AboutName from "./AboutName";
+import AboutPicLoading from "./AboutPicLoading";
 
 interface AboutProps {
 }
@@ -38,7 +39,6 @@ const About: React.FC<AboutProps> = () => {
   // instant loading.
   const [loadingStates, setLoadingStates] = useState(false);
 
-  const email = user?.email;
   const profileDetailsModal = useProfileDetailsModal();
   const [getValueType, setGetValueType] = useState<string>("");
 
@@ -95,7 +95,7 @@ const About: React.FC<AboutProps> = () => {
     return (
       <div className="sm:my-10">
         <div className="md:flex gap-10">
-          <div className="md:w-[320px] ">
+          <div className="md:w-[320px]">
             <div>
               {user?.photoURL ? (
                 <>
@@ -138,14 +138,7 @@ const About: React.FC<AboutProps> = () => {
               ) : (
                 <>
                   {loadingStates ? (
-                    <div
-                      className="w-full h-72 shadow-[0_0px_10px_rgba(0,0,0,0.15)]
-              hover:shadow-[0_0px_20px_rgba(0,0,0,0.26)] rounded-xl flex justify-center items-center"
-                    >
-                      <div className="h-full w-full flex justify-center items-center">
-                        <span className="loading loading-bars loading-lg"></span>
-                      </div>
-                    </div>
+                    <AboutPicLoading />
                   ) :
                     (
                       <div className="w-full md:w-[240px] lg:w-[260px] h-[260px] shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.26)] rounded-xl flex justify-center items-center">
@@ -164,51 +157,10 @@ const About: React.FC<AboutProps> = () => {
                 </>
               )}
             </div>
-            <div className="my-10 ">
-              <h6 className="text-[12px] uppercase">{user?.gender}</h6>
-              <h1 className="text-[24px] font-medium">{user?.displayName}</h1>
-              <Link
-                href={`/profile/${user?._id}`}
-              >
-                <button className="shadow-[0_0px_10px_rgba(0,0,0,0.15)] rounded-lg px-3 py-1 text-[13px] my-4 border">
-                  View Profile
-                </button>
-              </Link>
-              <div className="flex justify-between items-center gap-4 p-0">
-                <progress
-                  className="progress progress-success w-full bg-[#f1f1f180]"
-                  value={
-                    user ?
-                      "100"
-                      :
-                      "100"
-                  }
-                  max="100"
-                ></progress>
-              </div>
-              <p className="text-[12px] mt-2">
-                Profile: 100
-              </p>
-            </div>
-            <div className="bg-[#F2FCF9] text-black rounded-lg p-6">
-              <div className="flex items-center justify-between">
-                <p className="text-[18px] font-medium">Get Verified</p>
-                <MdVerified className="w-6 h-6 text-[#18BB9C]" />
-              </div>
-              <p className="text-[14px] my-5">
-                Prove you’re not too good to be true. It just takes a few seconds!
-              </p>
-              <button
-                className="shadow-[0_0px_10px_rgba(0,0,0,0.15)] rounded-lg px-6 py-3 text-[13px] bg-white"
-                disabled
-              >
-
-                Get Verified
-              </button>
-            </div>
+            <AboutName user={user} />
           </div>
 
-          <div className="w-full">
+          <div className="w-full mt-5 md:mt-0">
 
             {/* // BIO  */}
             <h3 className="text-[20px] font-medium mb-4">Bio</h3>
@@ -261,7 +213,29 @@ const About: React.FC<AboutProps> = () => {
               </div>
             </div>
 
-
+            {/* // Experiences  */}
+            <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
+              <div
+                onClick={() => handleGetValue("experiences")}
+                className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-7"
+              >
+                <div className="flex justify-start items-center gap-3">
+                  <div>
+                    <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3 mb-4">
+                      <MdAssuredWorkload className="w-7 h-7 text-blue-800" /> Experiences
+                    </p>
+                    <p>
+                      {user?.othersCuriculam && (
+                        <span className="pt-2">{user?.othersCuriculam.slice(0, 25)}...</span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+                <button className="inset-0" type="button">
+                  <CiEdit className="w-7 h-7 text-blue-800" />
+                </button>
+              </div>
+            </div>
 
             {/* // Links  */}
             <h3 className="text-[20px] font-medium mb-4">Links</h3>
@@ -436,7 +410,6 @@ const About: React.FC<AboutProps> = () => {
               </div>
             </div>
 
-
             <h3 className="text-[20px] font-medium mb-4">Basics</h3>
             <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4 mb-14">
 
@@ -603,8 +576,8 @@ const About: React.FC<AboutProps> = () => {
             </div>
 
             {/* // Life Style  */}
-            <h3 className="text-[20px] font-medium mb-4">Life Style</h3>
-            <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4 mb-14">
+            <h3 className="text-[20px] font-medium">Life Style</h3>
+            <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4">
 
               {/* Drinking */}
               <div
