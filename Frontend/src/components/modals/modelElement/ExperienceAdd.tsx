@@ -13,7 +13,6 @@ interface ExperienceAddProps {
 
 const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose }) => {
 
-    const [inputFieldsValue, setInputFieldsValue] = useState<string>("");
     const [buttonLoading, setbuttonLoading] = useState<boolean>(false);
 
     // inputfield value
@@ -36,30 +35,34 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
         if (inputSkillsArray.length < 1) {
             return toast.error("At least 1 Skill is required")
         }
-        const experienceData = {
-            title: inputTitle,
-            jobLocationType: inputJobLocationType,
-            employmentType: inputEmployeType,
-            companyName: inputCompanyName,
-            companyLocation: inputCompanyLocation,
-            currentlyWork: inputCurrentlyWork,
-            startDate: inputStartDate,
-            endDate: inputEndWork,
-            industry: inputIndustry,
-            description: inputDescription,
-            skillsArray: inputSkillsArray,
-            _id: user?._id
+        const inputData = {
+            _id: user?._id,
+            email: user?.email,
+            experience: {
+                title: inputTitle,
+                jobLocationType: inputJobLocationType,
+                employmentType: inputEmployeType,
+                companyName: inputCompanyName,
+                companyLocation: inputCompanyLocation,
+                currentlyWork: inputCurrentlyWork,
+                startDate: inputStartDate,
+                endDate: inputEndWork,
+                industry: inputIndustry,
+                description: inputDescription,
+                skillsArray: inputSkillsArray,
+            }
         };
-        console.log('hitted: experienceData:', experienceData);
+        console.log('hitted: experienceData:', inputData);
         // return;
         setbuttonLoading(true);
         try {
-            const res = await experienceEditFn(experienceData)
+            const res = await experienceEditFn(inputData);
+            console.log('res:', res);
             if (res) {
                 setUserReload((prev) => !prev);
-                onClose();
-                setInputFieldsValue('');
+                // onClose();
                 setbuttonLoading(false);
+                return toast.success("Experience Add Success.")
             }
         } catch (error) {
             setbuttonLoading(false);
@@ -67,13 +70,10 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
     };
 
     const skillArrayMake = () => {
-        // console.log('inputSkills:', inputSkills);
         setInputSkillsArray([...inputSkillsArray, inputSkills]);
         setInputSkills("");
-        console.log('inputSkillsArray:', inputSkillsArray);
     };
 
-    console.log('inputCurrentlyWork:', inputCurrentlyWork);
 
     const inputClassName = " shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-2 rounded-md w-full";
 
@@ -208,6 +208,7 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                         type="text"
                         placeholder='Technology, Information and Internet'
                         className={inputClassName}
+                        required={true}
                         value={inputIndustry}
                         onChange={(e) => setInputIndustry(e.target.value)}
                     />

@@ -138,6 +138,8 @@ export interface ExperienceTypes {
     skillsArray: string[];
 }
 
-export interface ExperienceResponseTypes extends ExperienceTypes {
+export interface ExperienceDataTypes {
     _id: string | undefined;
+    email: string | undefined;
+    experience: ExperienceTypes
 }

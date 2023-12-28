@@ -1,5 +1,5 @@
 import express from "express";
-import { createUserService, getUserByEmail, getUserByIdService, profilePicChangeService, updateProfileExperienceService, updateProfileService, updateUserByEmail } from "../service/userService";
+import { createUserService, experienceServiceCreate, experienceServiceEdit, getUserByEmail, getUserByIdService, profilePicChangeService, updateProfileService } from "../service/userService";
 import { generateToken } from "../utils/token/generateToken";
 
 // get user first time open on browser
@@ -160,6 +160,7 @@ export const updateProfile = async (
         next(error);
     };
 };
+
 // 
 export const updateProfileExperience = async (
     req: express.Request,
@@ -168,25 +169,42 @@ export const updateProfileExperience = async (
 ) => {
     try {
         const reqData = req.body;
+        // const _id = reqData._id;
+        // const email = reqData.email
         if (!reqData) {
             return res.status(400).json({
                 success: false,
                 message: "Missing Information.",
             });
         };
-        console.log('reqData:', reqData); return
-        const user = await updateProfileExperienceService(next, reqData);
-        if (!user) {
-            return res.status(401).json({
-                success: false,
-                message: "pic update failed",
-            });
-        } else {
-            return res.status(201).json({
+        // delete reqData.email;
+        // delete reqData._id;
+
+        const experienceData = await experienceServiceEdit(next, reqData);
+        console.log('experienceData:', experienceData);
+
+        if (experienceData.modifiedCount) {
+            return res.status(200).json({
                 success: true,
-                message: "User updated successfully",
-                data: user,
+                message: "Update Success", // Update Every Time 
             });
+
+        } else {
+            console.log('non modify:');
+            const experienceDataCreate = await experienceServiceCreate(next, reqData);
+            console.log('experienceDataCreate:', experienceDataCreate);
+            if (experienceDataCreate) {
+                return res.status(404).json({
+                    success: true,
+                    message: "Create Success", // Create First Time
+                    data: experienceDataCreate,
+                });
+            } else {
+                return res.status(401).json({
+                    success: false,
+                    message: "Update Create Failed", // Update Create all failed
+                });
+            }
         }
     } catch (error) {
         next(error);

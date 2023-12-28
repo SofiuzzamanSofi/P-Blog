@@ -1,3 +1,5 @@
+import mongoose, { Document } from "mongoose";
+
 export interface UserDataTypes {
     email?: string;
     displayName: string;
@@ -127,4 +129,28 @@ export interface BlogDataTypes {
 export interface getAllBlogBySearchTextTypes {
     title?: RegExp;
     timestamp?: Date;
+}
+
+export interface ExperienceTypes {
+
+}
+
+export interface ExperienceTypes {
+    title: string;
+    jobLocationType: string;
+    employmentType: string;
+    companyName: string;
+    companyLocation: string;
+    currentlyWork: boolean;
+    startDate: string;
+    endDate: string;
+    industry: string;
+    description: string;
+    skillsArray: string[];
+}
+
+export interface ExperienceDataTypes {
+    _id: mongoose.Schema.Types.ObjectId,
+    email: string;
+    experience: ExperienceTypes[]
 }

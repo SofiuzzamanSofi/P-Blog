@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { UserDataTypes } from "../interfaceServer/interfaceServer.ts";
 import { UserModel } from "../model/userSchema";
+import { ExperienceModel } from "../model/experienceSchema";
 
 type NextFunction = express.NextFunction;
 type ObjectId = mongoose.Schema.Types.ObjectId;
@@ -71,22 +72,66 @@ export const updateProfileService = async (
         next(error);
     };
 };
+
 //
 export const updateProfileExperienceService = async (
     next: NextFunction,
     reqData: any,
 ) => {
     try {
-        const updateUser = await UserModel.updateOne(
+        const updateUserExperience = await ExperienceModel.updateOne(
             { _id: reqData._id },
-            { $set: reqData },
+            {
+                $addToSet: {
+                    experiences: reqData.experiences
+                }
+            },
             { runValidators: true }
         );
-        return updateUser;
+        return updateUserExperience;
     } catch (error) {
         next(error);
     };
 };
+
+//
+export const experienceServiceEdit = async (
+    next: NextFunction,
+    reqData: any,
+) => {
+    try {
+        console.log('reqData:', reqData);
+        const updateUserExperience = await ExperienceModel.updateOne(
+            { _id: reqData._id },
+            {
+                $push: {
+                    experience: reqData.experience,
+                },
+            },
+            { runValidators: true }
+        );
+        return updateUserExperience;
+    } catch (error) {
+        console.error('Error during experienceServiceEdit:', error);
+        next(error);
+    };
+};
+
+
+//
+export const experienceServiceCreate = async (
+    next: NextFunction,
+    reqData: any,
+) => {
+    try {
+        const updateUserExperience = await new ExperienceModel(reqData).save();
+        return updateUserExperience;
+    } catch (error) {
+        console.log('error:', error);
+        next(error);
+    };
+};
+
 
 //
 export const updateUserByEmail = async (
