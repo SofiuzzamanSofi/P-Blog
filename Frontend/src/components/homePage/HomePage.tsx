@@ -25,7 +25,7 @@ const HomePage: FC<HomePageProps> = ({ }) => {
                     <p className="px-8 mt-8 mb-12 text-lg">Make your own identity with P-Blog portfolio. Share your portfolio just one click. Share your work or idea to others with blog or post.</p>
                     <div className="flex flex-wrap justify-center">
                         <ProfileButton />
-                        <Link href="/blogs" className="px-8 py-3 m-2 text-lg border rounded text-gray-50 border-gray-700 hover:bg-gray-900">All Blogs</Link>
+                        <Link href="/home" className="hover:text-blue-500 px-8 py-3 m-2 text-lg border rounded text-gray-50 border-gray-700 hover:bg-gray-900">All Blogs</Link>
                     </div>
                 </div>
             </section>

@@ -14,12 +14,12 @@ const ProfileButton: FC<ProfileButtonProps> = ({ }) => {
 
     if (!user) {
         return (
-            <Link href="/sign-in" className="px-8 py-3 m-2 text-lg font-semibold rounded bg-gray-900">Sign In</Link>
+            <Link href="/sign-in" className="hover:text-blue-500 px-8 py-3 m-2 text-lg font-semibold rounded bg-gray-900">Sign In</Link>
         );
     }
     else {
         return (
-            <Link href={`/profile/${user?._id}`} className="px-8 py-3 m-2 text-lg font-semibold rounded bg-gray-900">My Portfolio</Link>
+            <Link href={`/profile/${user?._id}`} className="hover:text-blue-500 px-8 py-3 m-2 text-lg font-semibold rounded bg-gray-900">My Portfolio</Link>
         );
     }
 };
