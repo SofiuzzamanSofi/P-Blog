@@ -1,6 +1,7 @@
 import { UserDataTypes } from '@/typesInterface/types';
 import { FC, FormEvent, useState } from 'react';
 import SkillsTag from './SkillsTag';
+import toast from 'react-hot-toast';
 
 interface ExperienceAddProps {
     user: UserDataTypes | null;
@@ -18,9 +19,9 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
     const [inputEmployeType, setInputEmployeType] = useState<string>("");
     const [inputCompanyName, setInputCompanyName] = useState<string>("");
     const [inputCompanyLocation, setInputCompanyLocation] = useState<string>("");
-    const [inputCurrentlyWork, setInputCurrentlyWork] = useState<string>("");
+    const [inputCurrentlyWork, setInputCurrentlyWork] = useState<boolean>(false);
     const [inputStartDate, setInputStartDate] = useState<string>("");
-    const [inputEndtWork, setInputEndtWork] = useState<string>("");
+    const [inputEndWork, setInputEndWork] = useState<string>("");
     const [inputIndustry, setInputIndustry] = useState<string>("");
     const [inputDescription, setInputDescription] = useState<string>("");
     const [inputSkills, setInputSkills] = useState<string>("");
@@ -29,6 +30,9 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
     const handleOfferFieldsValue = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        if (inputSkillsArray.length < 1) {
+            return toast.error("At least 1 Skill is required")
+        }
         const experienceData = {
             title: inputTitle,
             employmentType: inputEmployeType,
@@ -36,7 +40,7 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
             companyLocation: inputCompanyLocation,
             currentlyWork: inputCurrentlyWork,
             startDate: inputStartDate,
-            endDate: inputEndtWork,
+            endDate: inputEndWork,
             industry: inputIndustry,
             description: inputDescription,
             skillsArray: inputSkillsArray,
@@ -80,7 +84,9 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
         console.log('inputSkillsArray:', inputSkillsArray);
     };
 
-    const inputClassName = " shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-2 rounded-md w-full"
+    const inputClassName = " shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-2 rounded-md w-full";
+
+    const buttonActive = inputTitle && inputCompanyName && inputStartDate && inputSkillsArray.length
 
     return (
         <div className="text-black w-full ">
@@ -162,21 +168,38 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                 {/* work now or not  */}
                 <div className='flex items-center gap-2'>
                     <label htmlFor="current-work"> </label>
-                    <input type="checkbox" className="h-6 w-6" /> <p>Currently Working in This Role</p>
+                    <input type="checkbox" className="h-6 w-6"
+                        checked={inputCurrentlyWork}
+                        onClick={() => setInputCurrentlyWork((prev) => !prev)}
+                    /> <p>Currently Working in This Role</p>
                 </div>
                 {/* start date  */}
                 <div>
                     <label htmlFor="company-location" className='block'>
                         Start Date <span className='text-red-500'>*</span>
                     </label>
-                    <input type="date" name="" id="" className={inputClassName} />
+                    <input
+                        type="date"
+                        className={inputClassName}
+                        required={true}
+                        value={inputStartDate}
+                        onChange={(e) => setInputStartDate(e.target.value)}
+                    />
                 </div>
                 {/* End date  */}
                 <div>
                     <label htmlFor="company-location" className='block'>
                         End Date <span className='text-red-500'>*</span>
                     </label>
-                    <input type="date" name="" id="" className={`${inputClassName} text-zinc-200 cursor-not-allowed`} disabled />
+                    <input
+                        type="date"
+                        className={`${inputClassName} ${inputCurrentlyWork && "text-zinc-200 cursor-not-allowed"}`}
+                        disabled={inputCurrentlyWork}
+                        required={!inputCurrentlyWork}
+                        value={inputEndWork}
+                        onChange={(e) => setInputEndWork(e.target.value)}
+
+                    />
                 </div>
 
                 {/* company location  */}
@@ -186,8 +209,8 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                         type="text"
                         placeholder='Technology, Information and Internet'
                         className={inputClassName}
-                        value={inputCompanyLocation}
-                        onChange={(e) => setInputCompanyLocation(e.target.value)}
+                        value={inputIndustry}
+                        onChange={(e) => setInputIndustry(e.target.value)}
                     />
                 </div>
 
@@ -218,13 +241,8 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                         onChange={(e) => setInputSkills(e.target.value)}
                         onKeyDown={(e) => {
                             if (e.key === "Enter") {
-
-
-                                console.log('e.start:', e.key)
-
+                                e.preventDefault();
                                 skillArrayMake();
-                                e.stopPropagation();
-                                console.log('e.end:', e.key)
                             }
                         }}
                     />
@@ -233,11 +251,11 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                 {/* submit button  */}
                 <button
                     className={
-                        inputFieldsValue.length > 10
+                        buttonActive
                             ? "bg-[#00C684] text-center w-full py-4 rounded-full text-xl text-white mb-5"
                             : "bg-gray-300 text-center w-full py-4 rounded-full text-xl text-white mb-5"
                     }
-                    // disabled={buttonLoading || inputFieldsValue.length > 10 ? false : true}
+                    disabled={buttonLoading || buttonActive ? false : true}
                     type='submit'
                 >
                     {buttonLoading ? "Loading..." : "Save"}
