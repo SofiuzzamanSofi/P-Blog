@@ -16,6 +16,7 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
 
     // inputfield value
     const [inputTitle, setInputTitle] = useState<string>("");
+    const [inputJobLocationType, setInputJobLocationType] = useState<string>("");
     const [inputEmployeType, setInputEmployeType] = useState<string>("");
     const [inputCompanyName, setInputCompanyName] = useState<string>("");
     const [inputCompanyLocation, setInputCompanyLocation] = useState<string>("");
@@ -35,6 +36,7 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
         }
         const experienceData = {
             title: inputTitle,
+            jobLocationType: inputJobLocationType,
             employmentType: inputEmployeType,
             companyName: inputCompanyName,
             companyLocation: inputCompanyLocation,
@@ -84,6 +86,8 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
         console.log('inputSkillsArray:', inputSkillsArray);
     };
 
+    console.log('inputCurrentlyWork:', inputCurrentlyWork);
+
     const inputClassName = " shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-2 rounded-md w-full";
 
     const buttonActive = inputTitle && inputCompanyName && inputStartDate && inputSkillsArray.length
@@ -111,7 +115,11 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                 {/* employment location type  */}
                 <div>
                     <label htmlFor="job-location">Job Location type</label>
-                    <select className={inputClassName}>
+                    <select
+                        className={inputClassName}
+                        value={inputJobLocationType}
+                        onChange={(e) => setInputJobLocationType(e.target.value)}
+                    >
                         <option disabled value="">Please Select</option>
                         <option value="On-Site">On-Site</option>
                         <option value="Hybrid">Hybrid</option>
@@ -121,7 +129,11 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                 {/* employment type  */}
                 <div>
                     <label htmlFor="employment-type">Employment type</label>
-                    <select className={inputClassName}>
+                    <select
+                        className={inputClassName}
+                        value={inputEmployeType}
+                        onChange={(e) => setInputEmployeType(e.target.value)}
+                    >
                         <option disabled value="">Please Select</option>
                         <option value="Full-Time">Full-Time</option>
                         <option value="Part-Time">Part-Time</option>
@@ -169,7 +181,7 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                 <div className='flex items-center gap-2'>
                     <label htmlFor="current-work"> </label>
                     <input type="checkbox" className="h-6 w-6"
-                        checked={inputCurrentlyWork}
+                        // checked={inputCurrentlyWork}
                         onClick={() => setInputCurrentlyWork((prev) => !prev)}
                     /> <p>Currently Working in This Role</p>
                 </div>

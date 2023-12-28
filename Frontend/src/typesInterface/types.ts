@@ -122,3 +122,18 @@ export interface BlogDataTypes {
     applicants?: BlogApplicantsTypes[];
     questionAns?: QuestionAnsTypes[];
 };
+
+
+export interface ExperienceTypes {
+    title: string;
+    jobLocationType: string;
+    employmentType: string;
+    companyName: string;
+    companyLocation: string;
+    currentlyWork: boolean;
+    startDate: string;
+    endDate: string;
+    industry: string;
+    description: string;
+    skillsArray: string[];
+}
