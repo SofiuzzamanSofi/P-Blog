@@ -188,7 +188,7 @@ const Page: FC<PageProps> = ({ params: { _id } }) => {
             {/* question ans  */}
             <div className="max-w-[43rem]">
                 <h1 className='text-xl font-semibold text-primary dark:text-darkPrimary mb-5'>
-                    General Q&A
+                    Comment
                 </h1>
                 <div className='grid gap-3'>
                     {

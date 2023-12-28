@@ -52,8 +52,7 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                 skillsArray: inputSkillsArray,
             }
         };
-        console.log('hitted: experienceData:', inputData);
-        // return;
+
         setbuttonLoading(true);
         try {
             const res = await experienceEditFn(inputData);
@@ -80,7 +79,7 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
     const buttonActive = inputTitle && inputCompanyName && inputStartDate && inputSkillsArray.length
 
     return (
-        <div className="text-black w-full ">
+        <div className="text-black w-full">
             <h1 className="text-center text-xl font-medium">
                 Add Experience
             </h1>
