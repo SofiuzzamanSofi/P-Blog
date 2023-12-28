@@ -85,10 +85,7 @@ const About: React.FC<AboutProps> = () => {
     profileDetailsModal.onOpen();
   };
 
-  if (loading) {
-    return <Loading />
-  }
-  else if (!user?.email && !loading) {
+  if (!user?.email && !loading) {
     return window.location.href = "/sign-in";
   }
   else if (user?.email) {
@@ -214,16 +211,14 @@ const About: React.FC<AboutProps> = () => {
             </div>
 
             {/* // Experiences  */}
+            <h3 className="text-[20px] font-medium mb-4">Experiences</h3>
             <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
-              <div
-                onClick={() => handleGetValue("experiences")}
-                className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-7"
+              {/* <div
+                onClick={() => handleGetValue("experiences-add")}
+                className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 "
               >
                 <div className="flex justify-start items-center gap-3">
                   <div>
-                    <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3 mb-4">
-                      <MdAssuredWorkload className="w-7 h-7 text-blue-800" /> Experiences
-                    </p>
                     <p>
                       {user?.othersCuriculam && (
                         <span className="pt-2">{user?.othersCuriculam.slice(0, 25)}...</span>
@@ -234,7 +229,7 @@ const About: React.FC<AboutProps> = () => {
                 <button className="inset-0" type="button">
                   <CiEdit className="w-7 h-7 text-blue-800" />
                 </button>
-              </div>
+              </div> */}
             </div>
 
             {/* // Links  */}
@@ -689,6 +684,7 @@ const About: React.FC<AboutProps> = () => {
                 </button>
               </div>
             </div>
+
           </div>
         </div>
         <ProfileDetailsModal getValueType={getValueType} />

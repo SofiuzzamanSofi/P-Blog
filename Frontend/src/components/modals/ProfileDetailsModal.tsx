@@ -6,8 +6,9 @@ import { useAuth } from "@/provider/AuthProvider";
 import ProfileModal from "./ProfileModal";
 import Modal from "./Modall";
 import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
+import ExperienceAdd from "./modelElement/ExperienceAdd";
 
-const ProfileDetailsModal = ({ getValueType }: any) => {
+const ProfileDetailsModal = ({ getValueType }: { getValueType: string }) => {
 
   // authh 
   const { user, setUserReload } = useAuth();
@@ -1301,31 +1302,34 @@ const ProfileDetailsModal = ({ getValueType }: any) => {
       </div>
     );
   }
+  if (getValueType === "experiences-add") {
+    bodyContent = <ExperienceAdd user={user} setUserReload={setUserReload} onClose={profileDetailsModal.onClose} />
+  }
 
   // not 
-  if (
-    getValueType === "have to offer" ||
-    getValueType === "looking for" ||
-    getValueType === "Tagline"
-  ) {
-    return (
-      <Modal
-        isOpen={profileDetailsModal.isOpen}
-        title={"getDetailsForMsg.username"}
-        onClose={profileDetailsModal.onClose}
-        body={bodyContent}
-      />
-    );
-  } else {
-    return (
-      <ProfileModal
-        isOpen={profileDetailsModal.isOpen}
-        title={"getDetailsForMsg.username"}
-        onClose={profileDetailsModal.onClose}
-        body={bodyContent}
-      />
-    );
-  }
+  // if (
+  //   getValueType === "have to offer" ||
+  //   getValueType === "looking for" ||
+  //   getValueType === "Tagline"
+  // ) {
+  //   return (
+  //     <Modal
+  //       isOpen={profileDetailsModal.isOpen}
+  //       title={"getDetailsForMsg.username"}
+  //       onClose={profileDetailsModal.onClose}
+  //       body={bodyContent}
+  //     />
+  //   );
+  // } else {
+  return (
+    <ProfileModal
+      isOpen={profileDetailsModal.isOpen}
+      title={"getDetailsForMsg.username"}
+      onClose={profileDetailsModal.onClose}
+      body={bodyContent}
+    />
+  );
+  // }
 };
 
 export default ProfileDetailsModal;
