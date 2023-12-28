@@ -12,18 +12,13 @@ const Donation: FC<DonationProps> = ({ }) => {
     // auth-user
     const { user, loading } = useAuth();
 
-    if (!user?.email && !loading) {
+    if (loading) {
         return <Loading />
-    }
-    else if (!user?.email && loading) {
-        <Loading />
-        // return window.location.href = "/sign-in";
     }
     else if (!user?.email && !loading) {
         return window.location.href = "/sign-in";
     }
-
-    if (user?.email) {
+    else if (user?.email) {
         return (
             <div>
                 <div>

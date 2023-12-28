@@ -155,18 +155,13 @@ const Page = () => {
     const addButtonClass = "shrink-0 h-10 w-10 bg-primary/10 border border-primary dark:border-darkPrimary hover:bg-primary dark:hover:bg-darkPrimary hover:text-white rounded-full grid place-items-center text-primary dark:text-darkPrimary transition-all duration-500 hover:scale-100 scale-90"
     const removeButtonClass = "shrink-0 h-10 w-10 bg-primary/10 border border-red-600 hover:bg-red-600 text-red-600 hover:text-white rounded-full grid place-items-center transition-all duration-500 hover:scale-100 scale-90"
 
-    if (!user?.email && !loading) {
+    if (loading) {
         return <Loading />
-    }
-    else if (!user?.email && loading) {
-        <Loading />
-        // return window.location.href = "/sign-in";
     }
     else if (!user?.email && !loading) {
         return window.location.href = "/sign-in";
     }
-
-    if (user?.email) {
+    else if (user?.email) {
         return (
             <div className='flex justify-center items-center overflow-auto py-5'>
                 <form

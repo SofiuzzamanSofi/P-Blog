@@ -31,7 +31,7 @@ const Page: FC<PageProps> = async ({ params: { _id } }) => {
 
     if (!user?.email) {
         return (
-            <div className='flex justify-center items-center'>
+            <div className='flex justify-center items-center min-h-[calc(100vh-8.8rem)]'>
                 <div className="text-center">
                     <h1 className='font-bold'>No User Found</h1>
                     <h1 className='text-xs'>Your Link May Be Broken</h1>
@@ -45,6 +45,10 @@ const Page: FC<PageProps> = async ({ params: { _id } }) => {
     }
     else {
         return (
+            // <section
+            //     className="border mx-[-1rem] bg-cover bg-no-repeat bg-center"
+            //     style={{ backgroundImage: `url('${user.photoURL || noImageUserIcon}')` }}
+            // >
             <div className="my-10 sm:my-20">
                 <div className="flex justify-end">
                     <ProfileLinkCopy

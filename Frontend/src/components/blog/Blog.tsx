@@ -8,6 +8,7 @@ import moment from 'moment';
 import { FiTrash } from "react-icons/fi";
 import toast from 'react-hot-toast';
 import Loading from '../shared/Loading';
+import Image from 'next/image';
 
 interface BlogProps {
 
@@ -59,18 +60,13 @@ const Blog: FC<BlogProps> = ({ }) => {
         };
     }, [user?.email, isReload]);
 
-    if (!user?.email && !loading) {
+    if (loading) {
         return <Loading />
-    }
-    else if (!user?.email && loading) {
-        <Loading />
-        // return window.location.href = "/sign-in";
     }
     else if (!user?.email && !loading) {
         return window.location.href = "/sign-in";
     }
-
-    if (user?.email) {
+    else if (user?.email) {
         return (
             <div>
                 <div className='flex justify-between items-center'>
@@ -99,6 +95,22 @@ const Blog: FC<BlogProps> = ({ }) => {
                                         key={index}
                                         className='border border-gray-300 dark:border-gray-700 shadow-xl p-5 rounded-md dark:hover:text-slate-300'
                                     >
+                                        <div className='flex flex-wrap gap-4 overflow-hidden justify-center'>
+                                            {
+                                                blog?.photoURLs && blog?.photoURLs?.length > 0 &&
+                                                blog?.photoURLs.map((photo, index) => (
+                                                    <Image
+                                                        key={index}
+                                                        src={photo}
+                                                        alt='blog-photo'
+                                                        className='object-cover cursor-pointer'
+                                                        title="click to full view"
+                                                        height={128}
+                                                        width={128}
+                                                    />
+                                                ))
+                                            }
+                                        </div>
                                         <div className='flex justify-between'>
                                             <div>
                                                 <p className='text-xl hover:underline transition-all'>{blog.title}</p>

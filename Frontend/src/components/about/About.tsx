@@ -85,16 +85,13 @@ const About: React.FC<AboutProps> = () => {
     profileDetailsModal.onOpen();
   };
 
-  // console.log('user-on-profile-about-:', user);
-
-  if (!user?.email) {
+  if (loading) {
     return <Loading />
   }
   else if (!user?.email && !loading) {
     return window.location.href = "/sign-in";
   }
-
-  if (user?.email) {
+  else if (user?.email) {
     return (
       <div className="sm:my-10">
         <div className="md:flex gap-10">

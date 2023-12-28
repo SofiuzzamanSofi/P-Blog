@@ -19,7 +19,7 @@ export const AuthContext = createContext<AuthContextType | undefined>(undefined)
 const AuthProvider = (props: React.PropsWithChildren) => {
 
     // loading state
-    const [loading, setLoading] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
 
     // const [loading, setLoading] = useState<boolean>(false);
     const [user, setUser] = useState<UserDataTypes | null>(null);
