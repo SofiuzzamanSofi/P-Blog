@@ -95,45 +95,6 @@ export const updateProfileExperienceService = async (
 };
 
 //
-export const experienceServiceEdit = async (
-    next: NextFunction,
-    reqData: any,
-) => {
-    try {
-        console.log('reqData:', reqData);
-        const updateUserExperience = await ExperienceModel.updateOne(
-            { _id: reqData._id },
-            {
-                $push: {
-                    experience: reqData.experience,
-                },
-            },
-            { runValidators: true }
-        );
-        return updateUserExperience;
-    } catch (error) {
-        console.error('Error during experienceServiceEdit:', error);
-        next(error);
-    };
-};
-
-
-//
-export const experienceServiceCreate = async (
-    next: NextFunction,
-    reqData: any,
-) => {
-    try {
-        const updateUserExperience = await new ExperienceModel(reqData).save();
-        return updateUserExperience;
-    } catch (error) {
-        console.log('error:', error);
-        next(error);
-    };
-};
-
-
-//
 export const updateUserByEmail = async (
     next: NextFunction,
     handleUserData: UserDataTypes

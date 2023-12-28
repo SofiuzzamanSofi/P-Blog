@@ -1,6 +1,6 @@
 import express from "express";
 import {
-    getMe, signInWithSocial, profilePicChange, updateProfile, getUserById, updateProfileExperience
+    getMe, signInWithSocial, profilePicChange, updateProfile, getUserById
 } from "../../controller/userController";
 
 export default (router: express.Router) => {
@@ -12,8 +12,6 @@ export default (router: express.Router) => {
     router.post("/user/signin-social-media", signInWithSocial); // sign GOOGLE FACEBOOK 
 
     router.put("/user/profile-pic-change", profilePicChange);
-
-    router.patch("/user/update-user/experience", updateProfileExperience);
 
     router.put("/user/update-user/:email", updateProfile);
 
