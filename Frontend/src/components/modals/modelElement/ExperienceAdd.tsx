@@ -1,5 +1,6 @@
 import { UserDataTypes } from '@/typesInterface/types';
 import { FC, FormEvent, useState } from 'react';
+import SkillsTag from './SkillsTag';
 
 interface ExperienceAddProps {
     user: UserDataTypes | null;
@@ -70,6 +71,13 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
         } catch (error) {
             setbuttonLoading(false);
         }
+    };
+
+    const skillArrayMake = () => {
+        // console.log('inputSkills:', inputSkills);
+        setInputSkillsArray([...inputSkillsArray, inputSkills]);
+        setInputSkills("");
+        console.log('inputSkillsArray:', inputSkillsArray);
     };
 
     const inputClassName = " shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-2 rounded-md w-full"
@@ -199,14 +207,26 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
 
                 {/* skills  */}
                 <div>
-                    <label htmlFor="skills">Skills</label>
+                    <label htmlFor="skills" className='block'>Skills</label>
 
+                    <SkillsTag inputSkillsArray={inputSkillsArray} />
                     <input
                         type="text"
                         placeholder='Skill (ex:Project Management)'
                         className={inputClassName}
                         value={inputSkills}
                         onChange={(e) => setInputSkills(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+
+
+                                console.log('e.start:', e.key)
+
+                                skillArrayMake();
+                                e.stopPropagation();
+                                console.log('e.end:', e.key)
+                            }
+                        }}
                     />
                 </div>
 
