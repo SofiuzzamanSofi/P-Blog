@@ -1,5 +1,5 @@
 import { UserDataTypes } from '@/typesInterface/types';
-import { FC, useState } from 'react';
+import { FC, FormEvent, useState } from 'react';
 
 interface ExperienceAddProps {
     user: UserDataTypes | null;
@@ -12,13 +12,43 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
     const [inputFieldsValue, setInputFieldsValue] = useState<string>("");
     const [buttonLoading, setbuttonLoading] = useState<boolean>(false);
 
-    const handleOfferFieldsValue = async () => {
+    // inputfield value
+    const [inputTitle, setInputTitle] = useState<string>("");
+    const [inputEmployeType, setInputEmployeType] = useState<string>("");
+    const [inputCompanyName, setInputCompanyName] = useState<string>("");
+    const [inputCompanyLocation, setInputCompanyLocation] = useState<string>("");
+    const [inputCurrentlyWork, setInputCurrentlyWork] = useState<string>("");
+    const [inputStartDate, setInputStartDate] = useState<string>("");
+    const [inputEndtWork, setInputEndtWork] = useState<string>("");
+    const [inputIndustry, setInputIndustry] = useState<string>("");
+    const [inputDescription, setInputDescription] = useState<string>("");
+    const [inputSkills, setInputSkills] = useState<string>("");
+    const [inputSkillsArray, setInputSkillsArray] = useState<string[]>([]);
+
+    const handleOfferFieldsValue = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const experienceData = {
+            title: inputTitle,
+            employmentType: inputEmployeType,
+            companyName: inputCompanyName,
+            companyLocation: inputCompanyLocation,
+            currentlyWork: inputCurrentlyWork,
+            startDate: inputStartDate,
+            endDate: inputEndtWork,
+            industry: inputIndustry,
+            description: inputDescription,
+            skillsArray: inputSkillsArray,
+        };
+        console.log('hitted: experienceData:', experienceData);
+        return;
         try {
             const values = {
                 about: inputFieldsValue,
             };
-            console.log('hitted:');
             setbuttonLoading(true);
+
+
             const res = await fetch(
                 `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${user?.email}`,
                 {
@@ -42,90 +72,158 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
         }
     };
 
+    const inputClassName = " shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-2 rounded-md w-full"
+
     return (
-        <div className="text-black">
+        <div className="text-black w-full ">
             <h1 className="text-center text-xl font-medium">
                 Add Experience
             </h1>
-            <textarea
-                onChange={(e: any) => setInputFieldsValue(e.target.value)}
-                // type="text"
-                name=""
-                id=""
-                className=" shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-7 rounded-xl w-full my-6"
-                placeholder="About yourself."
-                required
-                defaultValue={user?.about}
-            />
-            <form action="">
-                <div className=" flex items-start gap-2 border-b pb-4">
-                    <div>
-                        {/* title  */}
-                        <div>
-                            <label htmlFor="title">Title</label>
-                            <input type="text" placeholder='Jr MERN Stack || FrontEnd  Web Developer' className='px-2 py-1 border border-gray-900 rounded-sm w-full' />
-                        </div>
-                        {/* employment location type  */}
-                        <p className='font-semibold text-sm py-[2px]'>
-                            Remote
-                        </p>
-                        {/* employment type  */}
-                        <p className='font-semibold text-sm py-[2px]'>
-                            Full Time
-                        </p>
-                        <p className='font-semibold text-sm py-[2px]'>
-                            Feb 2023 - Mar 2023 · 2 mos
-                        </p>
-                        <br />
-
-                        {/* company name  */}
-                        <p className='font-semibold text-sm py-[2px] hover:underline'>
-                            Prayers connect
-                        </p>
-                        {/* company location  */}
-                        <p>
-                            London, Uk
-                        </p>
-                        <br />
-
-                        {/* work now or not  */}
-                        {/* <div>
-                            <input type="checkbox" name="" id="" />
-                            <p>I am currently Working in this role</p>
-                        </div> */}
-
-                        {/* details  */}
-                        <div>
-                            <p className='text-sm'>
-                                Work on large scale project on Node.js and Mongodb, Build cool frontend with Nextjs React and Typescript sometimes use Vite.
-                            </p>
-                        </div>
-                        <br />
-
-                        {/* skills  */}
-                        <div>
-                            <p className='text-sm'>
-                                <span className='font-semibold'>Skills: </span>
-                                <span>
-                                    Mongoose · TypeScript · Redux.js · Front-End Development · Full-Stack Development · MongoDB · Express.js · Node.js · React.js · JavaScript
-                                </span>
-                            </p>
-                        </div>
-
-                    </div>
+            <form onSubmit={(e) => handleOfferFieldsValue(e)} className='space-y-4'>
+                {/* title  */}
+                <div>
+                    <label htmlFor="title">
+                        Title <span className='text-red-500'>*</span>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder='Jr MERN Stack || FrontEnd  Web Developer'
+                        required={true}
+                        className={inputClassName}
+                        value={inputTitle}
+                        onChange={(e) => setInputTitle(e.target.value)}
+                    />
                 </div>
+                {/* employment location type  */}
+                <div>
+                    <label htmlFor="job-location">Job Location type</label>
+                    <select className={inputClassName}>
+                        <option disabled value="">Please Select</option>
+                        <option value="On-Site">On-Site</option>
+                        <option value="Hybrid">Hybrid</option>
+                        <option value="Remote">Remote</option>
+                    </select>
+                </div>
+                {/* employment type  */}
+                <div>
+                    <label htmlFor="employment-type">Employment type</label>
+                    <select className={inputClassName}>
+                        <option disabled value="">Please Select</option>
+                        <option value="Full-Time">Full-Time</option>
+                        <option value="Part-Time">Part-Time</option>
+                        <option value="Self-Employed">Self-Employed</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Contact">Contact</option>
+                        <option value="Internship">Internship</option>
+                        <option value="Apprenticeship">Apprenticeship</option>
+                        <option value="Seasonal">Seasonal</option>
+                    </select>
+                </div>
+                <p className='font-semibold text-sm py-[2px]'>
+                    Feb 2023 - Mar 2023 · 2 mos
+                </p>
+                <br />
+
+                {/* company name  */}
+                <div>
+                    <label htmlFor="company-name">
+                        Company Name <span className='text-red-500'>*</span>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder='Ex:Google'
+                        required={true}
+                        className={inputClassName}
+                        value={inputCompanyName}
+                        onChange={(e) => setInputCompanyName(e.target.value)}
+                    />
+                </div>
+                {/* company location  */}
+                <div>
+                    <label htmlFor="company-location">Company Location</label>
+                    <input
+                        type="text"
+                        placeholder='Ex:London, United Kingdom'
+                        className={inputClassName}
+                        value={inputCompanyLocation}
+                        onChange={(e) => setInputCompanyLocation(e.target.value)}
+                    />
+                </div>
+                <br />
+
+                {/* work now or not  */}
+                <div className='flex items-center gap-2'>
+                    <label htmlFor="current-work"> </label>
+                    <input type="checkbox" className="h-6 w-6" /> <p>Currently Working in This Role</p>
+                </div>
+                {/* start date  */}
+                <div>
+                    <label htmlFor="company-location" className='block'>
+                        Start Date <span className='text-red-500'>*</span>
+                    </label>
+                    <input type="date" name="" id="" className={inputClassName} />
+                </div>
+                {/* End date  */}
+                <div>
+                    <label htmlFor="company-location" className='block'>
+                        End Date <span className='text-red-500'>*</span>
+                    </label>
+                    <input type="date" name="" id="" className={`${inputClassName} text-zinc-200 cursor-not-allowed`} disabled />
+                </div>
+
+                {/* company location  */}
+                <div>
+                    <label htmlFor="industry">Industry </label>
+                    <input
+                        type="text"
+                        placeholder='Technology, Information and Internet'
+                        className={inputClassName}
+                        value={inputCompanyLocation}
+                        onChange={(e) => setInputCompanyLocation(e.target.value)}
+                    />
+                </div>
+
+                {/* details  */}
+                <div>
+                    <label htmlFor="company-name">Description</label>
+
+                    <textarea
+                        className={inputClassName}
+                        placeholder="About yourself."
+                        value={inputDescription}
+                        onChange={(e) => setInputDescription(e.target.value)}
+                    />
+                    <p className='text-xs text-right'>{inputDescription.length || 0}/2,000</p>
+                </div>
+                <br />
+
+                {/* skills  */}
+                <div>
+                    <label htmlFor="skills">Skills</label>
+
+                    <input
+                        type="text"
+                        placeholder='Skill (ex:Project Management)'
+                        className={inputClassName}
+                        value={inputSkills}
+                        onChange={(e) => setInputSkills(e.target.value)}
+                    />
+                </div>
+
+                {/* submit button  */}
+                <button
+                    className={
+                        inputFieldsValue.length > 10
+                            ? "bg-[#00C684] text-center w-full py-4 rounded-full text-xl text-white mb-5"
+                            : "bg-gray-300 text-center w-full py-4 rounded-full text-xl text-white mb-5"
+                    }
+                    // disabled={buttonLoading || inputFieldsValue.length > 10 ? false : true}
+                    type='submit'
+                >
+                    {buttonLoading ? "Loading..." : "Save"}
+                </button>
+
             </form>
-            <button
-                onClick={handleOfferFieldsValue}
-                className={
-                    inputFieldsValue.length > 10
-                        ? "bg-[#00C684] text-center w-full py-4 rounded-full text-xl text-white mb-5"
-                        : "bg-gray-300 text-center w-full py-4 rounded-full text-xl text-white mb-5"
-                }
-                disabled={buttonLoading || inputFieldsValue.length > 10 ? false : true}
-            >
-                {buttonLoading ? "Loading..." : "Save"}
-            </button>
         </div>
     );
 };
