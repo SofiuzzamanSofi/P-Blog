@@ -1,7 +1,6 @@
 import express from "express";
-import { experienceServiceCreate, experienceServiceEdit } from "../service/experienceService";
+import { experienceServiceCreate, experienceServiceEdit, getUserExperienceByIdService } from "../service/experienceService";
 
-//
 // 
 export const updateProfileExperience = async (
     req: express.Request,
@@ -22,7 +21,7 @@ export const updateProfileExperience = async (
         // delete reqData._id;
 
         const experienceData = await experienceServiceEdit(next, reqData);
-        console.log('experienceData:', experienceData);
+        // console.log('experienceData:', experienceData);
 
         if (experienceData.modifiedCount) {
             return res.status(200).json({
@@ -33,9 +32,9 @@ export const updateProfileExperience = async (
         } else {
             console.log('non modify:');
             const experienceDataCreate = await experienceServiceCreate(next, reqData);
-            console.log('experienceDataCreate:', experienceDataCreate);
+            // console.log('experienceDataCreate:', experienceDataCreate);
             if (experienceDataCreate) {
-                return res.status(404).json({
+                return res.status(200).json({
                     success: true,
                     message: "Create Success", // Create First Time
                     data: experienceDataCreate,
@@ -47,6 +46,39 @@ export const updateProfileExperience = async (
                 });
             }
         }
+    } catch (error) {
+        next(error);
+    };
+};
+
+//
+// get user by id
+export const getUserExperienceById = async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+) => {
+    try {
+        const { _id } = req.body
+        if (!_id) {
+            return res.status(201).json({
+                success: false,
+                message: `Id not found`,
+            });
+        };
+        const userExperiences = await getUserExperienceByIdService(next, _id);
+        if (!userExperiences) {
+            return res.status(201).json({
+                success: false,
+                message: `userExperiences Not Found`,
+            });
+        } else {
+            return res.status(200).json({
+                success: true,
+                message: `Successfully got data by this id.`,
+                data: userExperiences,
+            })
+        };
     } catch (error) {
         next(error);
     };

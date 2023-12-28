@@ -3,7 +3,7 @@ import ScrollToTopButton from "../../../components/shared/ScrollToTopButton";
 import Link from "next/link";
 import Image from "next/image";
 import { FC } from "react";
-import { BlogDataTypes, UserDataTypes } from "@/typesInterface/types";
+import { BlogDataTypes, ExperienceDataTypes, UserDataTypes } from "@/typesInterface/types";
 import { getData } from "@/utils/getProfileData";
 import ProfilePhotoView from "@/components/profile/ProfilePhotoView";
 import ProfileLinkCopy from "@/components/profile/ProfileLinkCopy";
@@ -21,12 +21,14 @@ interface PageProps {
 
 const Page: FC<PageProps> = async ({ params: { _id } }) => {
 
-    let user: UserDataTypes;
-    let blogs: BlogDataTypes[] | null;
+    // let user: UserDataTypes;
+    // let blogs: BlogDataTypes[] | null;
+
 
     const data = await getData(_id);
-    user = data?.user;
-    blogs = data?.blog;
+    const user: UserDataTypes = data?.user;
+    const blogs: BlogDataTypes[] = data?.blog;
+    const experience: ExperienceDataTypes = data?.experience;
 
     if (!user?.email) {
         return (

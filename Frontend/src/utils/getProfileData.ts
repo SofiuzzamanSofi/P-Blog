@@ -8,20 +8,38 @@ export const getData = async (_id: string) => {
         );
 
         if (userData?.data?.success) {
+
+            const user = userData?.data?.data;
+            let blog;
+            let experience;
+
             try {
                 const response = await axios.get(
                     `${process.env.NEXT_PUBLIC_SERVER}/blog-by-author/${userData?.data?.data?.email}`,
                 );
-
-                // return
                 if (response?.data?.success) {
-                    return { user: userData?.data?.data, blog: response?.data?.data };
+                    blog = response?.data?.data;
                 }
-                else {
-                    return { user: userData?.data?.data };
-                };
             }
             catch (error) {
+            };
+
+            try {
+                const experienceData = await axios.patch(
+                    `${process.env.NEXT_PUBLIC_SERVER}/user/by-id`,
+                    { _id },
+                );
+                if (userData?.data?.success) {
+                    experience = experienceData?.data?.data;
+                }
+            } catch (error) {
+
+            };
+
+            return {
+                user,
+                blog,
+                experience
             };
         };
     } catch (error) {
