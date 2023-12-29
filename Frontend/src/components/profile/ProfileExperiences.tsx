@@ -2,12 +2,13 @@ import { FC } from 'react';
 import { MdAssuredWorkload } from "react-icons/md";
 import workImage from "../../assets/work.svg"
 import Image from 'next/image';
+import { ExperienceDataTypes } from '@/typesInterface/types';
 
 interface ProfileExperiencesProps {
-
+    experience: ExperienceDataTypes
 };
 
-const ProfileExperiences: FC<ProfileExperiencesProps> = ({ }) => {
+const ProfileExperiences: FC<ProfileExperiencesProps> = ({ experience }) => {
     return (
         <div className="my-20">
             <div className="flex items-center gap-x-3">
@@ -18,22 +19,33 @@ const ProfileExperiences: FC<ProfileExperiencesProps> = ({ }) => {
 
             <div className='space-y-6'>
                 {
-                    [...Array(3).keys()].map(() => (
-                        <div className=" flex items-start gap-2 border-b pb-4">
+                    experience.experience &&
+                    experience.experience.map((experienc, index) => (
+                        <div className=" flex items-start gap-2 border-b pb-4" key={index}>
                             <Image src={workImage} alt="work-image-logo" width={48} height={48} />
                             <div>
                                 {/* title  */}
                                 <h2 className='font-bold hover:underline'>
-                                    Jr MERN Stack || FrontEnd  Web Developer
+                                    {experienc.title}
                                 </h2>
                                 {/* employment location type  */}
                                 <p className='font-semibold text-sm py-[2px]'>
-                                    Remote
+                                    {experienc.jobLocationType}
                                 </p>
                                 {/* employment type  */}
                                 <p className='font-semibold text-sm py-[2px]'>
-                                    Full Time
+                                    {experienc.employmentType}
                                 </p>
+                                <br />
+
+                                {/* work now or not  */}
+                                {
+                                    experienc.currentlyWork &&
+                                    <div className='flex items-center gap-2'>
+                                        <input type="checkbox" className="h-5 w-5" checked
+                                        /> <p>Currently Working in This Role</p>
+                                    </div>
+                                }
                                 <p className='font-semibold text-sm py-[2px]'>
                                     Feb 2023 - Mar 2023 · 2 mos
                                 </p>
@@ -41,36 +53,30 @@ const ProfileExperiences: FC<ProfileExperiencesProps> = ({ }) => {
 
                                 {/* company name  */}
                                 <p className='font-semibold text-sm py-[2px] hover:underline'>
-                                    Prayers connect
+                                    {experienc.companyName}
                                 </p>
                                 {/* company location  */}
                                 <p>
-                                    London, Uk
+                                    {experienc.companyLocation}
                                 </p>
                                 <br />
 
-                                {/* work now or not  */}
-                                {/* <div>
-                            <input type="checkbox" name="" id="" />
-                            <p>I am currently Working in this role</p>
-                        </div> */}
 
-                                {/* details  */}
+
+                                {/* details || description  */}
                                 <div>
                                     <p className='text-sm'>
-                                        Work on large scale project on Node.js and Mongodb, Build cool frontend with Nextjs React and Typescript sometimes use Vite.
+                                        {experienc.description}
                                     </p>
                                 </div>
                                 <br />
 
                                 {/* skills  */}
                                 <div>
-                                    <p className='text-sm'>
-                                        <span className='font-semibold'>Skills: </span>
-                                        <span>
-                                            Mongoose · TypeScript · Redux.js · Front-End Development · Full-Stack Development · MongoDB · Express.js · Node.js · React.js · JavaScript
-                                        </span>
-                                    </p>
+                                    <p className='font-semibold'>Skills: </p>
+                                    <div className='text-sm mx-[-.5rem]'>
+                                        {experienc.skillsArray.map((skill, index) => <button key={index} className='mx-2'>{skill}</button>)}
+                                    </div>
                                 </div>
 
                             </div>

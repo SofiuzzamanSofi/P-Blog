@@ -141,5 +141,11 @@ export interface ExperienceTypes {
 export interface ExperienceDataTypes {
     _id: string | undefined;
     email: string | undefined;
+    experience: ExperienceTypes[]
+}
+
+export interface ExperienceDataForResponseTypes {
+    _id: string | undefined;
+    email: string | undefined;
     experience: ExperienceTypes
 }

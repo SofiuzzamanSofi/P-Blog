@@ -12,7 +12,7 @@ import ProfileAboutOthers from "@/components/profile/ProfileAboutOthers";
 import ProfileLinks from "@/components/profile/ProfileLinks";
 import ProfileBlogs from "@/components/profile/ProfileBlogs";
 import ProfileAttributes from "@/components/profile/ProfileAttributes";
-import ProfileWork from "@/components/profile/ProfileExperiences";
+import ProfileExperiences from "@/components/profile/ProfileExperiences";
 import ProfileNameLocation from "@/components/profile/ProfileNameLocation";
 
 interface PageProps {
@@ -29,6 +29,8 @@ const Page: FC<PageProps> = async ({ params: { _id } }) => {
     const user: UserDataTypes = data?.user;
     const blogs: BlogDataTypes[] = data?.blog;
     const experience: ExperienceDataTypes = data?.experience;
+
+    // console.log('experiences:', experiences);
 
     if (!user?.email) {
         return (
@@ -86,8 +88,11 @@ const Page: FC<PageProps> = async ({ params: { _id } }) => {
                         {/* profile Name location  */}
                         <ProfileNameLocation user={user} />
 
-                        {/* works  */}
-                        <ProfileWork />
+                        {/* Experiences  */}
+                        {
+                            experience && <ProfileExperiences experience={experience} />
+                        }
+
 
                         {/* Links  */}
                         <ProfileLinks user={user} />
@@ -96,7 +101,9 @@ const Page: FC<PageProps> = async ({ params: { _id } }) => {
                         <ProfileAboutOthers about={user?.about} othersCuriculam={user?.othersCuriculam} />
 
                         {/* Blogs  */}
-                        <ProfileBlogs blogs={blogs} />
+                        {
+                            blogs && <ProfileBlogs blogs={blogs} />
+                        }
 
                         {/* Attributes  */}
                         <ProfileAttributes user={user} />

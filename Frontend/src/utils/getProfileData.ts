@@ -26,7 +26,7 @@ export const getData = async (_id: string) => {
 
             try {
                 const experienceData = await axios.patch(
-                    `${process.env.NEXT_PUBLIC_SERVER}/user/by-id`,
+                    `${process.env.NEXT_PUBLIC_SERVER}/user/user-experiences`,
                     { _id },
                 );
                 if (userData?.data?.success) {

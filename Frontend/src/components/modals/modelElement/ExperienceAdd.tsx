@@ -166,7 +166,7 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
                 {/* work now or not  */}
                 <div className='flex items-center gap-2'>
                     <label htmlFor="current-work"> </label>
-                    <input type="checkbox" className="h-6 w-6"
+                    <input type="checkbox" className="h-5 w-5"
                         // checked={inputCurrentlyWork}
                         onClick={() => setInputCurrentlyWork((prev) => !prev)}
                     /> <p>Currently Working in This Role</p>

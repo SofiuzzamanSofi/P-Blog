@@ -1,7 +1,7 @@
-import { ExperienceDataTypes } from "@/typesInterface/types";
+import { ExperienceDataForResponseTypes } from "@/typesInterface/types";
 import axios from "axios";
 
-export const experienceEditFn = async (data: ExperienceDataTypes) => {
+export const experienceEditFn = async (data: ExperienceDataForResponseTypes) => {
     try {
         const res = await axios.patch(
             `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/experience`,
