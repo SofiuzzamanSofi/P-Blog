@@ -2,6 +2,7 @@ export interface UserDataTypes {
     _id: string;
     email: string;
     displayName: string;
+    heading: string;
     emailVerified: boolean;
     photoURL: string;
     location: string;

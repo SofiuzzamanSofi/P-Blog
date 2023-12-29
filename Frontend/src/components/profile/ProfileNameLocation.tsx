@@ -15,7 +15,10 @@ const ProfileNameLocation: FC<ProfileNameLocationProps> = ({ user }) => {
                 <h1 className="text-[32px] font-semibold text-center w-full">{user?.displayName}</h1>
             </div>
             <div className="pb-6">
-                <p className="font-semibold text-center w-full hover:underline">Jr MERN Stack || FrontEnd || Full Stack Web Developer</p>
+                <p className="font-semibold text-center w-full hover:underline">
+                    {/* Jr MERN Stack || FrontEnd || Full Stack Web Developer */}
+                    {user.heading || "Designation..."}
+                </p>
             </div>
             <div>
                 <p className="ext-[16px] font-medium flex gap-2">

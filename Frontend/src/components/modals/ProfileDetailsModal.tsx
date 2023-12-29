@@ -316,8 +316,16 @@ const ProfileDetailsModal = ({ getValueType }: { getValueType: string }) => {
   };
 
   const handleOfferFieldsValue = async () => {
-    const values = {
-      about: inputFieldsValue,
+    let values;
+    if (getValueType === "about") {
+      values = {
+        about: inputFieldsValue,
+      };
+    };
+    if (getValueType === "heading") {
+      values = {
+        heading: inputFieldsValue,
+      };
     };
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_SERVER}/user/update-user/${email}`,
@@ -1108,6 +1116,37 @@ const ProfileDetailsModal = ({ getValueType }: { getValueType: string }) => {
             Skip
           </li>
         </ul>
+      </div>
+    );
+  }
+  if (getValueType === "heading") {
+    bodyContent = (
+      <div className="text-black">
+        <h1 className="text-center text-xl font-medium">
+          Profile Heading
+        </h1>
+        <input
+          type="text"
+          onChange={(e: any) => setInputFieldsValue(e.target.value)}
+          // type="text"
+          name=""
+          id=""
+          className=" shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] outline-none px-5 py-7 rounded-xl w-full my-6"
+          placeholder="Jr MERN Stack || FrontEnd Web Developer"
+          required
+          defaultValue={user?.heading}
+        />
+        <button
+          onClick={handleOfferFieldsValue}
+          className={
+            inputFieldsValue.length > 10
+              ? "bg-[#00C684] text-center w-full py-4 rounded-full text-xl text-white mb-5"
+              : "bg-gray-300 text-center w-full py-4 rounded-full text-xl text-white mb-5"
+          }
+          disabled={inputFieldsValue.length > 10 ? false : true}
+        >
+          Save
+        </button>
       </div>
     );
   }

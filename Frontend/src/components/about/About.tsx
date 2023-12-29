@@ -189,6 +189,33 @@ const About: React.FC<AboutProps> = () => {
           <div className="w-full mt-5 md:mt-0">
 
             {/* // BIO  */}
+            <h3 className="text-[20px] font-medium mb-4">Heading</h3>
+            <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-4">
+              {/* // offer  */}
+              <div
+                onClick={() => handleGetValue("heading")}
+                className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-7"
+              >
+                <div className="flex justify-start items-center gap-3">
+                  <div>
+                    <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3 mb-4">
+                      <MdFavorite className="w-7 h-7 text-blue-800" /> About
+                    </p>
+                    <p>
+                      {user?.heading && (
+                        <span className="pt-2">{user?.heading.slice(0, 25)}...</span>
+                      )}
+                    </p>
+                  </div>
+                </div>
+
+                <button className="inset-0" type="button">
+                  <CiEdit className="w-7 h-7 text-blue-800" />
+                </button>
+              </div>
+            </div>
+
+            {/* // BIO  */}
             <h3 className="text-[20px] font-medium mb-4">Bio</h3>
             <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
               {/* // offer  */}

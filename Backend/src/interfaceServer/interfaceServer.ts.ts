@@ -3,6 +3,7 @@ import mongoose, { Document } from "mongoose";
 export interface UserDataTypes {
     email?: string;
     displayName: string;
+    heading: string;
     emailVerified: boolean;
     photoURL: string;
     location: string;
