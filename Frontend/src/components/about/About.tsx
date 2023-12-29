@@ -275,7 +275,7 @@ const About: React.FC<AboutProps> = () => {
             </div>
 
             {/* // Links  */}
-            <h3 className="text-[20px] font-medium mb-4">Links</h3>
+            <h3 className="text-[20px] font-medium my-4">Links</h3>
             <div className="grid lg:grid-cols-2 gap-x-8 gap-y-4 mb-14">
 
               {/* whatsapp */}
