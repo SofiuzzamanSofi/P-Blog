@@ -13,11 +13,11 @@ interface ProfileExpDelProps {
 
 const ProfileExpDel: FC<ProfileExpDelProps> = ({ _id }) => {
 
-    const { setUserReload } = useAuth();
+    const { user, setUserReload } = useAuth();
     const pathname = usePathname() ?? "";
 
     const handleDelete = async () => {
-        const res = await experienceDelFn(_id);
+        const res = await experienceDelFn(user?._id, _id);
         if (res) {
             setUserReload((prev) => !prev);
             return toast.success("Delete Success.");

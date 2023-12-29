@@ -12,6 +12,11 @@ interface ProfileExperiencesProps {
 
 const ProfileExperiences: FC<ProfileExperiencesProps> = ({ experience }) => {
 
+    // let reverseData;
+    // if (experience.experience.length) {
+    //     reverseData = experience.experience?.reverse()
+    // }
+
     return (
         <div className="my-20">
             <div className="flex items-center gap-x-3">

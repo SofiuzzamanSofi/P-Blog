@@ -202,7 +202,9 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
 
                 {/* company location  */}
                 <div>
-                    <label htmlFor="industry">Industry </label>
+                    <label htmlFor="industry">
+                        Industry <span className='text-red-500'>*</span>
+                    </label>
                     <input
                         type="text"
                         placeholder='Technology, Information and Internet'

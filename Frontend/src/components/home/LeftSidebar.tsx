@@ -68,7 +68,9 @@ const LeftSidebar: FC<LeftSidebarProps> = ({ }) => {
                                         >
                                             {user?.displayName}
                                         </Link>
-                                        <p className='text-xs'>Front-End Developer</p>
+                                        <p className='text-xs'>
+                                            {user.heading || "Designation..."}
+                                        </p>
                                     </div>
                                     <div className='my-4 text-xs p-2'>
                                         <div className='flex justify-between items-center'>

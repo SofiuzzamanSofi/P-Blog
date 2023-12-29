@@ -55,3 +55,22 @@ export const getUserExperienceByIdService = async (
         next(error);
     };
 };
+
+//delete
+//
+export const getOneExperienceByIdService = async (
+    next: NextFunction,
+    userId: string,
+    _id: string,
+) => {
+    try {
+        const result = await ExperienceModel.findOneAndUpdate(
+            { _id: userId },
+            { $pull: { experience: { _id } } }
+        );
+        console.log('result:', result);
+        return result;
+    } catch (error) {
+        next(error);
+    };
+};

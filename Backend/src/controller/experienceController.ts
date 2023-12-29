@@ -1,5 +1,5 @@
 import express from "express";
-import { experienceServiceCreate, experienceServiceEdit, getUserExperienceByIdService } from "../service/experienceService";
+import { experienceServiceCreate, experienceServiceEdit, getOneExperienceByIdService, getUserExperienceByIdService } from "../service/experienceService";
 
 // 
 export const updateProfileExperience = async (
@@ -78,6 +78,42 @@ export const getUserExperienceById = async (
                 message: `Successfully got data by this id.`,
                 data: userExperiences,
             })
+        };
+    } catch (error) {
+        next(error);
+    };
+};
+
+//delte 
+export const deleteExperienceById = async (
+    req: express.Request,
+    res: express.Response,
+    next: express.NextFunction,
+) => {
+    try {
+        const userId = req.params?.userId as string;
+        const _id = req.params?._id as string;
+
+        if (!userId || !_id) {
+            return res.status(400).json({
+                success: false,
+                message: "Id is missing in the request",
+            });
+        }
+        else {
+            const response = await getOneExperienceByIdService(next, userId, _id)
+            if (!response) {
+                return res.status(200).json({
+                    success: false,
+                    message: `Blog data not found for the id`,
+                });
+            } else {
+                return res.status(200).json({
+                    success: true,
+                    message: `Successfully found the Blog and delete By id`,
+                    data: response,
+                });
+            };
         };
     } catch (error) {
         next(error);
