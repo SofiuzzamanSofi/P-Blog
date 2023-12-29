@@ -59,8 +59,8 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
             console.log('res:', res);
             if (res) {
                 setUserReload((prev) => !prev);
-                // onClose();
                 setbuttonLoading(false);
+                onClose();
                 return toast.success("Experience Add Success.")
             }
         } catch (error) {

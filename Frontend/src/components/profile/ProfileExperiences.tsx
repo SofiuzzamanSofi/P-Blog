@@ -4,6 +4,7 @@ import workImage from "../../assets/work.svg"
 import Image from 'next/image';
 import { ExperienceDataTypes } from '@/typesInterface/types';
 import { formatDate } from '@/utils/date/dateShow';
+import ProfileExpDel from './ProfileExpDel';
 
 interface ProfileExperiencesProps {
     experience: ExperienceDataTypes
@@ -22,14 +23,17 @@ const ProfileExperiences: FC<ProfileExperiencesProps> = ({ experience }) => {
             <div className='space-y-6'>
                 {
                     experience.experience &&
-                    experience.experience.map((experienc, index) => (
+                    experience.experience?.reverse().map((experienc, index) => (
                         <div className=" flex items-start gap-2 border-b pb-4" key={index}>
                             <Image src={workImage} alt="work-image-logo" width={48} height={48} />
                             <div>
                                 {/* title  */}
-                                <h2 className='font-bold hover:underline'>
-                                    {experienc.title}
-                                </h2>
+                                <div className='flex justify-between'>
+                                    <h2 className='font-bold hover:underline'>
+                                        {experienc.title}
+                                    </h2>
+                                    <ProfileExpDel _id={experienc._id} />
+                                </div>
                                 {/* employment location type  */}
                                 <p className='font-semibold text-sm py-[2px]'>
                                     {experienc.jobLocationType}

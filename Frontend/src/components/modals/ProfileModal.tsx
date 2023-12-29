@@ -65,8 +65,8 @@ const ProfileModal: React.FC<ModalProps> = ({
           relative
           w-10/12
           max-w-lg
-          my-6
-          mx-auto
+         
+          m-auto
           h-auto
           lg:h-auto
           md:h-auto

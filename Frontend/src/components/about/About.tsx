@@ -11,6 +11,7 @@ import {
   MdModeEdit,
   MdOutlineSmokingRooms,
 } from "react-icons/md";
+import { IoPeople } from "react-icons/io5";
 import axios from "axios";
 import { LiaRunningSolid, LiaSortAmountDownAltSolid } from "react-icons/lia";
 import { CgGirl } from "react-icons/cg";
@@ -188,7 +189,7 @@ const About: React.FC<AboutProps> = () => {
 
           <div className="w-full mt-5 md:mt-0">
 
-            {/* // BIO  */}
+            {/* // heading  */}
             <h3 className="text-[20px] font-medium mb-4">Heading</h3>
             <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-4">
               {/* // offer  */}
@@ -199,7 +200,7 @@ const About: React.FC<AboutProps> = () => {
                 <div className="flex justify-start items-center gap-3">
                   <div>
                     <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3 mb-4">
-                      <MdFavorite className="w-7 h-7 text-blue-800" /> About
+                      <IoPeople className="w-7 h-7 text-blue-800" /> Heading
                     </p>
                     <p>
                       {user?.heading && (
@@ -217,7 +218,7 @@ const About: React.FC<AboutProps> = () => {
 
             {/* // BIO  */}
             <h3 className="text-[20px] font-medium mb-4">Bio</h3>
-            <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
+            <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-4">
               {/* // offer  */}
               <div
                 onClick={() => handleGetValue("about")}
@@ -268,7 +269,7 @@ const About: React.FC<AboutProps> = () => {
 
             {/* // Experiences  */}
             <p className="flex justify-end mb-[-7rem] mr-6">
-              <BsPlus className="w-7 h-7 font-bold text-blue-800 hover:text-blue-600 cursor-pointer" onClick={() => handleGetValue("experiences-add")} />
+              <BsPlus className="w-7 h-7 text-2xl font-bold text-blue-800 hover:text-blue-600 cursor-pointer" onClick={() => handleGetValue("experiences-add")} />
             </p>
             {
               experience?.experience?.length && <ProfileExperiences experience={experience} />

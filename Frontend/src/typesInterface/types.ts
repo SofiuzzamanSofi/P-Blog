@@ -137,6 +137,7 @@ export interface ExperienceTypes {
     industry: string;
     description: string;
     skillsArray: string[];
+    _id: string;
 }
 
 export interface ExperienceDataTypes {
@@ -148,5 +149,5 @@ export interface ExperienceDataTypes {
 export interface ExperienceDataForResponseTypes {
     _id: string | undefined;
     email: string | undefined;
-    experience: ExperienceTypes
+    experience: Omit<ExperienceTypes, "_id">
 }

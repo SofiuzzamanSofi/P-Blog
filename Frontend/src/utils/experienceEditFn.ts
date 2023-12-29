@@ -19,6 +19,24 @@ export const experienceEditFn = async (data: ExperienceDataForResponseTypes) => 
 };
 
 //
+export const experienceDelFn = async (_id: string) => {
+    console.log('_id:', _id);
+    try {
+        const res = await axios.delete(
+            `${process.env.NEXT_PUBLIC_SERVER}/user/user-experiences/delete/${_id}`,
+        );
+        if (res?.data?.success) {
+            return true;
+        }
+        else {
+            return false
+        }
+    }
+    catch (error) {
+    };
+};
+
+//
 export const experienceGetFn = async (_id: string) => {
     console.log('_id:', _id);
     try {

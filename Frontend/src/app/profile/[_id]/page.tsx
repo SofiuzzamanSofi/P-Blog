@@ -21,16 +21,10 @@ interface PageProps {
 
 const Page: FC<PageProps> = async ({ params: { _id } }) => {
 
-    // let user: UserDataTypes;
-    // let blogs: BlogDataTypes[] | null;
-
-
     const data = await getData(_id);
     const user: UserDataTypes = data?.user;
     const blogs: BlogDataTypes[] = data?.blog;
     const experience: ExperienceDataTypes = data?.experience;
-
-    // console.log('experiences:', experiences);
 
     if (!user?.email) {
         return (
