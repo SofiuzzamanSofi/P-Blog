@@ -112,9 +112,6 @@ const About: React.FC<AboutProps> = () => {
     getExperience();
   }, [user]);
 
-  console.log('experience:', experience);
-
-
   if (!user?.email && !loading) {
     return window.location.href = "/sign-in";
   }
@@ -268,12 +265,14 @@ const About: React.FC<AboutProps> = () => {
             </div>
 
             {/* // Experiences  */}
-            <p className="flex justify-end mb-[-7rem] mr-6">
-              <BsPlus className="w-7 h-7 text-2xl font-bold text-blue-800 hover:text-blue-600 cursor-pointer" onClick={() => handleGetValue("experiences-add")} />
-            </p>
-            {
-              experience?.experience?.length && <ProfileExperiences experience={experience} />
-            }
+            <div className="px-6">
+              <p className="flex justify-end mb-[-7rem]">
+                <BsPlus className="w-7 h-7 text-2xl font-bold text-blue-800 hover:text-blue-600 cursor-pointer" onClick={() => handleGetValue("experiences-add")} />
+              </p>
+              {
+                experience?.experience?.length && <ProfileExperiences experience={experience} />
+              }
+            </div>
 
             {/* // Links  */}
             <h3 className="text-[20px] font-medium mb-4">Links</h3>

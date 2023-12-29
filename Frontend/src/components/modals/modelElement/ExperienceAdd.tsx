@@ -56,7 +56,6 @@ const ExperienceAdd: FC<ExperienceAddProps> = ({ user, setUserReload, onClose })
         setbuttonLoading(true);
         try {
             const res = await experienceEditFn(inputData);
-            console.log('res:', res);
             if (res) {
                 setUserReload((prev) => !prev);
                 setbuttonLoading(false);

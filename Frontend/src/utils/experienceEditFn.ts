@@ -20,7 +20,6 @@ export const experienceEditFn = async (data: ExperienceDataForResponseTypes) => 
 
 //
 export const experienceDelFn = async (userId: string | undefined, _id: string) => {
-    console.log('_id:', _id);
     try {
         const res = await axios.delete(
             `${process.env.NEXT_PUBLIC_SERVER}/user/user-experiences/delete/${userId}/${_id}`,
@@ -38,7 +37,6 @@ export const experienceDelFn = async (userId: string | undefined, _id: string) =
 
 //
 export const experienceGetFn = async (_id: string) => {
-    console.log('_id:', _id);
     try {
         const experienceData = await axios.patch(
             `${process.env.NEXT_PUBLIC_SERVER}/user/user-experiences`,

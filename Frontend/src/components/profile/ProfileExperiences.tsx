@@ -31,13 +31,13 @@ const ProfileExperiences: FC<ProfileExperiencesProps> = ({ experience }) => {
                     experience.experience?.reverse().map((experienc, index) => (
                         <div className=" flex items-start gap-2 border-b pb-4" key={index}>
                             <Image src={workImage} alt="work-image-logo" width={48} height={48} />
-                            <div>
+                            <div className='w-full'>
                                 {/* title  */}
-                                <div className='flex justify-between'>
+                                <div className=''>
+                                    <ProfileExpDel _id={experienc._id} />
                                     <h2 className='font-bold hover:underline'>
                                         {experienc.title}
                                     </h2>
-                                    <ProfileExpDel _id={experienc._id} />
                                 </div>
                                 {/* employment location type  */}
                                 <p className='font-semibold text-sm py-[2px]'>

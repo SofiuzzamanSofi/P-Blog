@@ -31,7 +31,9 @@ const ProfileExpDel: FC<ProfileExpDelProps> = ({ _id }) => {
 
     if (include) {
         return (
-            <FiTrash className="w-5 h-5 cursor-pointer text-red-800 mr-[-1rem]" onClick={handleDelete} />
+            <div className='flex justify-end'>
+                <FiTrash className="w-7 h-7 cursor-pointer text-red-800 lg:mb-[-1rem]" onClick={handleDelete} />
+            </div>
         )
     }
 };

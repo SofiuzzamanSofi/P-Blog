@@ -11,7 +11,6 @@ export const experienceServiceEdit = async (
     reqData: any,
 ) => {
     try {
-        console.log('reqData:', reqData);
         const updateUserExperience = await ExperienceModel.updateOne(
             { _id: reqData._id },
             {
@@ -23,7 +22,6 @@ export const experienceServiceEdit = async (
         );
         return updateUserExperience;
     } catch (error) {
-        console.error('Error during experienceServiceEdit:', error);
         next(error);
     };
 };
@@ -37,7 +35,6 @@ export const experienceServiceCreate = async (
         const updateUserExperience = await new ExperienceModel(reqData).save();
         return updateUserExperience;
     } catch (error) {
-        console.log('error:', error);
         next(error);
     };
 };
@@ -51,7 +48,6 @@ export const getUserExperienceByIdService = async (
         const updateUserExperience = await ExperienceModel.findById(_id);;
         return updateUserExperience;
     } catch (error) {
-        console.log('error:', error);
         next(error);
     };
 };

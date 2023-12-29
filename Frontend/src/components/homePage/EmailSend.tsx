@@ -31,7 +31,6 @@ const EmailSend: FC<EmailSendProps> = ({ }) => {
                 process.env.NEXT_PUBLIC_PUBLIC_KEY || ''
             );
 
-            console.log(result.text);
             toast.success("Your Valuable Feedback/Message is Submitted.");
             form.current?.reset();
             setLoading(false);
