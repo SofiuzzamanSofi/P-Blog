@@ -265,14 +265,33 @@ const About: React.FC<AboutProps> = () => {
             </div>
 
             {/* // Experiences  */}
-            <div className="px-6">
-              <p className="flex justify-end mb-[-7rem]">
-                <BsPlus className="w-7 h-7 text-2xl font-bold text-blue-800 hover:text-blue-600 cursor-pointer" onClick={() => handleGetValue("experiences-add")} />
-              </p>
-              {
-                experience?.experience?.length && <ProfileExperiences experience={experience} />
-              }
-            </div>
+            {
+              !experience?.experience?.length ?
+                <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
+                  <div
+                    onClick={() => handleGetValue("experiences-add")}
+                    className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 py-7"
+                  >
+                    <div className="flex justify-start items-center gap-3">
+                      <div>
+                        <p className="text-[14px] sm:text-[18px] font-medium flex justify-start items-center gap-3 mb-4">
+                          <RiPriceTagLine className="w-7 h-7 text-blue-800" /> Experiences
+                        </p>
+                      </div>
+                    </div>
+                    <button className="inset-0" type="button">
+                      <CiEdit className="w-7 h-7 text-blue-800" />
+                    </button>
+                  </div>
+                </div>
+                :
+                <div className="px-6">
+                  <p className="flex justify-end mb-[-7rem]">
+                    <BsPlus className="w-7 h-7 text-2xl font-bold text-blue-800 hover:text-blue-600 cursor-pointer" onClick={() => handleGetValue("experiences-add")} />
+                  </p>
+                  <ProfileExperiences experience={experience} />
+                </div>
+            }
 
             {/* // Links  */}
             <h3 className="text-[20px] font-medium my-4">Links</h3>

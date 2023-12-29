@@ -5,7 +5,7 @@ import { ExperienceModel } from "../model/experienceSchema";
 type NextFunction = express.NextFunction;
 type ObjectId = mongoose.Schema.Types.ObjectId;
 
-//
+// edit added 
 export const experienceServiceEdit = async (
     next: NextFunction,
     reqData: any,
@@ -26,7 +26,7 @@ export const experienceServiceEdit = async (
     };
 };
 
-//
+// create first time
 export const experienceServiceCreate = async (
     next: NextFunction,
     reqData: any,
@@ -39,18 +39,21 @@ export const experienceServiceCreate = async (
     };
 };
 
-//
+
 export const getUserExperienceByIdService = async (
     next: NextFunction,
-    _id: ObjectId | string,
+    _id: string,
 ) => {
     try {
-        const updateUserExperience = await ExperienceModel.findById(_id);;
+        // console.log('_idfrom service:', _id);
+        const updateUserExperience = await ExperienceModel.findById(_id);
+        // console.log('experiences-updateUserExperience:', updateUserExperience);
         return updateUserExperience;
     } catch (error) {
         next(error);
-    };
+    }
 };
+
 
 //delete
 //

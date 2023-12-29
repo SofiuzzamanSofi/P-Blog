@@ -7,6 +7,6 @@ export default (router: express.Router) => {
 
     router.patch("/user/user-experiences", getUserExperienceById); //get 
 
-    router.delete("/user/user-experiences/delete/:userId/:_id", deleteExperienceById); // get posted-job by email 
+    router.delete("/user/user-experiences/delete/:userId/:_id", deleteExperienceById); // delete posted-job by email 
 
 };

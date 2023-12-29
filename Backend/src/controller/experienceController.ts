@@ -59,7 +59,7 @@ export const getUserExperienceById = async (
     next: express.NextFunction,
 ) => {
     try {
-        const { _id } = req.body
+        const { _id } = req.body;
         if (!_id) {
             return res.status(201).json({
                 success: false,
