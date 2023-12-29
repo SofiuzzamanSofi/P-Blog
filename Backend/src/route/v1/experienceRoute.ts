@@ -5,6 +5,6 @@ export default (router: express.Router) => {
 
     router.patch("/user/update-user/experience", updateProfileExperience);
 
-    router.patch("/user/user-experiences", getUserExperienceById);
+    router.patch("/user/user-experiences", getUserExperienceById); //get 
 
 };

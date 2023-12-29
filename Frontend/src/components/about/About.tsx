@@ -4,7 +4,7 @@ import { BsPlus, BsPlusSquareDotted } from "react-icons/bs";
 import { FaFacebook, FaYoutube, FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { MdAssuredWorkload } from "react-icons/md";
 import { TbWorldWww } from "react-icons/tb";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   MdCastForEducation,
   MdFavorite,
@@ -28,6 +28,9 @@ import Loading from "../shared/Loading";
 import useProfileDetailsModal from "../hooks/useProfileDetailsModal";
 import AboutName from "./AboutName";
 import AboutPicLoading from "./AboutPicLoading";
+import ProfileExperiences from "../profile/ProfileExperiences";
+import { ExperienceDataTypes } from "@/typesInterface/types";
+import { experienceGetFn } from "@/utils/experienceEditFn";
 
 interface AboutProps {
 }
@@ -36,6 +39,9 @@ const About: React.FC<AboutProps> = () => {
 
   // auth
   const { user, setUserReload, loading } = useAuth();
+
+  // experience
+  const [experience, setExperience] = useState<ExperienceDataTypes | null>(null);
   // instant loading.
   const [loadingStates, setLoadingStates] = useState(false);
 
@@ -84,6 +90,29 @@ const About: React.FC<AboutProps> = () => {
     setGetValueType(e);
     profileDetailsModal.onOpen();
   };
+
+
+  useEffect(() => {
+    const getExperience = async () => {
+      if (user) {
+        try {
+          const data = await experienceGetFn(user._id);
+          if (data.success) {
+            setExperience(data.data);
+          } else {
+            // Handle the case where the data retrieval was not successful
+          }
+        } catch (error) {
+          // Handle any errors that occurred during the asynchronous operation
+        }
+      }
+    };
+
+    getExperience();
+  }, [user]);
+
+  console.log('experience:', experience);
+
 
   if (!user?.email && !loading) {
     return window.location.href = "/sign-in";
@@ -211,26 +240,12 @@ const About: React.FC<AboutProps> = () => {
             </div>
 
             {/* // Experiences  */}
-            <h3 className="text-[20px] font-medium mb-4">Experiences</h3>
-            <div className="grid lg:grid-cols-1 gap-x-8 gap-y-4 mb-14">
-              <div
-                onClick={() => handleGetValue("experiences-add")}
-                className="flex justify-between items-center gap-3 shadow-[0_0px_10px_rgba(0,0,0,0.15)] hover:shadow-[0_0px_20px_rgba(0,0,0,0.25)] rounded-3xl px-6 "
-              >
-                <div className="flex justify-start items-center gap-3">
-                  <div>
-                    <p>
-                      {user?.othersCuriculam && (
-                        <span className="pt-2">{user?.othersCuriculam.slice(0, 25)}...</span>
-                      )}
-                    </p>
-                  </div>
-                </div>
-                <button className="inset-0" type="button">
-                  <CiEdit className="w-7 h-7 text-blue-800" />
-                </button>
-              </div>
-            </div>
+            <p className="flex justify-end mb-[-7rem] mr-6">
+              <BsPlus className="w-7 h-7 font-bold text-blue-800 hover:text-blue-600 cursor-pointer" onClick={() => handleGetValue("experiences-add")} />
+            </p>
+            {
+              experience?.experience?.length && <ProfileExperiences experience={experience} />
+            }
 
             {/* // Links  */}
             <h3 className="text-[20px] font-medium mb-4">Links</h3>
@@ -694,3 +709,7 @@ const About: React.FC<AboutProps> = () => {
 };
 
 export default About;
+
+function asynce() {
+  throw new Error("Function not implemented.");
+}

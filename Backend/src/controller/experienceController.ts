@@ -67,7 +67,7 @@ export const getUserExperienceById = async (
             });
         };
         const userExperiences = await getUserExperienceByIdService(next, _id);
-        if (!userExperiences) {
+        if (!userExperiences?.experience?.length) {
             return res.status(201).json({
                 success: false,
                 message: `userExperiences Not Found`,

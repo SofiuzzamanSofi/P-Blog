@@ -11,8 +11,6 @@ interface ProfileExperiencesProps {
 
 const ProfileExperiences: FC<ProfileExperiencesProps> = ({ experience }) => {
 
-    // Function to format date string
-
     return (
         <div className="my-20">
             <div className="flex items-center gap-x-3">
@@ -46,7 +44,7 @@ const ProfileExperiences: FC<ProfileExperiencesProps> = ({ experience }) => {
                                 {
                                     experienc.currentlyWork &&
                                     <div className='flex items-center gap-2'>
-                                        <input type="checkbox" className="h-5 w-5" checked
+                                        <input type="checkbox" className="h-5 w-5" defaultChecked
                                         /> <p>Currently Working in This Role</p>
                                     </div>
                                 }
