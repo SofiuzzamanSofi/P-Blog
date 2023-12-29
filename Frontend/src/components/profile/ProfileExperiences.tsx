@@ -3,12 +3,16 @@ import { MdAssuredWorkload } from "react-icons/md";
 import workImage from "../../assets/work.svg"
 import Image from 'next/image';
 import { ExperienceDataTypes } from '@/typesInterface/types';
+import { formatDate } from '@/utils/date/dateShow';
 
 interface ProfileExperiencesProps {
     experience: ExperienceDataTypes
 };
 
 const ProfileExperiences: FC<ProfileExperiencesProps> = ({ experience }) => {
+
+    // Function to format date string
+
     return (
         <div className="my-20">
             <div className="flex items-center gap-x-3">
@@ -47,13 +51,23 @@ const ProfileExperiences: FC<ProfileExperiencesProps> = ({ experience }) => {
                                     </div>
                                 }
                                 <p className='font-semibold text-sm py-[2px]'>
-                                    Feb 2023 - Mar 2023 · 2 mos
+                                    {/* Feb 2023 - Mar 2023 · 2 mos */}
+                                    {formatDate(experienc.startDate)}
+                                    <span className='mx-1'>-</span>
+                                    {
+                                        !experienc.currentlyWork &&
+                                        formatDate(experienc.endDate)
+                                    }
                                 </p>
                                 <br />
 
                                 {/* company name  */}
                                 <p className='font-semibold text-sm py-[2px] hover:underline'>
                                     {experienc.companyName}
+                                </p>
+                                {/* company Industry  */}
+                                <p>
+                                    {experienc.industry}
                                 </p>
                                 {/* company location  */}
                                 <p>
